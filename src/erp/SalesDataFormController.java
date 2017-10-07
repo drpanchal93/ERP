@@ -13,8 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.*;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -46,7 +45,7 @@ public class SalesDataFormController implements Initializable {
     @FXML private TableColumn<SalesData,String> prodDesc;    
     @FXML private TableColumn<SalesData,Integer> quantity;    
     @FXML private TableColumn<SalesData,String> unit;    
-    @FXML private TableColumn<SalesData,String> basicAmt;    
+    @FXML private TableColumn<SalesData,Integer> basicAmt;    
     @FXML private TableColumn<SalesData,String> taxAmount;    
     @FXML private TableColumn<SalesData,String> totalAmount;
     
@@ -71,8 +70,8 @@ public class SalesDataFormController implements Initializable {
     @FXML
     private TextField TaxAmount;
     
-    @FXML
-    private TextField TotalAmount;
+   /* @FXML
+    private TextField TotalAmount;*/
     
     int sales_count=1;
     
@@ -175,8 +174,16 @@ public class SalesDataFormController implements Initializable {
         String qty_string = Quantity.getText();
         int qty_int = new Integer(qty_string);
         
+        String basic_string = BasicAmount.getText();
+        int basic_int = new Integer(basic_string);
         
-        SalesData newEntry = new SalesData(sales_count, ProductDescription.getText(), qty_int,Unit.getText(),BasicAmount.getText(),TaxAmount.getText(),TotalAmount.getText());
+        String tax_string = TaxAmount.getText();
+        int tax_int = new Integer(tax_string);
+        
+        
+        int total_int = basic_int + tax_int;
+        
+        SalesData newEntry = new SalesData(sales_count, ProductDescription.getText(), qty_int,Unit.getText(),basic_int,tax_int,total_int);
         sales_count++;
         
         SalesDataTable.getItems().add(newEntry);

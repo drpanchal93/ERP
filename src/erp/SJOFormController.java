@@ -140,7 +140,7 @@ public class SJOFormController implements Initializable {
         count++;
         
         SJOTable.getItems().add(newPerson);
-        
+    }    
         /*ObservableList<SJO> selectedRows, allItems;
         allItems = SJOTable.getItems();
         
@@ -153,5 +153,5 @@ public class SJOFormController implements Initializable {
             allItems.add(null);
             SJOTable.getItems().add(null);
         }*/
-    }
+    
 }
