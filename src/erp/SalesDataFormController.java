@@ -105,7 +105,7 @@ public class SalesDataFormController implements Initializable {
     public void changeBasicValueCellEvent(CellEditEvent editedCell)
     {
         SalesData Selected =  SalesDataTable.getSelectionModel().getSelectedItem();
-        Selected.setBasicValue((String) editedCell.getNewValue());
+        Selected.setBasicAmount((String) editedCell.getNewValue());
     }
     
     public void changeTaxValueCellEvent(CellEditEvent editedCell)
@@ -124,13 +124,13 @@ public class SalesDataFormController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        serialNo.setCellValueFactory(new PropertyValueFactory<>("serialNo"));
-        prodDesc.setCellValueFactory(new PropertyValueFactory<>("prodDesc"));
-        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-        basicAmt.setCellValueFactory(new PropertyValueFactory<>("basicAmt"));
-        taxAmount.setCellValueFactory(new PropertyValueFactory<>("taxAmount"));
-        totalAmount.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        serialNo.setCellValueFactory(new PropertyValueFactory<SalesData, Integer>("serialNo"));
+        prodDesc.setCellValueFactory(new PropertyValueFactory<SalesData, String>("prodDesc"));
+        quantity.setCellValueFactory(new PropertyValueFactory<SalesData, Integer>("quantity"));
+        unit.setCellValueFactory(new PropertyValueFactory<SalesData, String>("unit"));
+        basicAmt.setCellValueFactory(new PropertyValueFactory<SalesData, String>("basicAmt"));
+        taxAmount.setCellValueFactory(new PropertyValueFactory<SalesData, String>("taxAmount"));
+        totalAmount.setCellValueFactory(new PropertyValueFactory<SalesData, String>("totalAmount"));
         
         SalesDataTable.setItems(salesDataList);
         

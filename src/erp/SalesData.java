@@ -64,11 +64,11 @@ public class SalesData
         unit.set(unt);
     }
 
-    public String getBasicValue() {
+    public String getBasicAmount() {
         return basicAmount.get();
     }
 
-    public void setBasicValue(String basicVal) {
+    public void setBasicAmount(String basicVal) {
         basicAmount.set(basicVal);
     }
 
