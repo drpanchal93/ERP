@@ -17,19 +17,19 @@ public class SalesData
     private SimpleStringProperty prodDesc;
     private SimpleIntegerProperty quantity;
     private SimpleStringProperty unit;
-    private SimpleStringProperty basicAmount;
-    private SimpleStringProperty taxAmount;
-    private SimpleStringProperty totalAmount;
+    private SimpleIntegerProperty basicAmount;
+    private SimpleIntegerProperty taxAmount;
+    private SimpleIntegerProperty totalAmount;
     
-    public SalesData(int srNo,String prodDescription,int qty, String unt, String basicVal, String taxVal, String totalVal)
+    public SalesData(int srNo,String prodDescription,int qty, String unt, int basicVal, int taxVal, int totalVal)
     {
         this.serialNumber = new SimpleIntegerProperty(srNo);
         this.prodDesc = new SimpleStringProperty(prodDescription);
         this.quantity = new SimpleIntegerProperty(qty);
         this.unit = new SimpleStringProperty(unt);
-        this.basicAmount = new SimpleStringProperty(basicVal);
-        this.taxAmount = new SimpleStringProperty(taxVal);
-        this.totalAmount = new SimpleStringProperty(totalVal);
+        this.basicAmount = new SimpleIntegerProperty(basicVal);
+        this.taxAmount = new SimpleIntegerProperty(taxVal);
+        this.totalAmount = new SimpleIntegerProperty(totalVal);
     }
 
     public int getSerialNumber() {
@@ -64,27 +64,27 @@ public class SalesData
         unit.set(unt);
     }
 
-    public String getBasicAmount() {
+    public int getBasicAmount() {
         return basicAmount.get();
     }
 
-    public void setBasicAmount(String basicVal) {
+    public void setBasicAmount(Integer basicVal) {
         basicAmount.set(basicVal);
     }
 
-    public String getTaxAmount() {
+    public int getTaxAmount() {
         return taxAmount.get();
     }
 
-    public void setTaxAmount(String taxVal) {
+    public void setTaxAmount(Integer taxVal) {
         taxAmount.set(taxVal);
     }
 
-    public String getTotalAmount() {
+    public int getTotalAmount() {
         return totalAmount.get();
     }
 
-    public void setTotalAmount(String totalVal) {
+    public void setTotalAmount(Integer totalVal) {
         totalAmount.set(totalVal);
     }
 }

@@ -46,8 +46,8 @@ public class SalesDataFormController implements Initializable {
     @FXML private TableColumn<SalesData,Integer> quantity;    
     @FXML private TableColumn<SalesData,String> unit;    
     @FXML private TableColumn<SalesData,Integer> basicAmt;    
-    @FXML private TableColumn<SalesData,String> taxAmount;    
-    @FXML private TableColumn<SalesData,String> totalAmount;
+    @FXML private TableColumn<SalesData,Integer> taxAmount;    
+    @FXML private TableColumn<SalesData,Integer> totalAmount;
     
     @FXML
     private TextArea salesDataDispatchDetails;
@@ -104,19 +104,19 @@ public class SalesDataFormController implements Initializable {
     public void changeBasicValueCellEvent(CellEditEvent editedCell)
     {
         SalesData Selected =  SalesDataTable.getSelectionModel().getSelectedItem();
-        Selected.setBasicAmount((String) editedCell.getNewValue());
+        Selected.setBasicAmount((Integer) editedCell.getNewValue());
     }
     
     public void changeTaxValueCellEvent(CellEditEvent editedCell)
     {
         SalesData Selected =  SalesDataTable.getSelectionModel().getSelectedItem();
-        Selected.setTaxAmount((String) editedCell.getNewValue());
+        Selected.setTaxAmount((Integer) editedCell.getNewValue());
     }
     
     public void changeTotalAmountCellEvent(CellEditEvent editedCell)
     {
         SalesData Selected =  SalesDataTable.getSelectionModel().getSelectedItem();
-        Selected.setTotalAmount((String) editedCell.getNewValue());
+        Selected.setTotalAmount((Integer) editedCell.getNewValue());
     }
     
     @Override
@@ -127,9 +127,9 @@ public class SalesDataFormController implements Initializable {
         prodDesc.setCellValueFactory(new PropertyValueFactory<SalesData, String>("prodDesc"));
         quantity.setCellValueFactory(new PropertyValueFactory<SalesData, Integer>("quantity"));
         unit.setCellValueFactory(new PropertyValueFactory<SalesData, String>("unit"));
-        basicAmt.setCellValueFactory(new PropertyValueFactory<SalesData, String>("basicAmt"));
-        taxAmount.setCellValueFactory(new PropertyValueFactory<SalesData, String>("taxAmount"));
-        totalAmount.setCellValueFactory(new PropertyValueFactory<SalesData, String>("totalAmount"));
+        basicAmt.setCellValueFactory(new PropertyValueFactory<SalesData, Integer>("basicAmt"));
+        taxAmount.setCellValueFactory(new PropertyValueFactory<SalesData, Integer>("taxAmount"));
+        totalAmount.setCellValueFactory(new PropertyValueFactory<SalesData, Integer>("totalAmount"));
         
         SalesDataTable.setItems(salesDataList);
         
@@ -139,9 +139,9 @@ public class SalesDataFormController implements Initializable {
         prodDesc.setCellFactory(TextFieldTableCell.forTableColumn());
         quantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         unit.setCellFactory(TextFieldTableCell.forTableColumn());
-        basicAmt.setCellFactory(TextFieldTableCell.forTableColumn());
-        taxAmount.setCellFactory(TextFieldTableCell.forTableColumn());
-        totalAmount.setCellFactory(TextFieldTableCell.forTableColumn());
+        basicAmt.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        taxAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        totalAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         
     }    
     

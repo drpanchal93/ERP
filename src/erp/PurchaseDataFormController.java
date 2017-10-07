@@ -119,6 +119,7 @@ public class PurchaseDataFormController implements Initializable {
         TaxAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("TaxAmount"));
         TotalAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("TotalAmount"));
         
+        purchaseDataList.add(new PurchaseData(1, "a", 1, "kg", 1000, 2, 1002));
         PurchaseDataTable.setItems(purchaseDataList);
         
         PurchaseDataTable.setEditable(true);
@@ -146,6 +147,7 @@ public class PurchaseDataFormController implements Initializable {
         //loop over the selected rows and remove the Person objects from the table
         for (PurchaseData item: selectedRows)
         {
+            System.out.print(item.getSerialNumber());
             allItems.remove(item);
             count--;
             int c = 1;
