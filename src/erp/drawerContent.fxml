@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="erp.Scene2FXMLController">
+   <children>
+      <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <JFXButton buttonType="RAISED" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #bff4ff;" text="Button 1" />
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #bff4ff;" text="Button 2" />
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="44.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #bff4ff;" text="Button 3" />
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="78.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #bff4ff;" text="Button 4" />
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="78.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #bff4ff;" text="Button 5" />
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="78.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #bff4ff;" text="Button 6" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
