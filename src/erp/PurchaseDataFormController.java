@@ -28,13 +28,13 @@ public class PurchaseDataFormController implements Initializable {
 
     //Table View and Table Columns
     @FXML private TableView<PurchaseData> PurchaseDataTable;
-    @FXML private TableColumn<PurchaseData, Integer> SrNo;
-    @FXML private TableColumn<PurchaseData, String> ItemDescription;
-    @FXML private TableColumn<PurchaseData, Integer> Quantity;
-    @FXML private TableColumn<PurchaseData, String> Unit;
-    @FXML private TableColumn<PurchaseData, Integer> BasicAmount;
-    @FXML private TableColumn<PurchaseData, Integer> TaxAmount;
-    @FXML private TableColumn<PurchaseData, Integer> TotalAmount;
+    @FXML private TableColumn<PurchaseData, Integer> serialNumber;
+    @FXML private TableColumn<PurchaseData, String> prodDescription;
+    @FXML private TableColumn<PurchaseData, Integer> quantity;
+    @FXML private TableColumn<PurchaseData, String> unit;
+    @FXML private TableColumn<PurchaseData, Integer> basicAmount;
+    @FXML private TableColumn<PurchaseData, Integer> taxAmount;
+    @FXML private TableColumn<PurchaseData, Integer> totalAmount;
     
     //TextFields other that the table entry
     @FXML private TextField PODate;
@@ -111,26 +111,25 @@ public class PurchaseDataFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        SrNo.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("SrNo"));
-        ItemDescription.setCellValueFactory(new PropertyValueFactory<PurchaseData, String>("ItemDescription"));
-        Quantity.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("Quantity"));
-        Unit.setCellValueFactory(new PropertyValueFactory<PurchaseData, String>("Unit"));
-        BasicAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("BasicAmount"));
-        TaxAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("TaxAmount"));
-        TotalAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("TotalAmount"));
+        serialNumber.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("serialNumber"));
+        prodDescription.setCellValueFactory(new PropertyValueFactory<PurchaseData, String>("prodDescription"));
+        quantity.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("quantity"));
+        unit.setCellValueFactory(new PropertyValueFactory<PurchaseData, String>("unit"));
+        basicAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("basicAmount"));
+        taxAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("taxAmount"));
+        totalAmount.setCellValueFactory(new PropertyValueFactory<PurchaseData, Integer>("totalAmount"));
         
-        purchaseDataList.add(new PurchaseData(1, "a", 1, "kg", 1000, 2, 1002));
         PurchaseDataTable.setItems(purchaseDataList);
         
         PurchaseDataTable.setEditable(true);
         
-        SrNo.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        ItemDescription.setCellFactory(TextFieldTableCell.forTableColumn());
-        Quantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        Unit.setCellFactory(TextFieldTableCell.forTableColumn());
-        BasicAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        TaxAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        TotalAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        serialNumber.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        prodDescription.setCellFactory(TextFieldTableCell.forTableColumn());
+        quantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        unit.setCellFactory(TextFieldTableCell.forTableColumn());
+        basicAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        taxAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        totalAmount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     }    
     
     /**
@@ -147,7 +146,6 @@ public class PurchaseDataFormController implements Initializable {
         //loop over the selected rows and remove the Person objects from the table
         for (PurchaseData item: selectedRows)
         {
-            System.out.print(item.getSerialNumber());
             allItems.remove(item);
             count--;
             int c = 1;

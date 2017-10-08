@@ -14,22 +14,22 @@ import javafx.beans.property.*;
 public class SalesData 
 {
     private SimpleIntegerProperty serialNumber;
-    private SimpleStringProperty prodDesc;
+    private SimpleStringProperty prodDescription;
     private SimpleIntegerProperty quantity;
     private SimpleStringProperty unit;
     private SimpleIntegerProperty basicAmount;
     private SimpleIntegerProperty taxAmount;
     private SimpleIntegerProperty totalAmount;
     
-    public SalesData(int srNo,String prodDescription,int qty, String unt, int basicVal, int taxVal, int totalVal)
+    public SalesData(Integer serialNumber,String prodDescription,Integer quantity, String unt, Integer basicAmount, Integer taxAmount, Integer totalAmount)
     {
-        this.serialNumber = new SimpleIntegerProperty(srNo);
-        this.prodDesc = new SimpleStringProperty(prodDescription);
-        this.quantity = new SimpleIntegerProperty(qty);
+        this.serialNumber = new SimpleIntegerProperty(serialNumber);
+        this.prodDescription = new SimpleStringProperty(prodDescription);
+        this.quantity = new SimpleIntegerProperty(quantity);
         this.unit = new SimpleStringProperty(unt);
-        this.basicAmount = new SimpleIntegerProperty(basicVal);
-        this.taxAmount = new SimpleIntegerProperty(taxVal);
-        this.totalAmount = new SimpleIntegerProperty(totalVal);
+        this.basicAmount = new SimpleIntegerProperty(basicAmount);
+        this.taxAmount = new SimpleIntegerProperty(taxAmount);
+        this.totalAmount = new SimpleIntegerProperty(totalAmount);
     }
 
     public int getSerialNumber() {
@@ -40,12 +40,12 @@ public class SalesData
         serialNumber.set(srNo);
     }
 
-    public String getProdDesc() {
-        return prodDesc.get();
+    public String getProdDescription() {
+        return prodDescription.get();
     }
 
-    public void setProdDesc(String prodDescription) {
-        prodDesc.set(prodDescription);
+    public void setProdDescription(String prodDesc) {
+        prodDescription.set(prodDesc);
     }
 
     public int getQuantity() {

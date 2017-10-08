@@ -21,11 +21,11 @@
                   <TextField fx:id="buyerName" layoutX="218.0" layoutY="102.0" prefHeight="25.0" prefWidth="245.0" promptText="Buyer Name" />
                   <TableView fx:id="SalesDataTable" editable="true" layoutX="217.0" layoutY="196.0" prefHeight="170.0" prefWidth="961.0">
                      <columns>
-                        <TableColumn fx:id="serialNo" onEditCommit="#changeSrNoCellEvent" prefWidth="75.0" text="Sr. No." />
-                        <TableColumn fx:id="prodDesc" onEditCommit="#changeProdDescCellEvent" prefWidth="286.0" text="Item Description" />
+                        <TableColumn fx:id="serialNumber" onEditCommit="#changeSrNoCellEvent" prefWidth="75.0" text="Sr. No." />
+                        <TableColumn fx:id="prodDescription" onEditCommit="#changeProdDescCellEvent" prefWidth="286.0" text="Item Description" />
                         <TableColumn fx:id="quantity" onEditCommit="#changeQuantityCellEvent" prefWidth="66.0" text="Quantity" />
                         <TableColumn fx:id="unit" onEditCommit="#changeUnitCellEvent" prefWidth="69.0" text="Unit" />
-                        <TableColumn fx:id="basicAmt" onEditCommit="#changeBasicValueCellEvent" prefWidth="122.0" text="Basic Amount" />
+                        <TableColumn fx:id="basicAmount" onEditCommit="#changeBasicValueCellEvent" prefWidth="122.0" text="Basic Amount" />
                         <TableColumn fx:id="taxAmount" minWidth="0.0" onEditCommit="#changeTaxValueCellEvent" prefWidth="170.0" text="Tax Amount" />
                         <TableColumn fx:id="totalAmount" onEditCommit="#changeTotalAmountCellEvent" prefWidth="170.0" text="Total Amount" />
                      </columns>
@@ -71,7 +71,6 @@
                   <TextField fx:id="Unit" layoutX="645.0" layoutY="387.0" prefHeight="25.0" prefWidth="64.0" promptText="Unit" />
                   <TextField fx:id="BasicAmount" layoutX="715.0" layoutY="387.0" promptText="Basic Value" />
                   <TextField fx:id="TaxAmount" layoutX="870.0" layoutY="387.0" promptText="Tax Amount" />
-                  <TextField fx:id="TotalAmount" layoutX="1029.0" layoutY="387.0" promptText="Total Amount" />
                   <JFXButton fx:id="AddButton" buttonType="RAISED" layoutX="217.0" layoutY="425.0" onAction="#addButtonPushed" prefHeight="25.0" prefWidth="66.0" text="Add">
                      <font>
                         <Font size="13.0" />

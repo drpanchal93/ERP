@@ -27,7 +27,7 @@ public class Main extends Application {
         
         Parent root;
         //Parent Sc2 = FXMLLoader.load(getClass().getResource("Scene2FXML.fxml"));
-        root = FXMLLoader.load(getClass().getResource("PurchaseDataForm.fxml"));
+        root = FXMLLoader.load(getClass().getResource("SalesDataForm.fxml"));
         
         scene1 = new Scene(root);
         //scene2 = new Scene(Sc2);

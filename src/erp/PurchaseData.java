@@ -22,16 +22,15 @@ public class PurchaseData
     private SimpleIntegerProperty taxAmount;
     private SimpleIntegerProperty totalAmount;
 
-    public PurchaseData(int srNumber,String prodDesc,int qty,String unt,int basicAmt,int taxAmt,int totalAmt)
+    public PurchaseData(Integer serialNumber,String prodDescription,Integer quantity,String unit,Integer basicAmount,Integer taxAmount,Integer totalAmount)
     {
-        this.serialNumber = new SimpleIntegerProperty(srNumber);
-        System.out.print(serialNumber);
-        this.prodDescription = new SimpleStringProperty(prodDesc);
-        this.quantity = new SimpleIntegerProperty(qty);
-        this.unit = new SimpleStringProperty(unt);
-        this.basicAmount = new SimpleIntegerProperty(basicAmt);
-        this.taxAmount = new SimpleIntegerProperty(taxAmt);
-        this.totalAmount = new SimpleIntegerProperty(totalAmt);
+        this.serialNumber = new SimpleIntegerProperty(serialNumber);
+        this.prodDescription = new SimpleStringProperty(prodDescription);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.unit = new SimpleStringProperty(unit);
+        this.basicAmount = new SimpleIntegerProperty(basicAmount);
+        this.taxAmount = new SimpleIntegerProperty(taxAmount);
+        this.totalAmount = new SimpleIntegerProperty(totalAmount);
     }
 
     public int getSerialNumber() {
