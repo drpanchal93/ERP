@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SaleInvoiceFormController">
    <children>
       <ScrollPane prefHeight="200.0" prefWidth="200.0">
         <content>
@@ -39,177 +39,163 @@
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="201.0" prefHeight="25.0" prefWidth="150.0" text="Delivery Note No. :">
+                  <Label layoutX="14.0" layoutY="206.0" prefHeight="25.0" prefWidth="150.0" text="Delivery Note No. :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="236.0" prefHeight="25.0" prefWidth="150.0" text="Delivery Note Date :">
+                  <Label layoutX="14.0" layoutY="249.0" prefHeight="25.0" prefWidth="150.0" text="Delivery Note Date :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="268.0" prefHeight="25.0" prefWidth="180.0" text="Dispatch Document No. :">
+                  <Label layoutX="11.0" layoutY="289.0" prefHeight="25.0" prefWidth="180.0" text="Dispatch Document No. :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="299.0" prefHeight="25.0" prefWidth="180.0" text="Dispatched Through :">
+                  <Label layoutX="11.0" layoutY="322.0" prefHeight="25.0" prefWidth="180.0" text="Dispatched Through :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="330.0" prefHeight="25.0" prefWidth="180.0" text="Destinaton :">
+                  <Label layoutX="11.0" layoutY="356.0" prefHeight="25.0" prefWidth="180.0" text="Destinaton :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="363.0" prefHeight="25.0" prefWidth="180.0" text="Mode/Terms of Payment :">
+                  <Label layoutX="14.0" layoutY="395.0" prefHeight="25.0" prefWidth="180.0" text="Mode/Terms of Payment :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="394.0" prefHeight="25.0" prefWidth="180.0" text="Supplier's Reference :">
+                  <Label layoutX="14.0" layoutY="428.0" prefHeight="25.0" prefWidth="180.0" text="Supplier's Reference :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="430.0" prefHeight="25.0" prefWidth="180.0" text="Other Reference :">
+                  <Label layoutX="11.0" layoutY="461.0" prefHeight="25.0" prefWidth="180.0" text="Other Reference :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="468.0" prefHeight="25.0" prefWidth="180.0" text="Remarks :">
+                  <Label layoutX="14.0" layoutY="493.0" prefHeight="25.0" prefWidth="180.0" text="Remarks :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="505.0" prefHeight="25.0" prefWidth="180.0" text="Terms of Delivery :">
+                  <Label layoutX="12.0" layoutY="523.0" prefHeight="25.0" prefWidth="180.0" text="Terms of Delivery :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="11.0" layoutY="542.0" prefHeight="25.0" prefWidth="180.0" text="Electronic Reference No. :">
+                  <Label layoutX="11.0" layoutY="553.0" prefHeight="25.0" prefWidth="180.0" text="Electronic Reference No. :">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField focusColor="#9e2222" layoutX="102.0" layoutY="33.0" promptText=" ">
+                  <JFXTextField fx:id="InvoiceNo" focusColor="#9e2222" layoutX="102.0" layoutY="33.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="114.0" layoutY="64.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="BuyerDetails" focusColor="#9e2222" layoutX="125.0" layoutY="96.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="125.0" layoutY="96.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="BuyerOrderNo" focusColor="#9e2222" layoutX="149.0" layoutY="128.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="149.0" layoutY="128.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="DeliveryNoteNo" focusColor="#9e2222" layoutX="145.0" layoutY="200.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="153.0" layoutY="162.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="DispatchDocumentNo" focusColor="#9e2222" layoutX="191.0" layoutY="283.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="145.0" layoutY="195.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="DispatchedThrough" focusColor="#9e2222" layoutX="166.0" layoutY="316.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="155.0" layoutY="230.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="Destination" focusColor="#9e2222" layoutX="100.0" layoutY="351.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="191.0" layoutY="261.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="ModeOfPay" focusColor="#9e2222" layoutX="197.0" layoutY="389.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="166.0" layoutY="293.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="SupplierRef" focusColor="#9e2222" layoutX="166.0" layoutY="423.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="101.0" layoutY="324.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="OtherRef" focusColor="#9e2222" layoutX="138.0" layoutY="455.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="197.0" layoutY="356.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="Remarks" focusColor="#9e2222" layoutX="89.0" layoutY="487.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="167.0" layoutY="388.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="TermsOfDelivery" focusColor="#9e2222" layoutX="150.0" layoutY="517.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="141.0" layoutY="423.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="ElectronicRefNo" focusColor="#9e2222" layoutX="192.0" layoutY="547.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="89.0" layoutY="462.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="12.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="150.0" layoutY="500.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="12.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="192.0" layoutY="536.0" prefHeight="23.0" prefWidth="194.0" promptText=" ">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="12.0" />
-                     </font>
-                  </JFXTextField>
-                  <TableView layoutX="491.0" layoutY="114.0" prefHeight="200.0" prefWidth="762.0">
+                  <TableView layoutX="491.0" layoutY="114.0" prefHeight="200.0" prefWidth="815.0">
                     <columns>
-                      <TableColumn prefWidth="50.0" text="Sr.No" />
-                      <TableColumn prefWidth="400.0" text="Product Description" />
-                        <TableColumn prefWidth="60.0" text="Quantity" />
-                        <TableColumn prefWidth="90.0" text="Rate" />
-                        <TableColumn prefWidth="70.0" text="Per" />
-                        <TableColumn prefWidth="90.0" text="Total" />
+                      <TableColumn fx:id="serialNumber" prefWidth="50.0" text="Sr.No" />
+                      <TableColumn fx:id="productDescription" prefWidth="400.0" text="Product Description" />
+                        <TableColumn fx:id="hsnCode" prefWidth="67.0" text="HSN Code" />
+                        <TableColumn fx:id="quantity" prefWidth="65.0" text="Quantity" />
+                        <TableColumn fx:id="Rate" prefWidth="88.0" text="Rate" />
+                        <TableColumn fx:id="Per" prefWidth="56.0" text="Per" />
+                        <TableColumn fx:id="TotalAmount" prefWidth="94.0" text="Total" />
                     </columns>
                   </TableView>
-                  <TextField layoutX="491.0" layoutY="334.0" prefHeight="26.0" prefWidth="285.0" promptText="Product Description">
+                  <TextField fx:id="prodDesc" layoutX="491.0" layoutY="334.0" prefHeight="26.0" prefWidth="285.0" promptText="Product Description">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="792.0" layoutY="334.0" prefHeight="26.0" prefWidth="123.0" promptText="Quantity">
+                  <TextField fx:id="qty" layoutX="792.0" layoutY="334.0" prefHeight="26.0" prefWidth="123.0" promptText="Quantity">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="927.0" layoutY="334.0" prefHeight="26.0" prefWidth="123.0" promptText="Rate">
+                  <TextField fx:id="rt" layoutX="1051.0" layoutY="334.0" prefHeight="26.0" prefWidth="123.0" promptText="Rate">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="1064.0" layoutY="334.0" prefHeight="26.0" prefWidth="80.0" promptText="Per">
+                  <TextField fx:id="per" layoutX="1186.0" layoutY="334.0" prefHeight="26.0" prefWidth="80.0" promptText="Per">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <JFXButton layoutX="491.0" layoutY="381.0" prefHeight="25.0" prefWidth="66.0" text="Add">
+                  <JFXButton fx:id="addButton" layoutX="491.0" layoutY="381.0" prefHeight="25.0" prefWidth="66.0" text="Add">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="574.0" layoutY="381.0" prefHeight="27.0" prefWidth="84.0" text="Remove">
+                  <JFXButton fx:id="removeButton" layoutX="574.0" layoutY="381.0" prefHeight="27.0" prefWidth="84.0" text="Remove">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
@@ -259,51 +245,54 @@
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField focusColor="#9e2222" layoutX="541.0" layoutY="429.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="cgst" focusColor="#9e2222" layoutX="541.0" layoutY="429.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="540.0" layoutY="455.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="sgst" focusColor="#9e2222" layoutX="540.0" layoutY="455.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="540.0" layoutY="487.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="igst" focusColor="#9e2222" layoutX="540.0" layoutY="487.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="682.0" layoutY="512.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="advance" focusColor="#9e2222" layoutX="682.0" layoutY="512.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="684.0" layoutY="542.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="packaging" focusColor="#9e2222" layoutX="684.0" layoutY="542.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="589.0" layoutY="571.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="grandTotal" focusColor="#9e2222" layoutX="589.0" layoutY="571.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="664.0" layoutY="602.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="invoiceValueInWords" focusColor="#9e2222" layoutX="664.0" layoutY="602.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="657.0" layoutY="627.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="taxAmountInWords" focusColor="#9e2222" layoutX="657.0" layoutY="627.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField focusColor="#9e2222" layoutX="743.0" layoutY="657.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
+                  <JFXTextField fx:id="reverseCharge" focusColor="#9e2222" layoutX="743.0" layoutY="657.0" prefHeight="4.0" prefWidth="194.0" promptText=" ">
                      <font>
                         <Font name="Lucida Sans Regular" size="12.0" />
                      </font>
                   </JFXTextField>
+                  <DatePicker fx:id="InvoiceDate" layoutX="125.0" layoutY="71.0" />
+                  <DatePicker fx:id="BuyerOrderDate" layoutX="155.0" layoutY="168.0" />
+                  <DatePicker fx:id="DeliveryNoteDate" layoutX="160.0" layoutY="249.0" />
                </children>
             </AnchorPane>
         </content>
