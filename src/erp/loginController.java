@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -38,6 +39,17 @@ public class loginController implements Initializable
 
     @FXML
     private JFXButton submit;
+    
+   /* @FXML
+    private void handleSubmitButtonAction(ActionEvent event) throws IOException
+    {
+        System.out.println("Submit button clicked");
+        Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("SampleDrawerMenu.fxml"));
+        Scene SampleDrawerMenuScene = new Scene(goToSceneTwo);
+        Stage app_Stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_Stage.setScene(SampleDrawerMenuScene);
+        app_Stage.show();
+    }*/
 
     @FXML
     private Label forgot;
@@ -48,8 +60,8 @@ public class loginController implements Initializable
     @FXML
     private Label error;
 
-    Stage stage;
-    Parent sc2;
+    /*Stage stage;
+    Parent sc2;*/
     //Database Connection
     @FXML
     void loginClicked(ActionEvent event) throws SQLException, IOException 
@@ -65,11 +77,16 @@ public class loginController implements Initializable
         if(rs.next() && rs.getString(1).equals(password.getText()))
         { 
             System.out.println("Login Successful");  
-            stage = (Stage) submit.getScene().getWindow();
+            /*stage = (Stage) submit.getScene().getWindow();
             sc2 = FXMLLoader.load(getClass().getResource("Scene2FXML.fxml"));
             Scene scene = new Scene(sc2);
             stage.setScene(scene);
-            stage.show();
+            stage.show();*/
+            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("SampleDrawerMenu.fxml"));
+            Scene SampleDrawerMenuScene = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app_Stage.setScene(SampleDrawerMenuScene);
+            app_Stage.show();
         }
         else
         {

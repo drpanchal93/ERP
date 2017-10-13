@@ -55,11 +55,21 @@
       </AnchorPane>
       <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
          <StackPane.margin>
-            <Insets left="50.0" top="50.0" />
+            <Insets left="150.0" top="200.0" />
          </StackPane.margin>
-         <image>
-            <Image url="@images/Panchal_Machinery_Logo.jpg" />
-         </image>
       </ImageView>
+      <Label prefHeight="170.0" prefWidth="431.0" text="ERP" textFill="#0c364f" StackPane.alignment="BOTTOM_LEFT">
+         <StackPane.margin>
+            <Insets bottom="150.0" left="150.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="SansSerif Regular" size="96.0" />
+         </font>
+      </Label>
+      <Label prefHeight="17.0" prefWidth="162.0" text="Developed By Drashti Panchal" textFill="#9e2222" StackPane.alignment="BOTTOM_LEFT">
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" />
+         </StackPane.margin>
+      </Label>
    </children>
 </StackPane>
