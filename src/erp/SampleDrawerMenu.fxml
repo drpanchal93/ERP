@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+       <children>
       <JFXHamburger fx:id="hamburger" layoutX="1201.0" layoutY="25.0" />
       <JFXDrawer fx:id="drawer" prefHeight="800.0" prefWidth="344.0" />
+      <Button layoutX="550.0" layoutY="301.0" mnemonicParsing="false" stylesheets="@sampleCSS2.css" text="Button" />
    </children>
 </AnchorPane>

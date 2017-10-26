@@ -86,6 +86,10 @@ public class loginController implements Initializable
             Scene SampleDrawerMenuScene = new Scene(goToSceneTwo);
             Stage app_Stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             app_Stage.setScene(SampleDrawerMenuScene);
+            
+            //Add stylesheet code
+            SampleDrawerMenuScene.getStylesheets().add(SampleDrawerMenuController.class.getResource("sampleCSS2.css").toExternalForm());
+            
             app_Stage.show();
         }
         else
