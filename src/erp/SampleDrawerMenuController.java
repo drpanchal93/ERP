@@ -36,10 +36,6 @@ public class SampleDrawerMenuController implements Initializable {
     @FXML
     private JFXDrawer drawer;
 
-    @FXML
-    private JFXHamburger hamburger;
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -47,21 +43,8 @@ public class SampleDrawerMenuController implements Initializable {
             // TODO
             VBox box = FXMLLoader.load(getClass().getResource("drawerContent.fxml"));
             drawer.setSidePane(box);
-            HamburgerBasicCloseTransition task1 = new HamburgerBasicCloseTransition(hamburger);
-            task1.setRate(-1);
-            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) ->
-            {
-                task1.setRate(task1.getRate() * -1);
-                task1.play();
-                if(drawer.isShown())
-                {
-                    drawer.close();
-                }
-                else
-                {
-                    drawer.open();
-                }
-            });
+            drawer.open();
+            
         } catch (IOException ex) {
             Logger.getLogger(SampleDrawerMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
