@@ -9,6 +9,6 @@ package erp;
  *
  * @author admin
  */
-public class drawerContent {
+public class dashboardDrawerController {
     
 }

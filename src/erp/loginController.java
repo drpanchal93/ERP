@@ -67,7 +67,7 @@ public class loginController implements Initializable
     void loginClicked(ActionEvent event) throws SQLException, IOException 
     {
         //System.out.println("Login button clicked!");
-        DBConnection db = new DBConnection();
+        /*DBConnection db = new DBConnection();
         Connection con = DBConnection.democonnection();
         
         PreparedStatement stmt = con.prepareStatement("select password from signup where username = ?");
@@ -76,27 +76,29 @@ public class loginController implements Initializable
         ResultSet rs=stmt.executeQuery(); 
         if(rs.next() && rs.getString(1).equals(password.getText()))
         { 
-            System.out.println("Login Successful");  
+            System.out.println("Login Successful");  */
             /*stage = (Stage) submit.getScene().getWindow();
             sc2 = FXMLLoader.load(getClass().getResource("Scene2FXML.fxml"));
             Scene scene = new Scene(sc2);
             stage.setScene(scene);
             stage.show();*/
-            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("SampleDrawerMenu.fxml"));
-            Scene SampleDrawerMenuScene = new Scene(goToSceneTwo);
+            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+            Scene DashboardDrawerMenuScene = new Scene(goToSceneTwo);
             Stage app_Stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            app_Stage.setScene(SampleDrawerMenuScene);
+            app_Stage.setScene(DashboardDrawerMenuScene);
             
             //Add stylesheet code
-            SampleDrawerMenuScene.getStylesheets().add(SampleDrawerMenuController.class.getResource("sampleCSS2.css").toExternalForm());
-            
+            DashboardDrawerMenuScene.getStylesheets().add(DashboardController.class.getResource("sampleCSS2.css").toExternalForm());
+            //app_Stage.setFullScreen(true);
+            app_Stage.setMaximized(true);
+            //ResponsiveHandler.addResponsiveToWindow(app_Stage);
             app_Stage.show();
-        }
+        /*}
         else
         {
             System.out.println("Incorrect Username or Password");
             error.setText("Incorrect Username or Password");
-        }
+        }*/
             
         
         

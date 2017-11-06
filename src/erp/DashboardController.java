@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -25,7 +26,7 @@ import javafx.scene.layout.VBox;
  *
  * @author admin
  */
-public class SampleDrawerMenuController implements Initializable {
+public class DashboardController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -41,12 +42,12 @@ public class SampleDrawerMenuController implements Initializable {
     {
         try {
             // TODO
-            VBox box = FXMLLoader.load(getClass().getResource("drawerContent.fxml"));
-            drawer.setSidePane(box);
+            AnchorPane menu = FXMLLoader.load(getClass().getResource("dashboardDrawerContent.fxml"));
+            drawer.setSidePane(menu);
             drawer.open();
             
         } catch (IOException ex) {
-            Logger.getLogger(SampleDrawerMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
     
