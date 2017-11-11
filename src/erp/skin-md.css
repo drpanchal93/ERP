@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 2, 2017, 3:54:49 PM
+    Author     : drashtipanchal
+*/
+
+.visible-lg {
+    visibility: collapse;
+}
+
+.visible-sm {
+    visibility: collapse;
+}
+
+.visible-xs {
+    visibility: collapse;
+}
+
+.visible-md {
+    visibility: visible;
+}
+
+.hidden-xs {
+    visibility: visible;
+}
+
+.hidden-sm {
+    visibility: visible;
+}
+
+.hidden-lg {
+    visibility: visible;
+}

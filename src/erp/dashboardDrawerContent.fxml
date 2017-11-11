@@ -8,10 +8,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #61a2b1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.dashboardDrawerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="250.0" style="-fx-background-color: #61a2b1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.dashboardDrawerController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="250.0">
+      <HBox prefHeight="100.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="logoLabel" alignment="CENTER" text="Panchal ERP">
                <font>
@@ -25,14 +24,14 @@
       </HBox>
       <Button fx:id="btn2" layoutY="400.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Finance" textFill="WHITE" />
       <Button fx:id="btn5" layoutY="221.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="250.0" text="Store &amp; Inventory" textFill="WHITE" />
-      <Button fx:id="btn3" layoutY="100.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Sales" textFill="WHITE" />
+      <Button fx:id="SalesButton" layoutY="100.0" mnemonicParsing="false" onAction="#SalesButtonClicked" prefHeight="60.0" prefWidth="250.0" text="Sales" textFill="WHITE" />
       <Button fx:id="btn4" layoutY="160.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="250.0" text="Purchase" textFill="WHITE" />
-      <HBox layoutY="700.0" prefHeight="100.0" prefWidth="250.0" VBox.vgrow="NEVER">
+      <Button fx:id="btn1" layoutY="340.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Production" textFill="WHITE" />
+      <Button fx:id="exit" layoutY="285.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="250.0" text="Quality Check" textFill="WHITE" />
+      <HBox layoutY="700.0" prefHeight="100.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" VBox.vgrow="NEVER">
          <children>
             <Label text="Menu Footer" />
          </children>
       </HBox>
-      <Button fx:id="btn1" layoutY="340.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Production" textFill="WHITE" />
-      <Button fx:id="exit" layoutY="285.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="250.0" text="Quality Check" textFill="WHITE" />
    </children>
 </AnchorPane>

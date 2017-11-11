@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1280.0" stylesheets="@sampleCSS2.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.DashboardController">
        <children>
-      <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" minHeight="800.0" prefWidth="250.0" style="-fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" minHeight="800.0" prefWidth="250.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <!--<cursor>
             <Cursor fx:constant="NW_RESIZE" />
          </cursor>--></JFXDrawer>
@@ -24,12 +24,11 @@
          <children>
             <Label text="header" />
          </children>
-         <styleClass>
-            <String fx:value="visible-lg" />
-            <String fx:value="visible-sm" />
-            <String fx:value="visible-md" />
-            <String fx:value="visible-xs" />
-         </styleClass>
       </HBox>
+      <ScrollPane fx:id="contentPane" layoutX="250.0" layoutY="100.0" minHeight="600.0" minWidth="1030.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <content>
+          <AnchorPane fx:id="contentAnchorPane" minHeight="600.0" minWidth="1030.0" />
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

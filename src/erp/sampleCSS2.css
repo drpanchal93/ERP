@@ -109,24 +109,25 @@ and open the template in the editor.
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;*/
     -fx-background-radius: 0;
-    -fx-background-color:#61a2b1;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
+    -fx-background-color:#213646;
+    -fx-font-family: "Lucida Sans";
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
-    -fx-background-color:  #9e2222;
+    -fx-background-color:  #3f5464;
 }
 
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color:  #9e2222;
+/*.button:pressed,.button:default:hover:pressed{
+  -fx-background-color:  #3f5464;
   -fx-text-fill: #1d1d1d;
-}
+}*/
 
 .button:focused {
-    -fx-background-color: #9e2222;
+    -fx-background-color: #3f5464;
     /*-fx-border-color: white, white;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
@@ -149,3 +150,7 @@ and open the template in the editor.
     -fx-background-color: derive(-fx-focus-color,30%);
 }
 
+.headerDashboard
+{
+    -fx-background-color: #292c2f;
+}
