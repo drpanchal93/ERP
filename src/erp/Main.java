@@ -45,6 +45,8 @@ public class Main extends Application {
         
         scene1 = new Scene(root);
         //scene2 = new Scene(Sc2);
+                
+       // scene1.getStylesheets().add(loginController.class.getResource("allFooter.css").toExternalForm());
         window.setMaximized(true);
         window.setScene(scene1);
         window.show();

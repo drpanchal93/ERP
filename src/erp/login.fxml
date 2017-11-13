@@ -11,37 +11,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #eee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.loginController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.loginController">
    <children>
-      <AnchorPane layoutX="778.0" layoutY="68.0" maxHeight="600.0" maxWidth="400.0" minHeight="400.0" minWidth="240.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #0c364f;" StackPane.alignment="CENTER_RIGHT">
-         <StackPane.margin>
-            <Insets right="120.0" />
-         </StackPane.margin>
+      <AnchorPane layoutX="415.0" layoutY="100.0" minHeight="600.0" minWidth="450.0" style="-fx-background-color: #0c364f;">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <Label layoutX="149.0" layoutY="45.0" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="166.0" layoutY="44.0" text="Sign In" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Lucida Sans Regular" size="36.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="username" focusColor="#9e2222" labelFloat="true" layoutX="48.0" layoutY="186.0" prefHeight="42.0" prefWidth="305.0" promptText="Username" style="-fx-text-fill: #ffffff;" unFocusColor="WHITE">
+            <JFXTextField fx:id="username" focusColor="#9e2222" labelFloat="true" layoutX="73.0" layoutY="185.0" prefHeight="42.0" prefWidth="305.0" promptText="Username" style="-fx-text-fill: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font name="Lucida Sans Regular" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="password" focusColor="#9e2222" labelFloat="true" layoutX="48.0" layoutY="290.0" prefHeight="42.0" prefWidth="305.0" promptText="Password" style="-fx-background-color: #0c364f; -fx-text-fill: #ffffff;" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="password" focusColor="#9e2222" labelFloat="true" layoutX="73.0" layoutY="291.0" prefHeight="42.0" prefWidth="305.0" promptText="Password" style="-fx-background-color: #0c364f; -fx-text-fill: #ffffff;" unFocusColor="WHITE">
                <font>
                   <Font name="Lucida Sans Regular" size="14.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="submit" buttonType="RAISED" layoutX="48.0" layoutY="407.0" onAction="#loginClicked" prefHeight="42.0" prefWidth="305.0" style="-fx-background-color: #9e2222;" text="Submit" textFill="WHITE">
+            <JFXButton fx:id="submit" buttonType="RAISED" layoutX="73.0" layoutY="408.0" onAction="#loginClicked" prefHeight="42.0" prefWidth="305.0" style="-fx-background-color: #9e2222;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="Lucida Sans Regular" size="24.0" />
                </font>
             </JFXButton>
-            <Label fx:id="forgot" layoutX="135.0" layoutY="500.0" prefHeight="18.0" prefWidth="131.0" text="Forgot Password ?" textFill="#9e2222" underline="true">
+            <Label fx:id="forgot" layoutX="160.0" layoutY="500.0" prefHeight="18.0" prefWidth="131.0" text="Forgot Password ?" textFill="#9e2222" underline="true">
                <font>
                   <Font name="Lucida Sans Regular" size="14.0" />
                </font>
@@ -53,23 +51,19 @@
             </Label>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
-         <StackPane.margin>
-            <Insets left="150.0" top="200.0" />
-         </StackPane.margin>
+      <Pane fx:id="footer" layoutY="750.0" minHeight="50.0" minWidth="1280.0" style="-fx-background-color: #0c364f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="750.0">
+         <children>
+            <Label layoutX="547.0" layoutY="17.0" text="Copyright. All rights reserved" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="82.0" fitWidth="305.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Panchal_Machinery_Logo.png" />
+         </image>
       </ImageView>
-      <Label prefHeight="170.0" prefWidth="431.0" text="ERP" textFill="#0c364f" StackPane.alignment="BOTTOM_LEFT">
-         <StackPane.margin>
-            <Insets bottom="150.0" left="150.0" />
-         </StackPane.margin>
-         <font>
-            <Font name="SansSerif Regular" size="96.0" />
-         </font>
-      </Label>
-      <Label prefHeight="17.0" prefWidth="162.0" text="Developed By Drashti Panchal" textFill="#9e2222" StackPane.alignment="BOTTOM_LEFT">
-         <StackPane.margin>
-            <Insets bottom="50.0" left="50.0" />
-         </StackPane.margin>
-      </Label>
    </children>
-</StackPane>
+</AnchorPane>
