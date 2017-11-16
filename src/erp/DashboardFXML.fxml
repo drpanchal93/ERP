@@ -58,15 +58,19 @@
                <left>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="SalesButton" layoutX="50.0" layoutY="73.0" mnemonicParsing="false" onAction="#SalesButtonClick" prefHeight="100.0" prefWidth="100.0" text="Sales">
+                        <Button fx:id="SalesButton" layoutX="50.0" layoutY="125.0" mnemonicParsing="false" onAction="#SalesButtonClick" prefHeight="100.0" prefWidth="100.0" text="Sales">
                            <font>
                               <Font name="Lucida Sans Demibold" size="23.0" />
                            </font>
                            <padding>
                               <Insets top="50.0" />
                            </padding></Button>
-                        <Button layoutX="74.0" layoutY="277.0" mnemonicParsing="false" text="Button" />
-                        <ImageView accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="75.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Sales1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="testImage" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="75.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/Sales1.png" />
                            </image>
@@ -89,6 +93,13 @@
                      </children>
                   </AnchorPane>
                </bottom>
+               <center>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/Panchal_Machinery_P.png" />
+                     </image>
+                  </ImageView>
+               </center>
             </BorderPane>
          </center>
       </BorderPane>
