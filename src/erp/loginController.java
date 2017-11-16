@@ -82,13 +82,13 @@ public class loginController implements Initializable
             Scene scene = new Scene(sc2);
             stage.setScene(scene);
             stage.show();*/
-            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("BorderPaneDashboard.fxml"));
+            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("DashboardFXML.fxml"));
             Scene DashboardDrawerMenuScene = new Scene(goToSceneTwo);
             Stage app_Stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             app_Stage.setScene(DashboardDrawerMenuScene);
             
             //Add stylesheet code
-            DashboardDrawerMenuScene.getStylesheets().add(DashboardController.class.getResource("sampleCSS2.css").toExternalForm());
+            DashboardDrawerMenuScene.getStylesheets().add(DashboardController.class.getResource("DashboardFXML.css").toExternalForm());
             
             //app_Stage.setFullScreen(true);
             app_Stage.setMaximized(true);
