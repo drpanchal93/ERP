@@ -116,7 +116,8 @@ public class DashboardFXMLController implements Initializable {
     private ImageView financeIcon;
     
      @FXML
-    void FinanceButtonClick(ActionEvent event) {
+    void FinanceButtonClick(ActionEvent event) 
+    {
         OpenFinanceDashboard(event);
     }
     
@@ -135,7 +136,7 @@ public class DashboardFXMLController implements Initializable {
             app_Stage.setScene(FinanceDashboard);
             
             //Css code
-            //FinanceDashboard.getStylesheets().add(FinanceDashboardController.class.getResource("financedashboard.css").toExternalForm());
+            FinanceDashboard.getStylesheets().add(FinanceDashboardController.class.getResource("financedashboard.css").toExternalForm());
             
             app_Stage.setMaximized(true);
             app_Stage.show();
@@ -235,7 +236,7 @@ public class DashboardFXMLController implements Initializable {
             app_Stage.setScene(QualityDashboard);
             
             //Css code
-            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
+            QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
             
             app_Stage.setMaximized(true);
             app_Stage.show();

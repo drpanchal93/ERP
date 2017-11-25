@@ -18,7 +18,7 @@
          <top>
             <AnchorPane minWidth="1280.0" prefHeight="100.0" style="-fx-background-color: #0d2232;">
                <children>
-                  <ImageView fitHeight="75.0" fitWidth="202.0" layoutX="-648.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="1726.0" AnchorPane.topAnchor="17.0">
+                  <ImageView fitHeight="75.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="23.0">
                      <image>
                         <Image url="@images/Panchal_Machinery_Logo.png" />
                      </image>
@@ -29,10 +29,10 @@
                         <Image url="@images/user_profile.png" />
                      </image>
                   </ImageView>
-                  <MenuButton fx:id="SalesMenuButton" layoutX="1162.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Drashti" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="73.0">
+                  <MenuButton fx:id="SalesMenuButton" layoutX="1162.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Drashti" textFill="WHITE" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="73.0">
                     <items>
                       <MenuItem mnemonicParsing="false" text="View Profile" />
-                      <MenuItem mnemonicParsing="false" text="Logout" />
+                      <MenuItem mnemonicParsing="false" onAction="#LogoutButtonClicked" text="Logout" />
                     </items>
                   </MenuButton>
                </children>

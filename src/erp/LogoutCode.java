@@ -6,44 +6,23 @@
 package erp;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
  * @author admin
  */
-public class PurchaseDashboardController extends LogoutCode implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    
-    @FXML
-    private MenuButton PurchaseMenuButton;
-
-    @FXML
-    private MenuItem PurchaseProfile;
-
-    @FXML
-    private MenuItem PurchaseLogout;
-    
-    @FXML
-    void LogoutButtonClicked(ActionEvent e) 
+public class LogoutCode {
+ 
+    public void LogoutButtonClicked(MenuButton logoutButton)
     {
-        /*Parent goToSceneTwo = null;
+        Parent goToSceneTwo = null;
             try 
             {
                 goToSceneTwo = FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -52,21 +31,13 @@ public class PurchaseDashboardController extends LogoutCode implements Initializ
                 Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
             Scene QualityDashboard = new Scene(goToSceneTwo);
-            Stage app_Stage = (Stage) PurchaseMenuButton.getScene().getWindow() ;
+            Stage app_Stage = (Stage) logoutButton.getScene().getWindow() ;
             app_Stage.setScene(QualityDashboard);
             
             //Css code
             //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
             
             app_Stage.setMaximized(true);
-            app_Stage.show();*/
-        
-            LogoutCode lc = new LogoutCode();
-            lc.LogoutButtonClicked(PurchaseMenuButton);
+            app_Stage.show();
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
 }

@@ -7,18 +7,38 @@ package erp;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 
 /**
  * FXML Controller class
  *
  * @author admin
  */
-public class ProductionDashboardController implements Initializable {
+public class ProductionDashboardController extends LogoutCode implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private MenuButton ProductionMenuButton;
+
+    @FXML
+    private MenuItem ProductionViewProfile;
+
+    @FXML
+    private MenuItem ProductionLogout;
+    
+      @FXML
+    void LogoutButtonClicked(ActionEvent event) 
+    {
+        LogoutCode lc = new LogoutCode();
+        lc.LogoutButtonClicked(ProductionMenuButton);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
