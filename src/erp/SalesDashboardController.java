@@ -51,34 +51,53 @@ public class SalesDashboardController extends LogoutCode implements Initializabl
     @FXML
     private AnchorPane content;
     
-    @FXML
-    private JFXButton SalesButton;
-    
-    @FXML
-    private JFXButton PurchaseButton;
-    
-    @FXML
+     @FXML
     private AnchorPane contentAnchorPane;
+     
+      @FXML
+    private ScrollPane contentScrollPane;
+      
+      @FXML
+    private MenuButton SalesMenuButton;
+      
+     @FXML
+    private JFXButton GenerateSJOButton;
+    
+    @FXML
+    private JFXButton GenerateTaxInvoiceButton;
 
     @FXML
-    private ScrollPane contentScrollPane;
+    private JFXButton GenerateChallanButton;
+
+    @FXML
+    private JFXButton SalesHistoryButton;
+
     
     @FXML
-    private MenuButton SalesMenuButton;
-    
-    @FXML
-    void SalesButtonClick(ActionEvent event) throws IOException
+    void GenerateSJOButtonClick(ActionEvent event) throws IOException
     {
         //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
-        Parent salesData = FXMLLoader.load(getClass().getResource("SalesDataForm.fxml"));
+        Parent salesData = FXMLLoader.load(getClass().getResource("SJOForm.fxml"));
         contentScrollPane.setContent(salesData);
     }
     
-    @FXML
-    void PurchaseButtonClick(ActionEvent event) throws IOException
+   @FXML
+    void GenerateTaxInvoiceButtonClick(ActionEvent event) throws IOException
     {
         //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
         Parent salesData = FXMLLoader.load(getClass().getResource("PurchaseDataForm.fxml"));
+        contentScrollPane.setContent(salesData);
+    }
+    
+     @FXML
+    void GenerateChallanButtonClick(ActionEvent event) {
+
+    }
+
+     @FXML
+    void SalesHistoryButtonClick(ActionEvent event) throws IOException 
+    {
+         Parent salesData = FXMLLoader.load(getClass().getResource("SalesDataForm.fxml"));
         contentScrollPane.setContent(salesData);
     }
     

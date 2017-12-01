@@ -1,89 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesDataFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesDataFormController">
    <children>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="799.0" prefWidth="1264.0">
-               <children>
-                  <TextField fx:id="invNo" layoutX="217.0" layoutY="27.0" prefHeight="25.0" prefWidth="245.0" promptText="Invoice Number" />
-                  <TextField fx:id="invDate" layoutX="218.0" layoutY="64.0" prefHeight="25.0" prefWidth="245.0" promptText="Invoice Date" />
-                  <TextField fx:id="buyerGSTIN" layoutX="218.0" layoutY="141.0" prefHeight="25.0" prefWidth="245.0" promptText="Buyer GSTIN" />
-                  <TextField fx:id="salesDataRemarks" layoutX="218.0" layoutY="510.0" prefHeight="45.0" prefWidth="245.0" promptText="Enter any remarks here" />
-                  <TextField fx:id="buyerName" layoutX="218.0" layoutY="102.0" prefHeight="25.0" prefWidth="245.0" promptText="Buyer Name" />
-                  <TableView fx:id="SalesDataTable" editable="true" layoutX="217.0" layoutY="196.0" prefHeight="170.0" prefWidth="961.0">
-                     <columns>
-                        <TableColumn fx:id="serialNumber" onEditCommit="#changeSrNoCellEvent" prefWidth="75.0" text="Sr. No." />
-                        <TableColumn fx:id="prodDescription" onEditCommit="#changeProdDescCellEvent" prefWidth="286.0" text="Item Description" />
-                        <TableColumn fx:id="quantity" onEditCommit="#changeQuantityCellEvent" prefWidth="66.0" text="Quantity" />
-                        <TableColumn fx:id="unit" onEditCommit="#changeUnitCellEvent" prefWidth="69.0" text="Unit" />
-                        <TableColumn fx:id="basicAmount" onEditCommit="#changeBasicValueCellEvent" prefWidth="122.0" text="Basic Amount" />
-                        <TableColumn fx:id="taxAmount" minWidth="0.0" onEditCommit="#changeTaxValueCellEvent" prefWidth="170.0" text="Tax Amount" />
-                        <TableColumn fx:id="totalAmount" onEditCommit="#changeTotalAmountCellEvent" prefWidth="170.0" text="Total Amount" />
-                     </columns>
-                  </TableView>
-                  <Label layoutX="14.0" layoutY="31.0" text="Invoice No. :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="68.0" text="Invoice Date :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="106.0" text="Buyer Name :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="13.0" layoutY="146.0" text="Buyer GSTIN :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="13.0" layoutY="466.0" text="Dispatch Details :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="13.0" layoutY="524.0" text="Remarks :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="18.0" layoutY="231.0" text="Item Details :" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="salesDataDispatchDetails" layoutX="218.0" layoutY="462.0" prefHeight="25.0" prefWidth="245.0" promptText="Dispatch details" />
-                  <TextField fx:id="ProductDescription" layoutX="217.0" layoutY="387.0" prefHeight="25.0" prefWidth="349.0" promptText="Item Description" />
-                  <TextField fx:id="Quantity" layoutX="575.0" layoutY="387.0" prefHeight="25.0" prefWidth="64.0" promptText="Quantity" />
-                  <TextField fx:id="Unit" layoutX="645.0" layoutY="387.0" prefHeight="25.0" prefWidth="64.0" promptText="Unit" />
-                  <TextField fx:id="BasicAmount" layoutX="715.0" layoutY="387.0" promptText="Basic Value" />
-                  <TextField fx:id="TaxAmount" layoutX="870.0" layoutY="387.0" promptText="Tax Amount" />
-                  <JFXButton fx:id="AddButton" buttonType="RAISED" layoutX="217.0" layoutY="425.0" onAction="#addButtonPushed" prefHeight="25.0" prefWidth="66.0" text="Add">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="RemoveButton" buttonType="RAISED" layoutX="308.0" layoutY="425.0" onAction="#deleteButtonPushed" prefHeight="25.0" prefWidth="66.0" text="Remove">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="799.0" prefWidth="1264.0">
+         <children>
+            <TextField fx:id="invNo" layoutX="217.0" layoutY="27.0" prefHeight="25.0" prefWidth="245.0" promptText="Invoice Number" />
+            <TextField fx:id="invDate" layoutX="218.0" layoutY="64.0" prefHeight="25.0" prefWidth="245.0" promptText="Invoice Date" />
+            <TextField fx:id="buyerGSTIN" layoutX="218.0" layoutY="141.0" prefHeight="25.0" prefWidth="245.0" promptText="Buyer GSTIN" />
+            <TextField fx:id="salesDataRemarks" layoutX="218.0" layoutY="510.0" prefHeight="45.0" prefWidth="245.0" promptText="Enter any remarks here" />
+            <TextField fx:id="buyerName" layoutX="218.0" layoutY="102.0" prefHeight="25.0" prefWidth="245.0" promptText="Buyer Name" />
+            <TableView fx:id="SalesDataTable" editable="true" layoutX="217.0" layoutY="196.0" prefHeight="170.0" prefWidth="961.0">
+               <columns>
+                  <TableColumn fx:id="serialNumber" onEditCommit="#changeSrNoCellEvent" prefWidth="75.0" text="Sr. No." />
+                  <TableColumn fx:id="prodDescription" onEditCommit="#changeProdDescCellEvent" prefWidth="286.0" text="Item Description" />
+                  <TableColumn fx:id="quantity" onEditCommit="#changeQuantityCellEvent" prefWidth="66.0" text="Quantity" />
+                  <TableColumn fx:id="unit" onEditCommit="#changeUnitCellEvent" prefWidth="69.0" text="Unit" />
+                  <TableColumn fx:id="basicAmount" onEditCommit="#changeBasicValueCellEvent" prefWidth="122.0" text="Basic Amount" />
+                  <TableColumn fx:id="taxAmount" minWidth="0.0" onEditCommit="#changeTaxValueCellEvent" prefWidth="170.0" text="Tax Amount" />
+                  <TableColumn fx:id="totalAmount" onEditCommit="#changeTotalAmountCellEvent" prefWidth="170.0" text="Total Amount" />
+               </columns>
+            </TableView>
+            <Label layoutX="14.0" layoutY="31.0" text="Invoice No. :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="68.0" text="Invoice Date :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="106.0" text="Buyer Name :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="146.0" text="Buyer GSTIN :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="466.0" text="Dispatch Details :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="524.0" text="Remarks :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="231.0" text="Item Details :" textAlignment="CENTER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="salesDataDispatchDetails" layoutX="218.0" layoutY="462.0" prefHeight="25.0" prefWidth="245.0" promptText="Dispatch details" />
+            <TextField fx:id="ProductDescription" layoutX="217.0" layoutY="387.0" prefHeight="25.0" prefWidth="349.0" promptText="Item Description" />
+            <TextField fx:id="Quantity" layoutX="575.0" layoutY="387.0" prefHeight="25.0" prefWidth="64.0" promptText="Quantity" />
+            <TextField fx:id="Unit" layoutX="645.0" layoutY="387.0" prefHeight="25.0" prefWidth="64.0" promptText="Unit" />
+            <TextField fx:id="BasicAmount" layoutX="715.0" layoutY="387.0" promptText="Basic Value" />
+            <TextField fx:id="TaxAmount" layoutX="870.0" layoutY="387.0" promptText="Tax Amount" />
+            <JFXButton fx:id="AddButton" buttonType="RAISED" layoutX="217.0" layoutY="425.0" onAction="#addButtonPushed" prefHeight="25.0" prefWidth="66.0" text="Add">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="RemoveButton" buttonType="RAISED" layoutX="308.0" layoutY="425.0" onAction="#deleteButtonPushed" prefHeight="25.0" prefWidth="66.0" text="Remove">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </StackPane>
