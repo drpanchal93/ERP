@@ -15,9 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  *
  * @author drashtipanchal
  */
-public class SalesDashboardController extends LogoutCode implements Initializable {
+public class SalesDashboardController extends ReusableCode implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -51,16 +51,16 @@ public class SalesDashboardController extends LogoutCode implements Initializabl
     @FXML
     private AnchorPane content;
     
-     @FXML
+    @FXML
     private AnchorPane contentAnchorPane;
      
-      @FXML
+    @FXML
     private ScrollPane contentScrollPane;
       
-      @FXML
+    @FXML
     private MenuButton SalesMenuButton;
       
-     @FXML
+    @FXML
     private JFXButton GenerateSJOButton;
     
     @FXML
@@ -72,29 +72,31 @@ public class SalesDashboardController extends LogoutCode implements Initializabl
     @FXML
     private JFXButton SalesHistoryButton;
 
-    
+    @FXML
+    private Button GoToDashboardButton;
+     
     @FXML
     void GenerateSJOButtonClick(ActionEvent event) throws IOException
     {
-        //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
-        Parent salesData = FXMLLoader.load(getClass().getResource("SJOForm.fxml"));
-        contentScrollPane.setContent(salesData);
+       //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
+       Parent salesData = FXMLLoader.load(getClass().getResource("SJOForm.fxml"));
+       contentScrollPane.setContent(salesData);
     }
     
    @FXML
-    void GenerateTaxInvoiceButtonClick(ActionEvent event) throws IOException
-    {
-        //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
-        Parent salesData = FXMLLoader.load(getClass().getResource("PurchaseDataForm.fxml"));
-        contentScrollPane.setContent(salesData);
-    }
+   void GenerateTaxInvoiceButtonClick(ActionEvent event) throws IOException
+   {
+       //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
+       Parent salesData = FXMLLoader.load(getClass().getResource("PurchaseDataForm.fxml"));
+       contentScrollPane.setContent(salesData);
+   }
     
-     @FXML
+    @FXML
     void GenerateChallanButtonClick(ActionEvent event) {
 
     }
 
-     @FXML
+    @FXML
     void SalesHistoryButtonClick(ActionEvent event) throws IOException 
     {
          Parent salesData = FXMLLoader.load(getClass().getResource("SalesDataForm.fxml"));
@@ -102,27 +104,15 @@ public class SalesDashboardController extends LogoutCode implements Initializabl
     }
     
     @FXML
-    void LogoutButtonClicked(ActionEvent e) 
+    void GoToDashboardButtonClick(ActionEvent event) throws IOException 
     {
-       /* Parent goToSceneTwo = null;
-            try 
-            {
-                goToSceneTwo = FXMLLoader.load(getClass().getResource("login.fxml"));
-            } catch (IOException ex) 
-            {
-                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Scene QualityDashboard = new Scene(goToSceneTwo);
-            Stage app_Stage = (Stage) SalesMenuButton.getScene().getWindow() ;
-            app_Stage.setScene(QualityDashboard);
-            
-            //Css code
-            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
-            
-            app_Stage.setMaximized(true);
-            app_Stage.show();*/
-        
-        LogoutCode lc = new LogoutCode();
+         ReusableCode lc = new ReusableCode();
+        lc.GoToDashboardButtonClick(GoToDashboardButton);
+    }
+    @FXML
+    void LogoutButtonClicked(ActionEvent e) 
+    {   
+        ReusableCode lc = new ReusableCode();
         lc.LogoutButtonClicked(SalesMenuButton);
     }
     

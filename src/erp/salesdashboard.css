@@ -11,3 +11,10 @@
     -fx-font-size:1em;
     -fx-text-fill:#ffffff;
 }
+
+#GoToDashboardButton
+{
+    -fx-border-color:transparent;
+    -fx-border-width:0;
+    -fx-background-color:transparent;
+}

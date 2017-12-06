@@ -12,3 +12,10 @@
     -fx-background-color:transparent;
     -fx-font-family:"Lucida Sans";
 }
+
+#GoToDashboardQualityButton
+{
+    -fx-border-color:transparent;
+    -fx-border-width:0;
+    -fx-background-color:transparent;
+}

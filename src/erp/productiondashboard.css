@@ -13,3 +13,9 @@
     -fx-font-family:"Lucida Sans";
     
 }
+#GoToDashboardProductionButton
+{
+    -fx-border-color:transparent;
+    -fx-border-width:0;
+    -fx-background-color:transparent;
+}

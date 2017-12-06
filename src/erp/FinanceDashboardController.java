@@ -5,27 +5,24 @@
  */
 package erp;
 
-import java.io.IOException;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
  *
  * @author admin
  */
-public class FinanceDashboardController extends LogoutCode implements Initializable {
+public class FinanceDashboardController extends ReusableCode implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -39,6 +36,20 @@ public class FinanceDashboardController extends LogoutCode implements Initializa
 
     @FXML
     private MenuItem FinanceLogout;
+    
+    @FXML
+    private Button GoToDashboardFinanceButton;
+    
+    @FXML
+    private FontAwesomeIconView GoToDashboardFinanceIcon;
+
+    @FXML
+    void GoToDashboardFinanceButtonClick(Event event) 
+    {
+        ReusableCode lc = new ReusableCode();
+        lc.GoToDashboardButtonClick(GoToDashboardFinanceButton);
+    }
+
     
     @FXML
     void LogoutButtonClicked(ActionEvent e) 
@@ -60,7 +71,7 @@ public class FinanceDashboardController extends LogoutCode implements Initializa
             
             app_Stage.setMaximized(true);
             app_Stage.show();*/
-        LogoutCode lc = new LogoutCode();
+        ReusableCode lc = new ReusableCode();
         lc.LogoutButtonClicked(FinanceMenuButton);
     }
     
@@ -69,7 +80,12 @@ public class FinanceDashboardController extends LogoutCode implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        GoToDashboardFinanceIcon.setPickOnBounds(true); // allows click on transparent areas
+        GoToDashboardFinanceIcon.setOnMouseClicked((MouseEvent e) -> 
+        {
+            System.out.println("Clicked!"); // change functionality
+            GoToDashboardFinanceButtonClick(e);
+        });
         
     }    
     
