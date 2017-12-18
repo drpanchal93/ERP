@@ -22,7 +22,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3306/sample_login?zeroDateTimeBehavior=convertToNull";
+            String url = "jdbc:mysql://localhost:3306/ERP?zeroDateTimeBehavior=convertToNull";
             //String url = "jdbc:sqlserver://localhost:1433;databasename=ryitTerminalData_dev;username=sa;password=cr3@t1v3mgmtsa";
             con = DriverManager.getConnection(url, "root", "1234");
             System.out.println("Yaay conn ");
