@@ -55,7 +55,7 @@
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
-      <TextField prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="custName" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
             <Font name="Lucida Sans Demibold" size="13.0" />
          </font>
@@ -71,12 +71,12 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <TextField fx:id="ctry" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <TextField fx:id="st" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -89,7 +89,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField layoutX="170.0" layoutY="202.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <TextField fx:id="cty" layoutX="170.0" layoutY="202.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -150,37 +150,37 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField layoutX="170.0" layoutY="252.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <TextField fx:id="pCode" layoutX="170.0" layoutY="252.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="170.0" layoutY="252.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+      <TextField fx:id="ctPersonName" layoutX="170.0" layoutY="252.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="170.0" layoutY="352.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+      <TextField fx:id="ctNo1" layoutX="170.0" layoutY="352.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="170.0" layoutY="352.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+      <TextField fx:id="ctNo2" layoutX="170.0" layoutY="352.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="170.0" layoutY="452.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+      <TextField fx:id="eId" layoutX="170.0" layoutY="452.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="170.0" layoutY="502.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+      <TextField fx:id="gstNo" layoutX="170.0" layoutY="502.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="170.0" layoutY="502.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+      <TextField fx:id="panNo" layoutX="170.0" layoutY="502.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -193,7 +193,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField layoutX="180.0" layoutY="22.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField fx:id="addressLine1" layoutX="180.0" layoutY="22.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font name="Lucida Sans Demibold" size="13.0" />
          </font>
@@ -201,7 +201,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField layoutX="180.0" layoutY="72.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField fx:id="addressLine2" layoutX="180.0" layoutY="72.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font name="Lucida Sans Demibold" size="13.0" />
          </font>
@@ -222,7 +222,7 @@
             <Insets left="10.0" top="21.0" />
          </GridPane.margin>
       </Line>
-      <JFXButton buttonType="RAISED" text="Submit" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="CENTER">
+      <JFXButton fx:id="submitBtn" buttonType="RAISED" onAction="#SubmitButtonClicked" text="Submit" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
