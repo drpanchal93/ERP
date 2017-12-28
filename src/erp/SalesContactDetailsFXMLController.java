@@ -8,6 +8,7 @@ package erp;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -84,64 +85,122 @@ public class SalesContactDetailsFXMLController implements Initializable {
         {
             // create a mysql database connection
             Connection conn = DBConnection.democonnection();
+            
+            
+            // Insert data into Customer Info table
 
-      // the mysql insert statement
+            // the mysql insert statement
 
-      String query = " insert into CustomerInfo (customerName,addLine1 , addLine2, Country, State,City,PinCode,contPersonName,contNumber1,contNumber2,emailId,GSTIN,PAN)"
+            String query = " insert into CustomerInfo (customerName,addLine1 , addLine2, Country, State,City,PinCode,GSTIN,PAN)"
 
-        + " values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)";
+              + " values (?,?,?,?,?,?,?,?,?)";
 
 
+            // create the mysql insert preparedstatement
 
-      // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
 
-      PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, custName.getText());
 
-      preparedStmt.setString (1, custName.getText());
+            preparedStmt.setString (2, addressLine1.getText());
 
-      preparedStmt.setString (2, addressLine1.getText());
+            preparedStmt.setString (3, addressLine2.getText());
 
-      preparedStmt.setString (3, addressLine2.getText());
+            preparedStmt.setString (4, ctry.getText());
 
-      preparedStmt.setString (4, ctry.getText());
+            preparedStmt.setString (5, st.getText());
 
-      preparedStmt.setString (5, st.getText());
-      
-      preparedStmt.setString (6, cty.getText());
-      
-      int pCode_int = new Integer(pCode.getText());
-      preparedStmt.setInt (7, pCode_int);
-      
-      preparedStmt.setString(8, ctPersonName.getText());
-      
-      int ctNo1_int = new Integer(ctNo.getText());
-      preparedStmt.setInt(9, ctNo1_int);
-      
-      preparedStmt.setString(11, eId.getText());
- 
-      preparedStmt.setString(12, gstNo.getText());
+            preparedStmt.setString (6, cty.getText());
 
-      preparedStmt.setString(13, panNo.getText());
+            int pCode_int = new Integer(pCode.getText());
+            preparedStmt.setInt (7, pCode_int);
 
-      // execute the preparedstatement
+            preparedStmt.setString(8, gstNo.getText());
 
-      preparedStmt.execute();
+            preparedStmt.setString(9, panNo.getText());
 
-      
+            // execute the preparedstatement
 
-      conn.close();
+            ResultSet rs = preparedStmt.executeQuery();
+            int customerId = 0;
 
-    }
+            while(rs.next()){  
+              customerId = rs.getInt(1);  
+            }
 
-    catch (Exception e)
+            // Insert data into Contact Person table
 
-    {
+            query = " insert into ContactPerson (customerName, customerId)"
 
-      System.err.println("Got an exception!");
+              + " values (?,?)";
 
-      System.err.println(e.getMessage());
+            // create the mysql insert preparedstatement
 
-    }
+            preparedStmt = conn.prepareStatement(query);
+
+            preparedStmt.setString (1, ctPersonName.getText());
+
+            preparedStmt.setInt (2, customerId);
+
+            // execute the preparedstatement
+
+            rs = preparedStmt.executeQuery();
+            int personId = 0;
+
+            while(rs.next()){  
+              personId = rs.getInt(1);  
+            }
+
+            // Insert data into Email table
+
+            query = " insert into email (emailId, personId)"
+
+              + " values (?,?)";
+
+            // create the mysql insert preparedstatement
+
+            preparedStmt = conn.prepareStatement(query);
+
+            preparedStmt.setString (1, eId.getText());
+
+            preparedStmt.setInt (2, personId);
+
+            // execute the preparedstatement
+
+            preparedStmt.execute();
+
+            // Insert data into Phone table
+
+            query = " insert into phone (phone, personId)"
+
+              + " values (?,?)";
+
+            // create the mysql insert preparedstatement
+
+            preparedStmt = conn.prepareStatement(query);
+
+            preparedStmt.setString (1, ctNo.getText());
+
+            preparedStmt.setInt (2, personId);
+
+            // execute the preparedstatement
+
+            preparedStmt.execute();
+
+
+            conn.close();
+
+        }
+
+        catch (Exception e)
+
+        {
+
+          System.err.println("Got an exception!");
+
+          System.err.println(e.getMessage());
+
+        }
     }
     //User should enter the data and dont know how to implement that
     public ObservableList<SalesContactDetails> ciList = FXCollections.observableArrayList();
