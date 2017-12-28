@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/DBConnection.java</file>
-            <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SalesContactDetailsFXML.fxml</file>
-            <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SalesDashboardController.java</file>
+            <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SJOFormController.java</file>
             <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SalesDataFormController.java</file>
+            <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SalesContactDetails.java</file>
             <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SalesContactDetailsFXMLController.java</file>
             <file>file:/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp/SJO.java</file>
         </group>

@@ -9,17 +9,22 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -33,41 +38,24 @@ public class SalesContactDetailsFXMLController implements Initializable {
      * Initializes the controller class.
      */
     
-    @FXML
-    private TextField custName;
     
-    @FXML
-    private TextField addressLine1;
+    @FXML private TextField custName;
     
-    @FXML
-    private TextField addressLine2;
+    @FXML private TextField addressLine1;
     
-    @FXML
-    private TextField ctry;
+    @FXML private TextField addressLine2;
     
-    @FXML
-    private TextField st;
+    @FXML private TextField pCode;
     
-    @FXML
-    private TextField cty;
+    @FXML private TextField ctPersonName;
     
-    @FXML
-    private TextField pCode;
+    @FXML private TextField ctNo;
     
-    @FXML
-    private TextField ctPersonName;
+    @FXML private TextField eId;
     
-    @FXML
-    private TextField ctNo;
+    @FXML private TextField gstNo;
     
-    @FXML
-    private TextField eId;
-    
-    @FXML
-    private TextField gstNo;
-    
-    @FXML
-    private TextField panNo;
+    @FXML private TextField panNo;
     
     @FXML private TableColumn<SalesContactDetails,String> Name;
     
@@ -77,6 +65,27 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private TableView<SalesContactDetails> SalesContactDetailsTable;
     
+    public ObservableList<String> countryList = FXCollections.observableArrayList();
+    
+    public ObservableList<String> stateList = FXCollections.observableArrayList();
+    
+    public ObservableList<String> cityList = FXCollections.observableArrayList();
+    
+    @FXML private ComboBox ctry;
+    
+    @FXML private ComboBox st;
+    
+    @FXML private ComboBox cty;
+    
+    
+    
+    
+    @FXML void addButtonClicked(ActionEvent event) 
+    {
+        TextField contact = new TextField();
+    }
+    
+    Connection conn = DBConnection.democonnection();
     
     @FXML
     void SubmitButtonClicked(ActionEvent event)
@@ -84,7 +93,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
         try
         {
             // create a mysql database connection
-            Connection conn = DBConnection.democonnection();
+            
             
             
             // Insert data into Customer Info table
@@ -105,12 +114,6 @@ public class SalesContactDetailsFXMLController implements Initializable {
             preparedStmt.setString (2, addressLine1.getText());
 
             preparedStmt.setString (3, addressLine2.getText());
-
-            preparedStmt.setString (4, ctry.getText());
-
-            preparedStmt.setString (5, st.getText());
-
-            preparedStmt.setString (6, cty.getText());
 
             int pCode_int = new Integer(pCode.getText());
             preparedStmt.setInt (7, pCode_int);
@@ -223,6 +226,40 @@ public class SalesContactDetailsFXMLController implements Initializable {
         Selected.setPhone((String) editedCell.getNewValue());
     }
     
+    @FXML
+    void getStates(ActionEvent event) 
+    {
+        //Populating State ComboBox
+        System.out.println("hello");
+        System.out.println(ctry.getSelectionModel().getSelectedItem());
+        // Insert data into Contact Person table
+
+           String  query = "select * from location where location_type = 0";
+
+            // create the mysql insert preparedstatement
+
+           PreparedStatement preparedStmt;
+            try 
+            {
+                preparedStmt = conn.prepareStatement(query);
+                ResultSet rs = preparedStmt.executeQuery();
+
+                while(rs.next())
+                {  
+                    countryList.add(rs.getString("name"));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                ctry.setItems(countryList);
+                preparedStmt.close();
+                rs.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -238,6 +275,39 @@ public class SalesContactDetailsFXMLController implements Initializable {
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Email.setCellFactory(TextFieldTableCell.forTableColumn());
         Phone.setCellFactory(TextFieldTableCell.forTableColumn());
+        
+        //Populating Country ComboBox
+        
+        // Insert data into Contact Person table
+
+           String  query = "select * from location where location_type = 0";
+
+            // create the mysql insert preparedstatement
+
+           PreparedStatement preparedStmt;
+            try 
+            {
+                preparedStmt = conn.prepareStatement(query);
+                ResultSet rs = preparedStmt.executeQuery();
+
+                while(rs.next())
+                {  
+                    countryList.add(rs.getString("name"));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                ctry.setItems(countryList);
+                preparedStmt.close();
+                rs.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           
+
+            
     }    
         
       
