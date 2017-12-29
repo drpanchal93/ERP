@@ -293,7 +293,10 @@ public class SalesContactDetailsFXMLController implements Initializable {
                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                     
                     Location newLocation = (Location) newValue;
+                    System.out.println(newLocation.getId());
                     
+                    stateList.clear();
+                        
                     String  query = "select * from location where location_type = 1 AND parent_id = " +newLocation.getId();
 
                     // create the mysql insert preparedstatement
@@ -311,7 +314,6 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                         }
                         
-                        stateList.clear();
                         st.setItems(stateList);
 
                         st.setConverter(new StringConverter<Location>() {
@@ -343,6 +345,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
                     
                     Location newLocation = (Location) newValue;
                     
+                    cityList.clear();
+                    
                     String  query = "select * from location where location_type = 2 AND parent_id = " +newLocation.getId();
 
                     // create the mysql insert preparedstatement
@@ -360,7 +364,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                         }
                         
-                        cityList.clear();
+                        
                         cty.setItems(cityList);
 
                         cty.setConverter(new StringConverter<Location>() {
