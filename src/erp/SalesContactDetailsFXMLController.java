@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -65,17 +68,17 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private TableView<SalesContactDetails> SalesContactDetailsTable;
     
-    public ObservableList<String> countryList = FXCollections.observableArrayList();
+    public ObservableList<Location> countryList = FXCollections.observableArrayList();
     
-    public ObservableList<String> stateList = FXCollections.observableArrayList();
+    public ObservableList<Location> stateList = FXCollections.observableArrayList();
     
-    public ObservableList<String> cityList = FXCollections.observableArrayList();
+    public ObservableList<Location> cityList = FXCollections.observableArrayList();
     
-    @FXML private ComboBox ctry;
+    @FXML private ComboBox<Location> ctry;
     
-    @FXML private ComboBox st;
+    @FXML private ComboBox<Location> st;
     
-    @FXML private ComboBox cty;
+    @FXML private ComboBox<Location> cty;
     
     
     
@@ -226,40 +229,6 @@ public class SalesContactDetailsFXMLController implements Initializable {
         Selected.setPhone((String) editedCell.getNewValue());
     }
     
-    @FXML
-    void getStates(ActionEvent event) 
-    {
-        //Populating State ComboBox
-        System.out.println("hello");
-        System.out.println(ctry.getSelectionModel().getSelectedItem());
-        // Insert data into Contact Person table
-
-           String  query = "select * from location where location_type = 0";
-
-            // create the mysql insert preparedstatement
-
-           PreparedStatement preparedStmt;
-            try 
-            {
-                preparedStmt = conn.prepareStatement(query);
-                ResultSet rs = preparedStmt.executeQuery();
-
-                while(rs.next())
-                {  
-                    countryList.add(rs.getString("name"));
-                    //System.out.println(rs.getString("name"));
-                    
-                }
-                ctry.setItems(countryList);
-                preparedStmt.close();
-                rs.close();
-            } 
-            catch (SQLException ex) 
-            {
-                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -292,11 +261,25 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                 while(rs.next())
                 {  
-                    countryList.add(rs.getString("name"));
+                    countryList.add(new Location(Integer.parseInt(rs.getString("location_id")), rs.getString("name")));
                     //System.out.println(rs.getString("name"));
                     
                 }
                 ctry.setItems(countryList);
+                
+                ctry.setConverter(new StringConverter<Location>() {
+
+                    @Override
+                    public String toString(Location object) {
+                        return object.getName();
+                    }
+
+                    @Override
+                    public Location fromString(String string) {
+                        return ctry.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
                 preparedStmt.close();
                 rs.close();
             } 
@@ -305,8 +288,104 @@ public class SalesContactDetailsFXMLController implements Initializable {
                 Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-           
+            ctry.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    
+                    Location newLocation = (Location) newValue;
+                    
+                    String  query = "select * from location where location_type = 1 AND parent_id = " +newLocation.getId();
 
+                    // create the mysql insert preparedstatement
+
+                   PreparedStatement preparedStmt;
+                    try 
+                    {
+                        preparedStmt = conn.prepareStatement(query);
+                        ResultSet rs = preparedStmt.executeQuery();
+
+                        while(rs.next())
+                        {  
+                            stateList.add(new Location(Integer.parseInt(rs.getString("location_id")), rs.getString("name")));
+                            //System.out.println(rs.getString("name"));
+
+                        }
+                        
+                        stateList.clear();
+                        st.setItems(stateList);
+
+                        st.setConverter(new StringConverter<Location>() {
+
+                            @Override
+                            public String toString(Location object) {
+                                return object.getName();
+                            }
+
+                            @Override
+                            public Location fromString(String string) {
+                                return st.getItems().stream().filter(ap -> 
+                                    ap.getName().equals(string)).findFirst().orElse(null);
+                            }
+                        });
+                        preparedStmt.close();
+                        rs.close();
+                    } 
+                    catch (SQLException ex) 
+                    {
+                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }    
+            });
+             
+             st.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    
+                    Location newLocation = (Location) newValue;
+                    
+                    String  query = "select * from location where location_type = 2 AND parent_id = " +newLocation.getId();
+
+                    // create the mysql insert preparedstatement
+
+                   PreparedStatement preparedStmt;
+                    try 
+                    {
+                        preparedStmt = conn.prepareStatement(query);
+                        ResultSet rs = preparedStmt.executeQuery();
+
+                        while(rs.next())
+                        {  
+                            cityList.add(new Location(Integer.parseInt(rs.getString("location_id")), rs.getString("name")));
+                            //System.out.println(rs.getString("name"));
+
+                        }
+                        
+                        cityList.clear();
+                        cty.setItems(cityList);
+
+                        cty.setConverter(new StringConverter<Location>() {
+
+                            @Override
+                            public String toString(Location object) {
+                                return object.getName();
+                            }
+
+                            @Override
+                            public Location fromString(String string) {
+                                return cty.getItems().stream().filter(ap -> 
+                                    ap.getName().equals(string)).findFirst().orElse(null);
+                            }
+                        });
+                        preparedStmt.close();
+                        rs.close();
+                    } 
+                    catch (SQLException ex) 
+                    {
+                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }    
+            });
+             
             
     }    
         

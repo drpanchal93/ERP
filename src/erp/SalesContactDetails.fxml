@@ -100,7 +100,7 @@
             </Label>
             <TextField fx:id="gstNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="panNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox fx:id="ctry" onShown="#getStates" prefHeight="27.0" prefWidth="351.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="ctry" prefHeight="27.0" prefWidth="351.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="st" layoutX="260.0" layoutY="154.0" prefHeight="27.0" prefWidth="351.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="cty" layoutX="260.0" layoutY="199.0" prefHeight="27.0" prefWidth="351.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
