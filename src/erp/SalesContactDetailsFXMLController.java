@@ -21,11 +21,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -56,6 +58,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private TextField eId;
     
+    @FXML private Label eIdLabel;
+    
     @FXML private TextField gstNo;
     
     @FXML private TextField panNo;
@@ -80,12 +84,17 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private ComboBox<Location> cty;
     
-    
-    
-    
+    @FXML private GridPane AccordionGridPane;
+   
     @FXML void addButtonClicked(ActionEvent event) 
     {
         TextField contact = new TextField();
+        Label newContact = new Label("New Contact");
+        AccordionGridPane.getChildren().addAll(contact,newContact);
+        /*AccordionGridPane.add(contact, 1, 2);
+        AccordionGridPane.add(newContact, 0, 2);
+        //AccordionGridPane.add(eIdLabel, 0, 3);
+        AccordionGridPane.add(eId, 1, 3);*/
     }
     
     Connection conn = DBConnection.democonnection();
