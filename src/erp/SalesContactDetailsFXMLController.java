@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,25 +86,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private ComboBox<Location> cty;
     
-    @FXML private GridPane AccordionGridPane;
-    
-    int AccordionGridPaneRowCount = 2;
-    double AccordianGridPaneOriginalHeight = 0;
-    @FXML void addButtonClicked(ActionEvent event) 
-    {
-        AccordianGridPaneOriginalHeight = AccordionGridPane.getHeight();
-        TextField contact = new TextField();
-        AccordionGridPaneRowCount++;
-        Label newContact = new Label("New Contact");
-        double newHeight = (AccordianGridPaneOriginalHeight / AccordionGridPaneRowCount) * (AccordionGridPaneRowCount + 1);
-        AccordionGridPane.addRow(AccordionGridPaneRowCount);
-        //AccordionGridPane.getChildren().addAll(contact,newContact);
-        AccordionGridPane.add(contact, 1, AccordionGridPaneRowCount);
-        AccordionGridPane.add(newContact, 0, AccordionGridPaneRowCount);
-//        AccordionGridPane.add(eId, 1, 3);
-//        AccordionGridPane.add(eIdLabel, 1, 3);
-    }
-    
+
     Connection conn = DBConnection.democonnection();
     
     @FXML
@@ -118,14 +102,14 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
             // the mysql insert statement
 
-            String query = " insert into CustomerInfo (customerName,addLine1 , addLine2, Country, State,City,PinCode,GSTIN,PAN)"
+            String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
 
-              + " values (?,?,?,?,?,?,?,?,?)";
+              + " values (?,?,?,?,?,?,?)";
 
 
             // create the mysql insert preparedstatement
 
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            PreparedStatement preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             preparedStmt.setString (1, custName.getText());
 
@@ -133,83 +117,130 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
             preparedStmt.setString (3, addressLine2.getText());
 
+            preparedStmt.setInt (4, cty.getValue().getId());
+            
             int pCode_int = new Integer(pCode.getText());
-            preparedStmt.setInt (7, pCode_int);
+            preparedStmt.setInt (5, pCode_int);
 
-            preparedStmt.setString(8, gstNo.getText());
+            preparedStmt.setString(6, gstNo.getText());
 
-            preparedStmt.setString(9, panNo.getText());
+            preparedStmt.setString(7, panNo.getText());
 
             // execute the preparedstatement
 
-            ResultSet rs = preparedStmt.executeQuery();
-            int customerId = 0;
-
-            while(rs.next()){  
-              customerId = rs.getInt(1);  
+            int rs_int = preparedStmt.executeUpdate();
+            
+            if (rs_int == 0) {
+                throw new SQLException("Creating contact failed, no rows affected.");
             }
 
-            // Insert data into Contact Person table
+            try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    final int customerId = generatedKeys.getInt(1);
+                
+            
+                    SalesContactDetailsTable.getItems().forEach((SalesContactDetails contactPerson) -> {
 
-            query = " insert into ContactPerson (customerName, customerId)"
 
-              + " values (?,?)";
+                        // Insert data into Contact Person table
 
-            // create the mysql insert preparedstatement
+                        String query1 = " insert into ContactPersonInfo (contactPersonName, custInfoId)"
 
-            preparedStmt = conn.prepareStatement(query);
+                          + " values (?,?)";
 
-            preparedStmt.setString (1, ctPersonName.getText());
 
-            preparedStmt.setInt (2, customerId);
+                        try {
+                            // create the mysql insert preparedstatement
 
-            // execute the preparedstatement
+                            PreparedStatement preparedStmt1 = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+                            preparedStmt1.setString (1, contactPerson.getName());
 
-            rs = preparedStmt.executeQuery();
-            int personId = 0;
+                            preparedStmt1.setInt (2, customerId);
 
-            while(rs.next()){  
-              personId = rs.getInt(1);  
+                            // execute the preparedstatement
+
+                            int rs1_int = preparedStmt1.executeUpdate();
+                            
+                            if (rs1_int == 0) {
+                                throw new SQLException("Creating person failed, no rows affected.");
+                            }
+
+                            try (ResultSet generatedKeys1 = preparedStmt1.getGeneratedKeys()) {
+                                if (generatedKeys1.next()) {
+                                    int personId = generatedKeys1.getInt(1);
+                                    // Insert data into Email table
+
+                                    String[] email = contactPerson.getEmail().split(",");
+
+                                    for(int i=0; i<email.length; i++) {
+                                        String query2 = " insert into EmailInfo (emailAddress, contactPersonId)"
+
+                                          + " values (?,?)";
+
+                                        // create the mysql insert preparedstatement
+
+                                        try {
+                                            PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
+                                            preparedStmt2.setString (1, email[i]);
+
+                                            preparedStmt2.setInt (2, personId);
+
+                                            // execute the preparedstatement
+
+                                            preparedStmt2.execute();
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+
+
+                                    }
+
+                                    // Insert data into Phone table
+
+                                    String[] phone = contactPerson.getPhone().split(",");
+
+                                    for(int i=0; i<phone.length; i++) {
+                                        String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId)"
+
+                                          + " values (?,?)";
+
+                                        // create the mysql insert preparedstatement
+
+                                        try {
+                                            PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
+
+                                            preparedStmt3.setString (1, phone[i]);
+
+                                            preparedStmt3.setInt (2, personId);
+
+                                            // execute the preparedstatement
+
+                                            preparedStmt3.execute();
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                    
+                                }
+                                else {
+                                    throw new SQLException("Creating person failed, no ID obtained.");
+                                }
+                            }
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        
+                    });
+                }
+                else {
+                    throw new SQLException("Creating contact failed, no ID obtained.");
+                }
             }
 
-            // Insert data into Email table
-
-            query = " insert into email (emailId, personId)"
-
-              + " values (?,?)";
-
-            // create the mysql insert preparedstatement
-
-            preparedStmt = conn.prepareStatement(query);
-
-            preparedStmt.setString (1, eId.getText());
-
-            preparedStmt.setInt (2, personId);
-
-            // execute the preparedstatement
-
-            preparedStmt.execute();
-
-            // Insert data into Phone table
-
-            query = " insert into phone (phone, personId)"
-
-              + " values (?,?)";
-
-            // create the mysql insert preparedstatement
-
-            preparedStmt = conn.prepareStatement(query);
-
-            preparedStmt.setString (1, ctNo.getText());
-
-            preparedStmt.setInt (2, personId);
-
-            // execute the preparedstatement
-
-            preparedStmt.execute();
-
-
-            conn.close();
+            //conn.close();
 
         }
 
@@ -220,6 +251,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
           System.err.println("Got an exception!");
 
           System.err.println(e.getMessage());
+          System.err.println(e);
 
         }
     }
@@ -264,7 +296,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
         
         // Insert data into Contact Person table
 
-           String  query = "select * from location where location_type = 0";
+           String  query = "select * from location where location_type = 0 order by name";
 
             // create the mysql insert preparedstatement
 
@@ -312,7 +344,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                     
                     stateList.clear();
                         
-                    String  query = "select * from location where location_type = 1 AND parent_id = " +newLocation.getId();
+                    String  query = "select * from location where location_type = 1 AND parent_id = " +newLocation.getId() + "  order by name";
 
                     // create the mysql insert preparedstatement
 
@@ -362,7 +394,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                     
                     cityList.clear();
                     
-                    String  query = "select * from location where location_type = 2 AND parent_id = " +newLocation.getId();
+                    String  query = "select * from location where location_type = 2 AND parent_id = " +newLocation.getId() + "  order by name";
 
                     // create the mysql insert preparedstatement
 
