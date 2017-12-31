@@ -85,16 +85,22 @@ public class SalesContactDetailsFXMLController implements Initializable {
     @FXML private ComboBox<Location> cty;
     
     @FXML private GridPane AccordionGridPane;
-   
+    
+    int AccordionGridPaneRowCount = 2;
+    double AccordianGridPaneOriginalHeight = 0;
     @FXML void addButtonClicked(ActionEvent event) 
     {
+        AccordianGridPaneOriginalHeight = AccordionGridPane.getHeight();
         TextField contact = new TextField();
+        AccordionGridPaneRowCount++;
         Label newContact = new Label("New Contact");
-        AccordionGridPane.getChildren().addAll(contact,newContact);
-        /*AccordionGridPane.add(contact, 1, 2);
-        AccordionGridPane.add(newContact, 0, 2);
-        //AccordionGridPane.add(eIdLabel, 0, 3);
-        AccordionGridPane.add(eId, 1, 3);*/
+        double newHeight = (AccordianGridPaneOriginalHeight / AccordionGridPaneRowCount) * (AccordionGridPaneRowCount + 1);
+        AccordionGridPane.addRow(AccordionGridPaneRowCount);
+        //AccordionGridPane.getChildren().addAll(contact,newContact);
+        AccordionGridPane.add(contact, 1, AccordionGridPaneRowCount);
+        AccordionGridPane.add(newContact, 0, AccordionGridPaneRowCount);
+//        AccordionGridPane.add(eId, 1, 3);
+//        AccordionGridPane.add(eIdLabel, 1, 3);
     }
     
     Connection conn = DBConnection.democonnection();
