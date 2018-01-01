@@ -254,6 +254,14 @@ public class SalesContactDetailsFXMLController implements Initializable {
           System.err.println(e);
 
         }
+        
+        custName.clear();
+        addressLine1.clear();
+        addressLine2.clear();
+        pCode.clear();
+        gstNo.clear();
+        panNo.clear();
+        
     }
     //User should enter the data and dont know how to implement that
     public ObservableList<SalesContactDetails> ciList = FXCollections.observableArrayList();
@@ -477,6 +485,10 @@ public class SalesContactDetailsFXMLController implements Initializable {
         SalesContactDetails record = new SalesContactDetails(ctPersonName.getText(), eId.getText(), ctNo.getText());
         
         SalesContactDetailsTable.getItems().add(record);
+        
+        ctPersonName.clear();
+        eId.clear();
+        ctNo.clear();
     }
     
 }
