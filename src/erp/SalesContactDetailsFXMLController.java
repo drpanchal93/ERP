@@ -15,11 +15,15 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -29,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -48,17 +53,25 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private TextField custName;
     
+    @FXML private Label custNameAlert;
+    
     @FXML private TextField addressLine1;
     
     @FXML private TextField addressLine2;
     
     @FXML private TextField pCode;
     
+    @FXML private Label pCodeAlert;
+    
     @FXML private TextField ctPersonName;
     
     @FXML private TextField ctNo;
     
+    @FXML private Label ctNoAlert;
+    
     @FXML private TextField eId;
+    
+    @FXML private Label eIdAlert;
     
     @FXML private Label eIdLabel;
     
@@ -92,176 +105,191 @@ public class SalesContactDetailsFXMLController implements Initializable {
     @FXML
     void SubmitButtonClicked(ActionEvent event)
     {
-        try
-        {
-            // create a mysql database connection
-            
-            
-            
-            // Insert data into Customer Info table
-
-            // the mysql insert statement
-
-            String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
-
-              + " values (?,?,?,?,?,?,?)";
-
-
-            // create the mysql insert preparedstatement
-
-            PreparedStatement preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
-            preparedStmt.setString (1, custName.getText());
-
-            preparedStmt.setString (2, addressLine1.getText());
-
-            preparedStmt.setString (3, addressLine2.getText());
-
-            preparedStmt.setInt (4, cty.getValue().getId());
-            
-            int pCode_int = new Integer(pCode.getText());
-            preparedStmt.setInt (5, pCode_int);
-
-            preparedStmt.setString(6, gstNo.getText());
-
-            preparedStmt.setString(7, panNo.getText());
-
-            // execute the preparedstatement
-
-            int rs_int = preparedStmt.executeUpdate();
-            
-            if (rs_int == 0) {
-                throw new SQLException("Creating contact failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    final int customerId = generatedKeys.getInt(1);
-                
-            
-                    SalesContactDetailsTable.getItems().forEach((SalesContactDetails contactPerson) -> {
-
-
-                        // Insert data into Contact Person table
-
-                        String query1 = " insert into ContactPersonInfo (contactPersonName, custInfoId)"
-
-                          + " values (?,?)";
-
-
-                        try {
-                            // create the mysql insert preparedstatement
-
-                            PreparedStatement preparedStmt1 = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
-                            preparedStmt1.setString (1, contactPerson.getName());
-
-                            preparedStmt1.setInt (2, customerId);
-
-                            // execute the preparedstatement
-
-                            int rs1_int = preparedStmt1.executeUpdate();
-                            
-                            if (rs1_int == 0) {
-                                throw new SQLException("Creating person failed, no rows affected.");
-                            }
-
-                            try (ResultSet generatedKeys1 = preparedStmt1.getGeneratedKeys()) {
-                                if (generatedKeys1.next()) {
-                                    int personId = generatedKeys1.getInt(1);
-                                    // Insert data into Email table
-
-                                    String[] email = contactPerson.getEmail().split(",");
-
-                                    for(int i=0; i<email.length; i++) {
-                                        String query2 = " insert into EmailInfo (emailAddress, contactPersonId)"
-
-                                          + " values (?,?)";
-
-                                        // create the mysql insert preparedstatement
-
-                                        try {
-                                            PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
-                                            preparedStmt2.setString (1, email[i]);
-
-                                            preparedStmt2.setInt (2, personId);
-
-                                            // execute the preparedstatement
-
-                                            preparedStmt2.execute();
-                                        } catch (SQLException ex) {
-                                            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-
-
-                                    }
-
-                                    // Insert data into Phone table
-
-                                    String[] phone = contactPerson.getPhone().split(",");
-
-                                    for(int i=0; i<phone.length; i++) {
-                                        String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId)"
-
-                                          + " values (?,?)";
-
-                                        // create the mysql insert preparedstatement
-
-                                        try {
-                                            PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
-
-                                            preparedStmt3.setString (1, phone[i]);
-
-                                            preparedStmt3.setInt (2, personId);
-
-                                            // execute the preparedstatement
-
-                                            preparedStmt3.execute();
-                                        } catch (SQLException ex) {
-                                            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-                                    }
-                                    
-                                }
-                                else {
-                                    throw new SQLException("Creating person failed, no ID obtained.");
-                                }
-                            }
-
-                        } catch (SQLException ex) {
-                            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-
-                        
-                    });
-                }
-                else {
-                    throw new SQLException("Creating contact failed, no ID obtained.");
-                }
-            }
-
-            //conn.close();
-
-        }
-
-        catch (Exception e)
-
-        {
-
-          System.err.println("Got an exception!");
-
-          System.err.println(e.getMessage());
-          System.err.println(e);
-
+        
+        boolean flag = true;
+        
+        if (custName.getText().length() <= 0) {
+            flag = false;
+            custNameAlert.setVisible(true);
         }
         
-        custName.clear();
-        addressLine1.clear();
-        addressLine2.clear();
-        pCode.clear();
-        gstNo.clear();
-        panNo.clear();
+        if (pCode.getText().length() > 0) {
+            if (!pCode.getText().matches("[0-9]+")) {
+                flag = false;
+                pCodeAlert.setVisible(true);
+            }
+        }
         
+        if (flag) {
+            
+            try
+            {
+                // create a mysql database connection
+
+
+
+                // Insert data into Customer Info table
+
+                // the mysql insert statement
+
+                String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
+
+                  + " values (?,?,?,?,?,?,?)";
+
+
+                // create the mysql insert preparedstatement
+
+                PreparedStatement preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+                preparedStmt.setString (1, custName.getText());
+
+                preparedStmt.setString (2, addressLine1.getText());
+
+                preparedStmt.setString (3, addressLine2.getText());
+
+                preparedStmt.setInt (4, cty.getValue().getId());
+
+                int pCode_int = new Integer(pCode.getText());
+                preparedStmt.setInt (5, pCode_int);
+
+                preparedStmt.setString(6, gstNo.getText());
+
+                preparedStmt.setString(7, panNo.getText());
+
+                // execute the preparedstatement
+
+                int rs_int = preparedStmt.executeUpdate();
+
+                if (rs_int == 0) {
+                    throw new SQLException("Creating contact failed, no rows affected.");
+                }
+
+                try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        final int customerId = generatedKeys.getInt(1);
+
+
+                        SalesContactDetailsTable.getItems().forEach((SalesContactDetails contactPerson) -> {
+
+
+                            // Insert data into Contact Person table
+
+                            String query1 = " insert into ContactPersonInfo (contactPersonName, custInfoId)"
+
+                              + " values (?,?)";
+
+
+                            try {
+                                // create the mysql insert preparedstatement
+
+                                PreparedStatement preparedStmt1 = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+                                preparedStmt1.setString (1, contactPerson.getName());
+
+                                preparedStmt1.setInt (2, customerId);
+
+                                // execute the preparedstatement
+
+                                int rs1_int = preparedStmt1.executeUpdate();
+
+                                if (rs1_int == 0) {
+                                    throw new SQLException("Creating person failed, no rows affected.");
+                                }
+
+                                try (ResultSet generatedKeys1 = preparedStmt1.getGeneratedKeys()) {
+                                    if (generatedKeys1.next()) {
+                                        int personId = generatedKeys1.getInt(1);
+                                        // Insert data into Email table
+
+                                        String[] email = contactPerson.getEmail().split(",");
+
+                                        for(int i=0; i<email.length; i++) {
+                                            String query2 = " insert into EmailInfo (emailAddress, contactPersonId)"
+
+                                              + " values (?,?)";
+
+                                            // create the mysql insert preparedstatement
+
+                                            try {
+                                                PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
+                                                preparedStmt2.setString (1, email[i]);
+
+                                                preparedStmt2.setInt (2, personId);
+
+                                                // execute the preparedstatement
+
+                                                preparedStmt2.execute();
+                                            } catch (SQLException ex) {
+                                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+
+
+                                        }
+
+                                        // Insert data into Phone table
+
+                                        String[] phone = contactPerson.getPhone().split(",");
+
+                                        for(int i=0; i<phone.length; i++) {
+                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId)"
+
+                                              + " values (?,?)";
+
+                                            // create the mysql insert preparedstatement
+
+                                            try {
+                                                PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
+
+                                                preparedStmt3.setString (1, phone[i]);
+
+                                                preparedStmt3.setInt (2, personId);
+
+                                                // execute the preparedstatement
+
+                                                preparedStmt3.execute();
+                                            } catch (SQLException ex) {
+                                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                        }
+
+                                    }
+                                    else {
+                                        throw new SQLException("Creating person failed, no ID obtained.");
+                                    }
+                                }
+
+                            } catch (SQLException ex) {
+                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+
+
+                        });
+                    }
+                    else {
+                        throw new SQLException("Creating contact failed, no ID obtained.");
+                    }
+                }
+
+                custName.clear();
+                addressLine1.clear();
+                addressLine2.clear();
+                pCode.clear();
+                gstNo.clear();
+                panNo.clear();
+
+            }
+
+            catch (Exception e)
+
+            {
+
+              System.err.println("Got an exception!");
+
+              System.err.println(e.getMessage());
+              System.err.println(e);
+
+            }
+        }
     }
     //User should enter the data and dont know how to implement that
     public ObservableList<SalesContactDetails> ciList = FXCollections.observableArrayList();
@@ -299,6 +327,12 @@ public class SalesContactDetailsFXMLController implements Initializable {
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Email.setCellFactory(TextFieldTableCell.forTableColumn());
         Phone.setCellFactory(TextFieldTableCell.forTableColumn());
+        
+        // Hide Alerts
+        custNameAlert.setVisible(false);
+        pCodeAlert.setVisible(false);
+        ctNoAlert.setVisible(false);
+        eIdAlert.setVisible(false);
         
         //Populating Country ComboBox
         
@@ -446,6 +480,69 @@ public class SalesContactDetailsFXMLController implements Initializable {
             });
              
             
+        
+        custName.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+		@Override
+		public void handle(KeyEvent arg0) {
+                    TextField customer_name = (TextField) arg0.getSource();
+                    int length = customer_name.getText().length();
+                    
+                    if (length <= 0) {
+                        custNameAlert.setVisible(true);
+                    }
+                    else {
+                        custNameAlert.setVisible(false);
+                    }
+                }
+        });
+        
+        pCode.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+		@Override
+		public void handle(KeyEvent arg0) {
+                    TextField pin_code = (TextField) arg0.getSource();
+                    int length = pin_code.getText().length();
+                    
+                    if (length > 0 && !pin_code.getText().matches("[0-9]+")) {
+                        pCodeAlert.setVisible(true);
+                    }
+                    else {
+                        pCodeAlert.setVisible(false);
+                    }
+                }
+        });
+        
+        ctNo.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+		@Override
+		public void handle(KeyEvent arg0) {
+                    TextField contact_no = (TextField) arg0.getSource();
+                    int length = contact_no.getText().length();
+                    
+                    if (length > 0 && !contact_no.getText().matches("[0-9]+")) {
+                        ctNoAlert.setVisible(true);
+                    }
+                    else {
+                        ctNoAlert.setVisible(false);
+                    }
+                }
+        });
+        
+        eId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+		@Override
+		public void handle(KeyEvent arg0) {
+                    TextField email = (TextField) arg0.getSource();
+                    int length = email.getText().length();
+                    Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
+                    Matcher matcher = pattern.matcher(email.getText());
+                    
+                    if (length > 0 && !matcher.matches()) {
+                        eIdAlert.setVisible(true);
+                    }
+                    else {
+                        eIdAlert.setVisible(false);
+                    }
+                }
+        });
+            
     }    
         
       
@@ -483,12 +580,30 @@ public class SalesContactDetailsFXMLController implements Initializable {
     {
        
         SalesContactDetails record = new SalesContactDetails(ctPersonName.getText(), eId.getText(), ctNo.getText());
+        boolean flag = true;
         
-        SalesContactDetailsTable.getItems().add(record);
+        if (ctNo.getText().length() > 0) {
+            if (!ctNo.getText().matches("[0-9]+")) {
+                flag = false;
+                ctNoAlert.setVisible(true);
+            }
+        }
         
-        ctPersonName.clear();
-        eId.clear();
-        ctNo.clear();
+        Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
+        Matcher matcher = pattern.matcher(eId.getText());
+
+        if (eId.getText().length() > 0) {
+            if (!matcher.matches()) {
+                flag = false;
+                eIdAlert.setVisible(true);
+            }
+        }
+        if (flag) {
+            SalesContactDetailsTable.getItems().add(record);
+            ctPersonName.clear();
+            eId.clear();
+            ctNo.clear();
+        }
     }
     
 }
