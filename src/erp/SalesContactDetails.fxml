@@ -21,13 +21,15 @@
       <RowConstraints fillHeight="false" maxHeight="697.0" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane maxWidth="600.0" prefHeight="339.0" prefWidth="600.0" GridPane.rowIndex="1">
+      <GridPane maxWidth="1055.0" prefHeight="401.0" prefWidth="1055.0" GridPane.rowIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -99,12 +101,12 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <TextField fx:id="addressLine1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="addressLine2" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Lucida Sans Demibold" size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="addressLine2" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="addressLine1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Lucida Sans Demibold" size="13.0" />
                </font>
@@ -131,19 +133,22 @@
             <ComboBox fx:id="ctry" prefHeight="27.0" prefWidth="351.0" promptText="Select Country" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="st" layoutX="260.0" layoutY="154.0" prefHeight="27.0" prefWidth="351.0" promptText="Select State" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="cty" layoutX="260.0" layoutY="199.0" prefHeight="27.0" prefWidth="351.0" promptText="Select City" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="custNameAlert" text="Customer name can not be empty." textFill="RED" GridPane.columnIndex="2" />
+            <Label fx:id="pCodeAlert" text="Pin Code can only contain numbers." textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="485.0" prefWidth="1280.0" GridPane.rowIndex="3">
          <children>
             <Accordion layoutY="273.0" prefHeight="165.0" prefWidth="1280.0" />
-          <TitledPane animated="false" layoutY="-1.0" maxWidth="700.0" minWidth="700.0" prefWidth="700.0" text="Contact Details:">
+          <TitledPane animated="false" layoutY="-1.0" maxWidth="1035.0" minWidth="700.0" prefWidth="1035.0" text="Contact Details:">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="209.0" prefWidth="698.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="209.0" prefWidth="766.0">
                      <children>
-                        <GridPane fx:id="AccordionGridPane" layoutX="7.0" layoutY="7.0" prefHeight="136.0" prefWidth="600.0">
+                        <GridPane fx:id="AccordionGridPane" layoutX="7.0" layoutY="7.0" prefHeight="136.0" prefWidth="1024.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -169,6 +174,8 @@
                               <TextField fx:id="ctPersonName" prefWidth="250.0" GridPane.columnIndex="1" />
                               <TextField fx:id="ctNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="eId" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="ctNoAlert" text="Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="Invalid email address." textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <JFXButton fx:id="addButton" layoutX="11.0" layoutY="159.0" onAction="#addButtonPushed" text="Add" />
