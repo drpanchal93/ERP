@@ -13,15 +13,25 @@ import javafx.beans.property.*;
  */
 public class SalesContactDetails {
     
+    private SimpleIntegerProperty serialNumber;
     private SimpleStringProperty name;
     private SimpleStringProperty email;
     private SimpleStringProperty phone;
 
-    public SalesContactDetails(String name,String email,String phone)
+    public SalesContactDetails(int srNumber,String name,String email,String phone)
     {
+        this.serialNumber = new SimpleIntegerProperty(srNumber);
         this.name = new SimpleStringProperty(name);
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
+    }
+    
+    public int getSrNo() {
+        return serialNumber.get();
+    }
+
+    public void setSrNo(Integer srNumber) {
+        serialNumber.set(srNumber);
     }
     
     public String getName() {

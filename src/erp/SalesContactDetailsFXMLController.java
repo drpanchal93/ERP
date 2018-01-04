@@ -79,6 +79,9 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private TextField panNo;
     
+    @FXML
+    private TableColumn<SalesContactDetails, Integer> SrNo;
+    
     @FXML private TableColumn<SalesContactDetails,String> Name;
     
     @FXML private TableColumn<SalesContactDetails,String> Email;
@@ -276,6 +279,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                 pCode.clear();
                 gstNo.clear();
                 panNo.clear();
+                
 
             }
 
@@ -293,6 +297,12 @@ public class SalesContactDetailsFXMLController implements Initializable {
     }
     //User should enter the data and dont know how to implement that
     public ObservableList<SalesContactDetails> ciList = FXCollections.observableArrayList();
+    
+    public void changeSrNoCellEvent(TableColumn.CellEditEvent editedCell)
+    {
+        SalesContactDetails Selected =  SalesContactDetailsTable.getSelectionModel().getSelectedItem();
+        Selected.setSrNo((Integer) editedCell.getNewValue());
+    }
     
     public void changeNameEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -312,10 +322,13 @@ public class SalesContactDetailsFXMLController implements Initializable {
         Selected.setPhone((String) editedCell.getNewValue());
     }
     
+    int count = 1;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
+        SrNo.setCellValueFactory(new PropertyValueFactory<SalesContactDetails, Integer>("SrNo"));
         Name.setCellValueFactory(new PropertyValueFactory<SalesContactDetails, String>("Name"));
         Email.setCellValueFactory(new PropertyValueFactory<SalesContactDetails, String>("Email"));
         Phone.setCellValueFactory(new PropertyValueFactory<SalesContactDetails, String>("Phone"));
@@ -324,6 +337,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
         SalesContactDetailsTable.setItems(ciList);
         
         SalesContactDetailsTable.setEditable(true);
+        SrNo.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Email.setCellFactory(TextFieldTableCell.forTableColumn());
         Phone.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -549,28 +563,29 @@ public class SalesContactDetailsFXMLController implements Initializable {
     /**
      * This method will remove the selected row(s) from the table 
      */
-//    public void deleteButtonPushed()
-//    {
-//        ObservableList<SJO> selectedRows, allItems;
-//        allItems = SJOTable.getItems();
-//        
-//        //this gives us the rows that were selected
-//        selectedRows = SJOTable.getSelectionModel().getSelectedItems();
-//        
-//        //loop over the selected rows and remove the Person objects from the table
-//        for (SJO item: selectedRows)
-//        {
-//            allItems.remove(item);
-//            count--;
-//            int c = 1;
-//            for (SJO items: allItems)
-//            {
-//                items.setSrNo(c);
-//                c++;
-//            }
-//        }
-//    }
-//    
+    public void deleteButtonPushed()
+   {
+       
+        ObservableList<SalesContactDetails> selectedRows, allItems;
+        allItems = SalesContactDetailsTable.getItems();
+        
+        //this gives us the rows that were selected
+        selectedRows = SalesContactDetailsTable.getSelectionModel().getSelectedItems();
+        
+        //loop over the selected rows and remove the Person objects from the table
+        for (SalesContactDetails item: selectedRows)
+        {
+            allItems.remove(item);
+            count--;
+            int c = 1;
+            for (SalesContactDetails items: allItems)
+            {
+                items.setSrNo(c);
+                c++;
+            }
+        }
+    }
+    
     
     
     /**
@@ -579,8 +594,10 @@ public class SalesContactDetailsFXMLController implements Initializable {
     public void addButtonPushed()
     {
        
-        SalesContactDetails record = new SalesContactDetails(ctPersonName.getText(), eId.getText(), ctNo.getText());
+        
+        SalesContactDetails record = new SalesContactDetails(count,ctPersonName.getText(), eId.getText(), ctNo.getText());
         boolean flag = true;
+        count++;
         
         if (ctNo.getText().length() > 0) {
             if (!ctNo.getText().matches("[0-9]+")) {
@@ -605,5 +622,5 @@ public class SalesContactDetailsFXMLController implements Initializable {
             ctNo.clear();
         }
     }
-    
+   
 }
