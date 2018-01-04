@@ -540,7 +540,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                 }
         });
         
-        eId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+        /*eId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
 		@Override
 		public void handle(KeyEvent arg0) {
                     TextField email = (TextField) arg0.getSource();
@@ -555,7 +555,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                         eIdAlert.setVisible(false);
                     }
                 }
-        });
+        });*/
             
     }    
         
@@ -593,8 +593,6 @@ public class SalesContactDetailsFXMLController implements Initializable {
      */
     public void addButtonPushed()
     {
-       
-        
         SalesContactDetails record = new SalesContactDetails(count,ctPersonName.getText(), eId.getText(), ctNo.getText());
         boolean flag = true;
         count++;
@@ -609,12 +607,12 @@ public class SalesContactDetailsFXMLController implements Initializable {
         Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
         Matcher matcher = pattern.matcher(eId.getText());
 
-        if (eId.getText().length() > 0) {
+        /*if (eId.getText().length() > 0) {
             if (!matcher.matches()) {
                 flag = false;
                 eIdAlert.setVisible(true);
             }
-        }
+        }*/
         if (flag) {
             SalesContactDetailsTable.getItems().add(record);
             ctPersonName.clear();

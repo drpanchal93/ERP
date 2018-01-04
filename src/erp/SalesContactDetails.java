@@ -33,7 +33,7 @@ public class SalesContactDetails {
     public void setSrNo(Integer srNumber) {
         serialNumber.set(srNumber);
     }
-    
+     
     public String getName() {
         return name.get();
     }
