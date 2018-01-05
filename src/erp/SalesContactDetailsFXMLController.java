@@ -135,7 +135,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                 // the mysql insert statement
 
-                String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
+                String query = " insert into VendorInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
 
                   + " values (?,?,?,?,?,?,?)";
 

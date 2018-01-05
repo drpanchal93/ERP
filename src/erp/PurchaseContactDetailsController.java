@@ -214,7 +214,7 @@ public class PurchaseContactDetailsController implements Initializable {
 
                 // the mysql insert statement
 
-                String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
+                String query = " insert into VendorInfo (VendorName,vendAddLine1,vendAddLine2,locationId,pCode,GSTIN,PAN)"
 
                   + " values (?,?,?,?,?,?,?)";
 
@@ -256,7 +256,7 @@ public class PurchaseContactDetailsController implements Initializable {
 
                             // Insert data into Contact Person table
 
-                            String query1 = " insert into ContactPersonInfo (contactPersonName, custInfoId)"
+                            String query1 = " insert into VendorContactPerson (vendorContactPersonName, vendorInfoId)"
 
                               + " values (?,?)";
 
@@ -285,7 +285,7 @@ public class PurchaseContactDetailsController implements Initializable {
                                         String[] email = contactPerson.getEmail().split(",");
 
                                         for(int i=0; i<email.length; i++) {
-                                            String query2 = " insert into EmailInfo (emailAddress, contactPersonId)"
+                                            String query2 = " insert into VendorEmail (vendorEmailId, vendorContactPersonId)"
 
                                               + " values (?,?)";
 
@@ -312,7 +312,7 @@ public class PurchaseContactDetailsController implements Initializable {
                                         String[] phone = contactPerson.getPhone().split(",");
 
                                         for(int i=0; i<phone.length; i++) {
-                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId)"
+                                            String query3 = " insert into VendorContactNumber (vendorContactNumber, vendorContactPersonId)"
 
                                               + " values (?,?)";
 
