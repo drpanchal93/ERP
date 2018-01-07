@@ -528,10 +528,19 @@ public class SalesContactDetailsFXMLController implements Initializable {
         ctNo.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
 		@Override
 		public void handle(KeyEvent arg0) {
+                    boolean flag = false;
                     TextField contact_no = (TextField) arg0.getSource();
                     int length = contact_no.getText().length();
                     
-                    if (length > 0 && !contact_no.getText().matches("[0-9]+")) {
+                    if (length > 0) {
+                        String[] contacts = contact_no.getText().split(",");
+                        for(int i = 0; i < contacts.length; i++) {
+                            if(!contacts[i].matches("[0-9]+")) {
+                                flag = true;
+                            }
+                        }
+                    }
+                    if (flag) {
                         ctNoAlert.setVisible(true);
                     }
                     else {
@@ -540,22 +549,31 @@ public class SalesContactDetailsFXMLController implements Initializable {
                 }
         });
         
-        /*eId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+        eId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
 		@Override
 		public void handle(KeyEvent arg0) {
+                    boolean flag = false;
                     TextField email = (TextField) arg0.getSource();
                     int length = email.getText().length();
                     Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
-                    Matcher matcher = pattern.matcher(email.getText());
                     
-                    if (length > 0 && !matcher.matches()) {
+                    if (length > 0) {
+                        String[] emails = email.getText().split(",");
+                        for(int i = 0; i < emails.length; i++) {
+                            Matcher matcher = pattern.matcher(emails[i]);
+                            if(length > 0 && !matcher.matches()) {
+                                flag = true;
+                            }
+                        }
+                    }
+                    if (flag) {
                         eIdAlert.setVisible(true);
                     }
                     else {
                         eIdAlert.setVisible(false);
                     }
                 }
-        });*/
+        });
             
     }    
         
@@ -594,25 +612,31 @@ public class SalesContactDetailsFXMLController implements Initializable {
     public void addButtonPushed()
     {
         SalesContactDetails record = new SalesContactDetails(count,ctPersonName.getText(), eId.getText(), ctNo.getText());
-        boolean flag = true;
         count++;
-        
-        if (ctNo.getText().length() > 0) {
-            if (!ctNo.getText().matches("[0-9]+")) {
-                flag = false;
-                ctNoAlert.setVisible(true);
+        boolean flag = true;
+        int length = ctNo.getText().length();
+
+        if (length > 0) {
+            String[] contacts = ctNo.getText().split(",");
+            for(int i = 0; i < contacts.length; i++) {
+                if(!contacts[i].matches("[0-9]+")) {
+                    flag = false;
+                }
             }
         }
         
+        length = eId.getText().length();
         Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
-        Matcher matcher = pattern.matcher(eId.getText());
 
-        /*if (eId.getText().length() > 0) {
-            if (!matcher.matches()) {
-                flag = false;
-                eIdAlert.setVisible(true);
+        if (length > 0) {
+            String[] emails = eId.getText().split(",");
+            for(int i = 0; i < emails.length; i++) {
+                Matcher matcher = pattern.matcher(emails[i]);
+                if(length > 0 && !matcher.matches()) {
+                    flag = false;
+                }
             }
-        }*/
+        }
         if (flag) {
             SalesContactDetailsTable.getItems().add(record);
             ctPersonName.clear();

@@ -134,25 +134,31 @@ public class PurchaseContactDetailsController implements Initializable {
     void addButtonPushed(ActionEvent event) 
     {
         PurchaseContactDetails record = new PurchaseContactDetails(count,vctPersonName.getText(), veId.getText(), vctNo.getText());
-        boolean flag = true;
         count++;
-        
-        if (vctNo.getText().length() > 0) {
-            if (!vctNo.getText().matches("[0-9]+")) {
-                flag = false;
-                ctNoAlert.setVisible(true);
+        boolean flag = true;
+        int length = vctNo.getText().length();
+
+        if (length > 0) {
+            String[] contacts = vctNo.getText().split(",");
+            for(int i = 0; i < contacts.length; i++) {
+                if(!contacts[i].matches("[0-9]+")) {
+                    flag = false;
+                }
             }
         }
         
+        length = veId.getText().length();
         Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
-        Matcher matcher = pattern.matcher(veId.getText());
 
-        /*if (eId.getText().length() > 0) {
-            if (!matcher.matches()) {
-                flag = false;
-                eIdAlert.setVisible(true);
+        if (length > 0) {
+            String[] emails = veId.getText().split(",");
+            for(int i = 0; i < emails.length; i++) {
+                Matcher matcher = pattern.matcher(emails[i]);
+                if(length > 0 && !matcher.matches()) {
+                    flag = false;
+                }
             }
-        }*/
+        }
         if (flag) {
             PurchaseContactDetailsTable.getItems().add(record);
             vctPersonName.clear();
@@ -607,10 +613,19 @@ public class PurchaseContactDetailsController implements Initializable {
         vctNo.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
 		@Override
 		public void handle(KeyEvent arg0) {
+                    boolean flag = false;
                     TextField contact_no = (TextField) arg0.getSource();
                     int length = contact_no.getText().length();
                     
-                    if (length > 0 && !contact_no.getText().matches("[0-9]+")) {
+                    if (length > 0) {
+                        String[] contacts = contact_no.getText().split(",");
+                        for(int i = 0; i < contacts.length; i++) {
+                            if(!contacts[i].matches("[0-9]+")) {
+                                flag = true;
+                            }
+                        }
+                    }
+                    if (flag) {
                         ctNoAlert.setVisible(true);
                     }
                     else {
@@ -619,22 +634,31 @@ public class PurchaseContactDetailsController implements Initializable {
                 }
         });
         
-        /*eId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
+        veId.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
 		@Override
 		public void handle(KeyEvent arg0) {
+                    boolean flag = false;
                     TextField email = (TextField) arg0.getSource();
                     int length = email.getText().length();
                     Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
-                    Matcher matcher = pattern.matcher(email.getText());
                     
-                    if (length > 0 && !matcher.matches()) {
+                    if (length > 0) {
+                        String[] emails = email.getText().split(",");
+                        for(int i = 0; i < emails.length; i++) {
+                            Matcher matcher = pattern.matcher(emails[i]);
+                            if(length > 0 && !matcher.matches()) {
+                                flag = true;
+                            }
+                        }
+                    }
+                    if (flag) {
                         eIdAlert.setVisible(true);
                     }
                     else {
                         eIdAlert.setVisible(false);
                     }
                 }
-        });*/
+        });
             
     }    
         
