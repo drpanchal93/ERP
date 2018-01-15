@@ -23,19 +23,13 @@ public class SalesContacts {
     
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
-    private SimpleStringProperty city;
-    private SimpleStringProperty state;
-    private SimpleStringProperty country;
-    private SimpleStringProperty panNo;
+    private SimpleStringProperty address;
     private SimpleStringProperty gstNo;
 
-    public SalesContacts(int id, String name, String city, String state, String country, String panNo, String gstNo) {
+    public SalesContacts(int id, String name, String address, String gstNo) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.city = new SimpleStringProperty(city);
-        this.state = new SimpleStringProperty(state);
-        this.country = new SimpleStringProperty(country);
-        this.panNo = new SimpleStringProperty(panNo);
+        this.address = new SimpleStringProperty(address);
         this.gstNo = new SimpleStringProperty(gstNo);
     }
 
@@ -55,38 +49,14 @@ public class SalesContacts {
         name.set(nm);
     }
 
-    public String getCity() {
-        return city.get();
+    public String getAddress() {
+        return address.get();
     }
 
-    public void setCity(String ct) {
-        city.set(ct);
+    public void setAddress(String add) {
+        address.set(add);
     }
-
-    public String getState() {
-        return state.get();
-    }
-
-    public void setState(String st) {
-        state.set(st);
-    }
-
-    public String getCountry() {
-        return country.get();
-    }
-
-    public void setCountry(String ctry) {
-        country.set(ctry);
-    }
-
-    public String getPanNo() {
-        return panNo.get();
-    }
-
-    public void setPanNo(String pan_No) {
-        panNo.set(pan_No);
-    }
-
+    
     public String getGstNo() {
         return gstNo.get();
     }

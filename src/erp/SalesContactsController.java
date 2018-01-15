@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,13 +39,7 @@ public class SalesContactsController implements Initializable {
     private TextField filter;
 
     @FXML
-    private TableColumn<SalesContacts, String> country;
-
-    @FXML
     private TableColumn<SalesContacts, String> city;
-
-    @FXML
-    private TableColumn<SalesContacts, String> panNo;
 
     @FXML
     private TableColumn<SalesContacts, String> name;
@@ -56,16 +51,13 @@ public class SalesContactsController implements Initializable {
     private TableColumn<SalesContacts, Integer> id;
 
     @FXML
-    private TableColumn<SalesContacts, String> state;
-
-    @FXML
     private TableView<SalesContacts> salesContactsTable;
     
     public ObservableList<SalesContacts> sclist = FXCollections.observableArrayList();
     public ObservableList<SalesContacts> sclistFiltered = FXCollections.observableArrayList();
     
     Connection conn = DBConnection.democonnection();
-    
+        
     /**
      * Initializes the controller class.
      */
@@ -74,30 +66,30 @@ public class SalesContactsController implements Initializable {
         // TODO
         id.setCellValueFactory(new PropertyValueFactory<SalesContacts, Integer>("id"));
         name.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("name"));
-        city.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("city"));
-        state.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("state"));
-        country.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("country"));
-        panNo.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("panNo"));
+        city.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("address"));
         gstNo.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("gstNo"));
         
-        Statement stmt;
+        Statement stmt, stmt1, stmt2, stmt3;
         try {
             stmt = conn.createStatement();
-            String query = "select * from VendorInfo";
+            String query = "select * from CustomerInfo";
             ResultSet rs = stmt.executeQuery(query);
             int count = 1;
             while(rs.next()) {
                 //customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN
+               stmt1 = conn.createStatement();
                String query1 = "select name,parent_id  from location where location_id = " + rs.getInt("locationId");
-               ResultSet rs1 = stmt.executeQuery(query1);
+               ResultSet rs1 = stmt1.executeQuery(query1);
                while(rs1.next()) {
-                    String query2 = "select name,parent_id  from location where location_id = " + rs1.getInt("location_id");
-                    ResultSet rs2 = stmt.executeQuery(query2);
+                    stmt2 = conn.createStatement();
+                    String query2 = "select name,parent_id  from location where location_id = " + rs1.getInt("parent_id");
+                    ResultSet rs2 = stmt2.executeQuery(query2);
                     while(rs2.next()) {
-                        String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("location_id");
-                        ResultSet rs3 = stmt.executeQuery(query3);
+                        stmt3 = conn.createStatement();
+                        String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("parent_id");
+                        ResultSet rs3 = stmt3.executeQuery(query3);
                         while(rs3.next()) {
-                            sclist.add(new SalesContacts(count, rs.getString("customerName"), rs1.getString("name"), rs2.getString("name"), rs3.getString("name"), rs.getString("PAN"), rs.getString("GSTIN")));
+                            sclist.add(new SalesContacts(count, rs.getString("customerName"), rs.getString("addLine1") + "," + rs.getString("addLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("PinCode"), rs.getString("GSTIN")));
                         }
                     }  
                }
@@ -155,13 +147,7 @@ public class SalesContactsController implements Initializable {
 
         if (vendor.getName().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
             return true;
-        } else if (vendor.getCity().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
-            return true;
-        } else if (vendor.getState().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
-            return true;
-        } else if (vendor.getCountry().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
-            return true;
-        } else if (vendor.getPanNo().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
+        } else if (vendor.getAddress().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
             return true;
         } else if (vendor.getGstNo().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
             return true;

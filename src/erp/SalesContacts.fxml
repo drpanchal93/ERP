@@ -12,13 +12,10 @@
          <children>
             <TableView fx:id="salesContactsTable" layoutY="58.0" prefHeight="200.0" prefWidth="944.0">
               <columns>
-                <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="id" prefWidth="75.0" text="Sr No." />
                 <TableColumn fx:id="name" prefWidth="235.0" text="Name" />
-                  <TableColumn fx:id="city" minWidth="1.0" prefWidth="120.0" text="City" />
-                  <TableColumn fx:id="state" prefWidth="105.0" text="State" />
-                  <TableColumn fx:id="country" prefWidth="122.0" text="Country" />
-                  <TableColumn fx:id="panNo" prefWidth="148.0" text="PAN No" />
-                  <TableColumn fx:id="gstNo" prefWidth="138.0" text="GST No" />
+                  <TableColumn fx:id="city" minWidth="1.0" prefWidth="424.0" text="Address" />
+                  <TableColumn fx:id="gstNo" minWidth="0.0" prefWidth="209.0" text="GST No" />
               </columns>
             </TableView>
             <HBox prefHeight="50.0" prefWidth="1280.0">
