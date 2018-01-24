@@ -162,7 +162,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                 // the mysql insert statement
 
-                String query = " insert into VendorInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
+                String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
 
                   + " values (?,?,?,?,?,?,?)";
 
@@ -261,7 +261,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                                         for(int i=0; i<phone.length; i++) {
                                               
-                                            String[] ph = phone[i].split("(");
+                                            String temp = phone[i];
+                                            String[] ph = temp.split("\\(");
                                             String types = "Office";
                                             if(ph[1].charAt(0) == 'M') {
                                                 types = "Mobile";
@@ -271,7 +272,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                             }
                                             String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType)"
 
-                                              + " values (?,?)";
+                                              + " values (?,?,?)";
 
                                             // create the mysql insert preparedstatement
 

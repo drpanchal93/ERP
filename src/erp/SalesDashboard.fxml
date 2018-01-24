@@ -90,6 +90,11 @@
                         <Font name="Lucida Sans Demibold" size="16.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton layoutX="-6.0" layoutY="265.0" onAction="#SalesContactsButtonClicked" prefHeight="60.0" prefWidth="250.0" text="Sales Contacts" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="18.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </AnchorPane>
          </left>
