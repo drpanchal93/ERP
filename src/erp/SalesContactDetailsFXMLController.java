@@ -26,14 +26,18 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -50,6 +54,17 @@ public class SalesContactDetailsFXMLController implements Initializable {
      * Initializes the controller class.
      */
     
+    int phoneFields = 1;
+    int index = 0;
+        
+    @FXML
+    private GridPane AccordionGridPane;
+    
+    @FXML
+    private AnchorPane anchorPane;
+    
+    @FXML
+    private TitledPane titledPane;
     
     @FXML private TextField custName;
     
@@ -78,6 +93,18 @@ public class SalesContactDetailsFXMLController implements Initializable {
     @FXML private TextField gstNo;
     
     @FXML private TextField panNo;
+    
+    @FXML
+    private ComboBox<String> phoneType;
+    
+    public ObservableList<TextField> ct_No = FXCollections.observableArrayList();
+    
+    public ObservableList<ComboBox> phone_Type = FXCollections.observableArrayList();
+    
+    public ObservableList<String> phoneTypeList = FXCollections.observableArrayList();
+    
+    @FXML
+    private Button addPhone;
     
     @FXML
     private TableColumn<SalesContactDetails, Integer> SrNo;
@@ -233,7 +260,16 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                         String[] phone = contactPerson.getPhone().split(",");
 
                                         for(int i=0; i<phone.length; i++) {
-                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId)"
+                                              
+                                            String[] ph = phone[i].split("(");
+                                            String types = "Office";
+                                            if(ph[1].charAt(0) == 'M') {
+                                                types = "Mobile";
+                                            }
+                                            else if(ph[1].charAt(0) == 'H') {
+                                                types = "Home";
+                                            }
+                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType)"
 
                                               + " values (?,?)";
 
@@ -242,9 +278,11 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                             try {
                                                 PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
 
-                                                preparedStmt3.setString (1, phone[i]);
+                                                preparedStmt3.setString (1, ph[0]);
 
                                                 preparedStmt3.setInt (2, personId);
+
+                                                preparedStmt3.setString (3, types);
 
                                                 // execute the preparedstatement
 
@@ -347,6 +385,14 @@ public class SalesContactDetailsFXMLController implements Initializable {
         pCodeAlert.setVisible(false);
         ctNoAlert.setVisible(false);
         eIdAlert.setVisible(false);
+        
+        // Set Items to combolist phoneType
+        phoneTypeList.add("Office");
+        phoneTypeList.add("Mobile");
+        phoneTypeList.add("Home");
+        
+        phoneType.setItems(phoneTypeList);
+        
         
         //Populating Country ComboBox
         
@@ -574,6 +620,30 @@ public class SalesContactDetailsFXMLController implements Initializable {
                     }
                 }
         });
+
+        addPhone.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Add textfields
+                phoneFields++;
+                TextField notification = new TextField ();
+                notification.setId("ctNo"+phoneFields);
+                ct_No.add(notification);
+                AccordionGridPane.add(notification, 1, (phoneFields + 1));
+
+                ComboBox<String> comboBox = new ComboBox<String>(phoneTypeList);
+                comboBox.setId("phoneType"+phoneFields);
+                phone_Type.add(comboBox);
+                index++;
+
+                AccordionGridPane.add(comboBox, 2, (phoneFields + 1));
+                AccordionGridPane.setVgap(4);
+                anchorPane.setMinHeight(anchorPane.getHeight() + 30);
+                anchorPane.setMaxHeight(anchorPane.getHeight() + 30);
+                titledPane.setMinHeight(titledPane.getHeight() + 30);
+                titledPane.setMaxHeight(titledPane.getHeight() + 30);
+            }
+        });
             
     }    
         
@@ -611,21 +681,35 @@ public class SalesContactDetailsFXMLController implements Initializable {
      */
     public void addButtonPushed()
     {
-        SalesContactDetails record = new SalesContactDetails(count,ctPersonName.getText(), eId.getText(), ctNo.getText());
-        count++;
         boolean flag = true;
+        String phone = null;
         int length = ctNo.getText().length();
 
-        if (length > 0) {
-            String[] contacts = ctNo.getText().split(",");
-            for(int i = 0; i < contacts.length; i++) {
-                if(!contacts[i].matches("[0-9]+")) {
+        if (length > 0 && !ctNo.getText().matches("[0-9]+")) {
+            flag = false;
+        }
+        phone = ctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
+        
+        for (int i = 0; i < index; i++) {
+            TextField object = ct_No.get(i);
+            length = object.getText().length();
+
+            if(length > 0) {
+                if (!object.getText().matches("[0-9]+")) {
                     flag = false;
                 }
+
+                ComboBox combo = phone_Type.get(i);
+                String value = (String) combo.getValue();
+                phone = phone + "," + object.getText() + "(" + value.charAt(0) + ")";
             }
         }
         
+        SalesContactDetails record = new SalesContactDetails(count,ctPersonName.getText(), eId.getText(), phone);
+        count++;
+        
         length = eId.getText().length();
+
         Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
 
         if (length > 0) {
