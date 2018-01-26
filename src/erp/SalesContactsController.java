@@ -19,14 +19,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
+import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -64,10 +64,29 @@ public class SalesContactsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        city.setCellFactory (col -> {
+            TableCell<SalesContacts, String> cell = new TableCell<SalesContacts, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item != null) {
+                           Text text = new Text(item);
+                           text.setWrappingWidth(col.getPrefWidth() - 35);
+                           this.setPrefHeight(text.getLayoutBounds().getHeight()+10);
+                           this.setGraphic(text);
+                    }
+                }
+            };
+            return cell;
+        });
+
+        
         id.setCellValueFactory(new PropertyValueFactory<SalesContacts, Integer>("id"));
         name.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("name"));
         city.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("address"));
         gstNo.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("gstNo"));
+        
         
         Statement stmt, stmt1, stmt2, stmt3;
         try {
@@ -99,7 +118,7 @@ public class SalesContactsController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(SalesContactsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+        
             // Listen for text changes in the filter text field
             filter.textProperty().addListener(new ChangeListener<String>() {
                 @Override
