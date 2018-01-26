@@ -52,11 +52,21 @@ public class PurchaseDashboardController extends ReusableCode implements Initial
     @FXML
     private ScrollPane contentScrollPane;
     
-     @FXML
+    @FXML
+    private JFXButton PurchaseContactDetails;
+    
+    @FXML
+    void PurchaseContactDetailsButtonClicked(ActionEvent event) throws IOException 
+    {
+        Parent salesData = FXMLLoader.load(getClass().getResource("PurchaseContacts.fxml"));
+        contentScrollPane.setContent(salesData);
+    }
+
+    @FXML
     void AddVendorContactButtonClicked(ActionEvent event) throws IOException 
     {
         Parent purchaseData = FXMLLoader.load(getClass().getResource("PurchaseContactDetails.fxml"));
-         contentScrollPane.setContent(purchaseData);
+        contentScrollPane.setContent(purchaseData);
     }
 
     @FXML

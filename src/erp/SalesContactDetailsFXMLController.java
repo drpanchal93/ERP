@@ -146,6 +146,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContacts.fxml"));
         salesContactFormAnchorPane.getChildren().setAll(pane);
     }
+    
     @FXML
     void SubmitButtonClicked(ActionEvent event)
     {

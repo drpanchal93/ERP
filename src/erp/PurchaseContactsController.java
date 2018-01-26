@@ -23,29 +23,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+
+
 
 /**
  * FXML Controller class
  *
- * @author Chaitya
+ * @author drashtipanchal
  */
-public class SalesContactsController implements Initializable {
+public class PurchaseContactsController implements Initializable {
 
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     private TextField filter;
 
@@ -65,10 +64,10 @@ public class SalesContactsController implements Initializable {
     private TableView<SalesContacts> salesContactsTable;
     
     @FXML
-    private AnchorPane salesContactAnchorPane;
+    private AnchorPane purchaseContactsAnchorPane;
 
     @FXML
-    private JFXButton addSalesContactButton;
+    private JFXButton addPurchaseContactButton;
     
     @FXML
     private ScrollPane salesConatctScrollPane;
@@ -79,7 +78,7 @@ public class SalesContactsController implements Initializable {
     Connection conn = DBConnection.democonnection();
     
     @FXML
-    void addSalesContactButtonClicked(ActionEvent event) throws IOException 
+    void addPurchaseContactButtonClicked(ActionEvent event) throws IOException 
     {
         /*Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
         salesConatctScrollPane.setContent(salesData);*/
@@ -87,39 +86,15 @@ public class SalesContactsController implements Initializable {
         FXMLLoader loader = new FXMLLoader(url);
         Node node = (Node) loader.load();*/
         
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
-        salesContactAnchorPane.getChildren().setAll(pane);
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("PurchaseContactDetails.fxml"));
+        purchaseContactsAnchorPane.getChildren().setAll(pane);
     }
     
-    /*public void addSalesContactButtonClicked(ActionEvent event) 
-    {
-        Parent goToSceneTwo = null;
-            try 
-            {
-                goToSceneTwo = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
-            } catch (IOException ex) 
-            {
-                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Scene QualityDashboard = new Scene(goToSceneTwo);
-            Stage app_Stage = (Stage) addSalesContactButton.getScene().getWindow() ;
-            app_Stage.setScene(QualityDashboard);
-            
-            //Css code
-            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
-            
-            app_Stage.setMaximized(true);
-            app_Stage.show();
-    }*/
-    
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        
         // TODO
-
         city.setCellFactory (col -> {
             TableCell<SalesContacts, String> cell = new TableCell<SalesContacts, String>() {
                 @Override
@@ -146,7 +121,7 @@ public class SalesContactsController implements Initializable {
         Statement stmt, stmt1, stmt2, stmt3;
         try {
             stmt = conn.createStatement();
-            String query = "select * from CustomerInfo";
+            String query = "select * from VendorInfo";
             ResultSet rs = stmt.executeQuery(query);
             int count = 1;
             while(rs.next()) {
@@ -163,7 +138,7 @@ public class SalesContactsController implements Initializable {
                         String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("parent_id");
                         ResultSet rs3 = stmt3.executeQuery(query3);
                         while(rs3.next()) {
-                            sclist.add(new SalesContacts(count, rs.getString("customerName"), rs.getString("addLine1") + "," + rs.getString("addLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("PinCode"), rs.getString("GSTIN")));
+                            sclist.add(new SalesContacts(count, rs.getString("VendorName"), rs.getString("vendAddLine1") + "," + rs.getString("vendAddLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("pCode"), rs.getString("GSTIN")));
                         }
                     }  
                }
@@ -228,6 +203,42 @@ public class SalesContactsController implements Initializable {
         }
 
         return false; // Does not match
-    }
+    
+    }    
     
 }
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+    
+    
+    /*public void addSalesContactButtonClicked(ActionEvent event) 
+    {
+        Parent goToSceneTwo = null;
+            try 
+            {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
+            } catch (IOException ex) 
+            {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene QualityDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) addSalesContactButton.getScene().getWindow() ;
+            app_Stage.setScene(QualityDashboard);
+            
+            //Css code
+            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }*/
+    
+    /**
+     * Initializes the controller class.
+     */
+    
+    
+
