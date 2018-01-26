@@ -5,6 +5,8 @@
  */
 package erp;
 
+import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -129,9 +132,20 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     @FXML private ComboBox<Location> cty;
     
-
+    @FXML
+    private AnchorPane salesContactFormAnchorPane;
+    
+    @FXML
+    private JFXButton goBackToSalesContacts;
+            
     Connection conn = DBConnection.democonnection();
     
+    @FXML
+    void goBackToSalesContactsButtonCLicked(ActionEvent event) throws IOException 
+    {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContacts.fxml"));
+        salesContactFormAnchorPane.getChildren().setAll(pane);
+    }
     @FXML
     void SubmitButtonClicked(ActionEvent event)
     {

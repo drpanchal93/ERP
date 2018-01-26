@@ -5,6 +5,8 @@
  */
 package erp;
 
+import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,16 +19,25 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -53,11 +64,54 @@ public class SalesContactsController implements Initializable {
     @FXML
     private TableView<SalesContacts> salesContactsTable;
     
+    @FXML
+    private AnchorPane salesContactAnchorPane;
+
+    @FXML
+    private JFXButton addSalesContactButton;
+    
+    @FXML
+    private ScrollPane salesConatctScrollPane;
+    
+    
+    
     public ObservableList<SalesContacts> sclist = FXCollections.observableArrayList();
     public ObservableList<SalesContacts> sclistFiltered = FXCollections.observableArrayList();
     
     Connection conn = DBConnection.democonnection();
+    
+    @FXML
+    void addSalesContactButtonClicked(ActionEvent event) throws IOException 
+    {
+        /*Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
+        salesConatctScrollPane.setContent(salesData);*/
+        /*URL url = getClass().getResource("SalesContactDetails.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Node node = (Node) loader.load();*/
         
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
+        salesContactAnchorPane.getChildren().setAll(pane);
+    }
+    /*public void addSalesContactButtonClicked(ActionEvent event) 
+    {
+        Parent goToSceneTwo = null;
+            try 
+            {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
+            } catch (IOException ex) 
+            {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene QualityDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) addSalesContactButton.getScene().getWindow() ;
+            app_Stage.setScene(QualityDashboard);
+            
+            //Css code
+            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }*/
     /**
      * Initializes the controller class.
      */
