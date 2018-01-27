@@ -31,9 +31,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -138,6 +140,15 @@ public class PurchaseContactDetailsController implements Initializable {
 
     @FXML
     private GridPane AccordionGridPane;
+    
+    @FXML
+    private AnchorPane anchorPane;
+    
+    @FXML
+    private TitledPane titledPane;
+    
+    @FXML
+    private AnchorPane PurchaseContactFormAnchorPane;
     
     public ObservableList<Location> countryList = FXCollections.observableArrayList();
     
@@ -752,7 +763,30 @@ public class PurchaseContactDetailsController implements Initializable {
                     }
                 }
         });
-            
+        
+        addPhone.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Add textfields
+                phoneFields++;
+                TextField notification = new TextField ();
+                notification.setId("ctNo"+phoneFields);
+                ct_No.add(notification);
+                AccordionGridPane.add(notification, 1, (phoneFields + 1));
+
+                ComboBox<String> comboBox = new ComboBox<String>(phoneTypeList);
+                comboBox.setId("phoneType"+phoneFields);
+                phone_Type.add(comboBox);
+                index++;
+
+                AccordionGridPane.add(comboBox, 2, (phoneFields + 1));
+                AccordionGridPane.setVgap(4);
+                anchorPane.setMinHeight(anchorPane.getHeight() + 30);
+                anchorPane.setMaxHeight(anchorPane.getHeight() + 30);
+                titledPane.setMinHeight(titledPane.getHeight() + 30);
+                titledPane.setMaxHeight(titledPane.getHeight() + 30);
+            }
+        });
     }    
         
 }    

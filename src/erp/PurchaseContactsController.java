@@ -75,6 +75,8 @@ public class PurchaseContactsController implements Initializable {
     public ObservableList<SalesContacts> sclist = FXCollections.observableArrayList();
     public ObservableList<SalesContacts> sclistFiltered = FXCollections.observableArrayList();
     
+    
+    
     Connection conn = DBConnection.democonnection();
     
     @FXML
