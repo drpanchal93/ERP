@@ -231,11 +231,13 @@ public class SalesContactsController implements Initializable {
         return false; // Does not match
     }
 
-    public void tableRowClicked(MouseEvent event) {
+    public void tableRowClicked(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2) //Checking double click
         {
             int id = salesContactsTable.getSelectionModel().getSelectedItem().getId();
-            System.out.println(id);
+            SalesContactDetailsShowFXMLController.setId(id);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetailsShowFXML.fxml"));
+            salesContactAnchorPane.getChildren().setAll(pane);
         }
     }
 }
