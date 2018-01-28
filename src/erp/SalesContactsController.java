@@ -34,6 +34,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
@@ -229,5 +230,12 @@ public class SalesContactsController implements Initializable {
 
         return false; // Does not match
     }
-    
+
+    public void tableRowClicked(MouseEvent event) {
+        if (event.getClickCount() == 2) //Checking double click
+        {
+            int id = salesContactsTable.getSelectionModel().getSelectedItem().getId();
+            System.out.println(id);
+        }
+    }
 }
