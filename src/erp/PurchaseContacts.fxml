@@ -17,7 +17,7 @@
          </padding>
       </Label>
       <TextField fx:id="filter" layoutX="81.0" layoutY="21.0" />
-      <TableView fx:id="salesContactsTable" layoutX="21.0" layoutY="71.0" prefHeight="900.0" prefWidth="1250.0">
+      <TableView fx:id="salesContactsTable" layoutX="21.0" layoutY="71.0" onMouseClicked="#tableRowClicked" prefHeight="900.0" prefWidth="1250.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="75.0" text="Sr No." />
             <TableColumn fx:id="name" prefWidth="235.0" text="Name" />
