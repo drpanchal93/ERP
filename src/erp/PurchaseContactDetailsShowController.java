@@ -16,19 +16,17 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author drashtipanchal
  */
-public class SalesContactDetailsShowFXMLController implements Initializable {
+public class PurchaseContactDetailsShowController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    
     private static int id = 0;
     
     @FXML
@@ -60,7 +58,7 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
         Statement stmt, stmt1, stmt2, stmt3,stmt4,stmt5,stmt6;
         try {
             stmt = conn.createStatement();
-            String query = "select * from CustomerInfo where custInfoId = "+id;
+            String query = "select * from VendorInfo where vendInfoId = "+id;
             ResultSet rs = stmt.executeQuery(query);
             int count = 1;
             while(rs.next()) {
@@ -76,8 +74,8 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
                         String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("parent_id");
                         ResultSet rs3 = stmt3.executeQuery(query3);
                         while(rs3.next()) {
-                            custName.setText(rs.getString("customerName"));
-                            address.setText(rs.getString("addLine1") + ",\n" + rs.getString("addLine2") + ",\n" + rs1.getString("name") + "," + rs2.getString("name") + ",\n" + rs3.getString("name") + "-" + rs.getString("PinCode"));
+                            custName.setText(rs.getString("VendorName"));
+                            address.setText(rs.getString("vendAddLine1") + ",\n" + rs.getString("vendAddLine2") + ",\n" + rs1.getString("name") + "," + rs2.getString("name") + ",\n" + rs3.getString("name") + "-" + rs.getString("pCode"));
                             gstNo.setText(rs.getString("GSTIN"));
                             panNo.setText(rs.getString("PAN"));
                         }
@@ -85,13 +83,13 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
                }
                String contactInfo = "";
                stmt4 = conn.createStatement();
-               String query4 = "select * from ContactPersonInfo where custInfoId = " + id;
+               String query4 = "select * from VendorContactPerson where vendorContactPersonId = " + id;
                ResultSet rs4 = stmt4.executeQuery(query4);
                while(rs4.next()) {
-                    int contactPersonId = rs4.getInt("contactPersonId");
-                    contactInfo += rs4.getString("contactPersonName") + "\n";
+                    int contactPersonId = rs4.getInt("vendorContactPersonId");
+                    contactInfo += rs4.getString("vendorContactPersonName") + "\n";
                     stmt5 = conn.createStatement();
-                    String query5 = "select * from EmailInfo where contactPersonId = " + contactPersonId;
+                    String query5 = "select * from VendorEmail where vendorContactPersonId = " + contactPersonId;
                     ResultSet rs5 = stmt5.executeQuery(query5);
                     int emailCount = 1;
                     while(rs5.next()) {
@@ -103,14 +101,14 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
                     }
                     
                     stmt6 = conn.createStatement();
-                    String query6 = "select * from ContactNumberInfo where contactPersonId = " + contactPersonId;
+                    String query6 = "select * from VendorContactNumber where vendorContactPersonId = " + contactPersonId;
                     ResultSet rs6 = stmt6.executeQuery(query6);
                     int phoneCount = 1;
                     while(rs6.next()) {
                         if (phoneCount == 1) {
                             contactInfo += "Contact:";
                         }
-                        contactInfo += " " + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType") + ")" + "\n";
+                        contactInfo += " " + rs6.getString("vendorContactNumber") + "(" + rs6.getString("vendorContactNumberType") + ")" + "\n";
                         phoneCount++;
                     }
                }
@@ -121,6 +119,5 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
         }
         
         
-    }    
-    
+    }  
 }

@@ -404,7 +404,7 @@ public class PurchaseContactDetailsController implements Initializable {
                                                     
                                             String[] ph = phone[i].split("\\(");
                                             
-                                            String types = "Office";
+                                            String types = "Work";
                                             if(ph[1].charAt(0) == 'M') {
                                                 types = "Mobile";
                                             }
@@ -530,7 +530,7 @@ public class PurchaseContactDetailsController implements Initializable {
         eIdAlert.setVisible(false);
         
         // Set Items to combolist phoneType
-        phoneTypeList.add("Office");
+        phoneTypeList.add("Work");
         phoneTypeList.add("Mobile");
         phoneTypeList.add("Home");
         

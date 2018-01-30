@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="salesContactFormAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.PurchaseContactDetailsShowController">
+   <children>
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1089.0" prefWidth="1280.0">
+         <children>
+            <GridPane maxWidth="1055.0" prefHeight="401.0" prefWidth="1055.0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Vendor Name:">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Address:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="GSTIN:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="PAN No.:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="custName" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="address" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="gstNo" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="panNo" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="contact" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Contact Info:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="196.0" minHeight="4.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="280.0" minHeight="2.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="348.0" minHeight="10.0" prefHeight="268.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label alignment="CENTER" text="Purchase Contact Details" textAlignment="CENTER" textFill="#030303" underline="true">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="155.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="565.0" minHeight="0.0" prefHeight="394.0" vgrow="SOMETIMES" />
+            <RowConstraints fillHeight="false" maxHeight="697.0" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

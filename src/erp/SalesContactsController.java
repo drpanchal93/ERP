@@ -82,12 +82,6 @@ public class SalesContactsController implements Initializable {
     @FXML
     void addSalesContactButtonClicked(ActionEvent event) throws IOException 
     {
-        /*Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
-        salesConatctScrollPane.setContent(salesData);*/
-        /*URL url = getClass().getResource("SalesContactDetails.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
-        Node node = (Node) loader.load();*/
-        
         AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
         salesContactAnchorPane.getChildren().setAll(pane);
     }
@@ -164,7 +158,7 @@ public class SalesContactsController implements Initializable {
                         String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("parent_id");
                         ResultSet rs3 = stmt3.executeQuery(query3);
                         while(rs3.next()) {
-                            sclist.add(new SalesContacts(count, rs.getString("customerName"), rs.getString("addLine1") + "," + rs.getString("addLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("PinCode"), rs.getString("GSTIN")));
+                            sclist.add(new SalesContacts(rs.getInt("custInfoId"), rs.getString("customerName"), rs.getString("addLine1") + "," + rs.getString("addLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("PinCode"), rs.getString("GSTIN")));
                         }
                     }  
                }
@@ -236,7 +230,7 @@ public class SalesContactsController implements Initializable {
         {
             int id = salesContactsTable.getSelectionModel().getSelectedItem().getId();
             SalesContactDetailsShowFXMLController.setId(id);
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetailsShowFXML.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetailsShow.fxml"));
             salesContactAnchorPane.getChildren().setAll(pane);
         }
     }

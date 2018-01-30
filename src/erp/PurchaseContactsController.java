@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -49,19 +50,19 @@ public class PurchaseContactsController implements Initializable {
     private TextField filter;
 
     @FXML
-    private TableColumn<SalesContacts, String> city;
+    private TableColumn<PurchaseContacts, String> city;
 
     @FXML
-    private TableColumn<SalesContacts, String> name;
+    private TableColumn<PurchaseContacts, String> name;
 
     @FXML
-    private TableColumn<SalesContacts, String> gstNo;
+    private TableColumn<PurchaseContacts, String> gstNo;
 
     @FXML
-    private TableColumn<SalesContacts, Integer> id;
+    private TableColumn<PurchaseContacts, Integer> id;
 
     @FXML
-    private TableView<SalesContacts> salesContactsTable;
+    private TableView<PurchaseContacts> salesContactsTable;
     
     @FXML
     private AnchorPane purchaseContactsAnchorPane;
@@ -72,8 +73,8 @@ public class PurchaseContactsController implements Initializable {
     @FXML
     private ScrollPane salesConatctScrollPane;
     
-    public ObservableList<SalesContacts> sclist = FXCollections.observableArrayList();
-    public ObservableList<SalesContacts> sclistFiltered = FXCollections.observableArrayList();
+    public ObservableList<PurchaseContacts> sclist = FXCollections.observableArrayList();
+    public ObservableList<PurchaseContacts> sclistFiltered = FXCollections.observableArrayList();
     
     
     
@@ -98,7 +99,7 @@ public class PurchaseContactsController implements Initializable {
         
         // TODO
         city.setCellFactory (col -> {
-            TableCell<SalesContacts, String> cell = new TableCell<SalesContacts, String>() {
+            TableCell<PurchaseContacts, String> cell = new TableCell<PurchaseContacts, String>() {
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -114,10 +115,10 @@ public class PurchaseContactsController implements Initializable {
         });
 
         
-        id.setCellValueFactory(new PropertyValueFactory<SalesContacts, Integer>("id"));
-        name.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("name"));
-        city.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("address"));
-        gstNo.setCellValueFactory(new PropertyValueFactory<SalesContacts, String>("gstNo"));
+        id.setCellValueFactory(new PropertyValueFactory<PurchaseContacts, Integer>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<PurchaseContacts, String>("name"));
+        city.setCellValueFactory(new PropertyValueFactory<PurchaseContacts, String>("address"));
+        gstNo.setCellValueFactory(new PropertyValueFactory<PurchaseContacts, String>("gstNo"));
         
         
         Statement stmt, stmt1, stmt2, stmt3;
@@ -140,7 +141,7 @@ public class PurchaseContactsController implements Initializable {
                         String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("parent_id");
                         ResultSet rs3 = stmt3.executeQuery(query3);
                         while(rs3.next()) {
-                            sclist.add(new SalesContacts(count, rs.getString("VendorName"), rs.getString("vendAddLine1") + "," + rs.getString("vendAddLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("pCode"), rs.getString("GSTIN")));
+                            sclist.add(new PurchaseContacts(count, rs.getString("VendorName"), rs.getString("vendAddLine1") + "," + rs.getString("vendAddLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("pCode"), rs.getString("GSTIN")));
                         }
                     }  
                }
@@ -148,7 +149,7 @@ public class PurchaseContactsController implements Initializable {
             }
             salesContactsTable.setItems(sclist);
         } catch (SQLException ex) {
-            Logger.getLogger(SalesContactsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PurchaseContactsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
             // Listen for text changes in the filter text field
@@ -169,7 +170,7 @@ public class PurchaseContactsController implements Initializable {
     private void updateFilteredData() {
         sclistFiltered.clear();
 
-        for (SalesContacts p : sclist) {
+        for (PurchaseContacts p : sclist) {
             if (matchesFilter(p)) {
                 sclistFiltered.add(p);
             }
@@ -187,7 +188,7 @@ public class PurchaseContactsController implements Initializable {
      * @param SalesContacts
      * @return
      */
-    private boolean matchesFilter(SalesContacts vendor) {
+    private boolean matchesFilter(PurchaseContacts vendor) {
         String filterString = filter.getText();
         if (filterString == null || filterString.isEmpty()) {
             // No filter --> Add all.
@@ -208,6 +209,15 @@ public class PurchaseContactsController implements Initializable {
     
     }    
     
+    public void tableRowClicked(MouseEvent event) throws IOException {
+        if (event.getClickCount() == 2) //Checking double click
+        {
+            int id = salesContactsTable.getSelectionModel().getSelectedItem().getId();
+            PurchaseContactDetailsShowController.setId(id);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("PurchaseContactDetailsShow.fxml"));
+            purchaseContactsAnchorPane.getChildren().setAll(pane);
+        }
+    }
 }
 /*
  * To change this license header, choose License Headers in Project Properties.

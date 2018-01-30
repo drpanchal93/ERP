@@ -278,7 +278,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                               
                                             String temp = phone[i];
                                             String[] ph = temp.split("\\(");
-                                            String types = "Office";
+                                            String types = "Work";
                                             if(ph[1].charAt(0) == 'M') {
                                                 types = "Mobile";
                                             }
@@ -403,7 +403,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
         eIdAlert.setVisible(false);
         
         // Set Items to combolist phoneType
-        phoneTypeList.add("Office");
+        phoneTypeList.add("Work");
         phoneTypeList.add("Mobile");
         phoneTypeList.add("Home");
         
