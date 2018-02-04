@@ -182,7 +182,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
 
                 // the mysql insert statement
 
-                String query = " update CustomerInfo set customerName=?,addLine1=?,addLine2=?,locationId=?,PinCode=?,GSTIN=?,PAN=?) where id ="+ id;
+                String query = " update CustomerInfo set customerName=?,addLine1=?,addLine2=?,locationId=?,PinCode=?,GSTIN=?,PAN=? where custInfoId ="+ id;
 
                 // create the mysql insert preparedstatement
 

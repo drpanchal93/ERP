@@ -341,7 +341,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
             {
 
-              System.err.println("Got an exception!");
+              System.err.println("Got an exception in SalesFXMLController!");
 
               System.err.println(e.getMessage());
               System.err.println(e);
