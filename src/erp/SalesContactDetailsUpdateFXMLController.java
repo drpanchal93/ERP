@@ -182,10 +182,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
 
                 // the mysql insert statement
 
-                String query = " insert into CustomerInfo (customerName,addLine1,addLine2,locationId,PinCode,GSTIN,PAN)"
-
-                  + " values (?,?,?,?,?,?,?)";
-
+                String query = " update CustomerInfo set customerName=?,addLine1=?,addLine2=?,locationId=?,PinCode=?,GSTIN=?,PAN=?) where id ="+ id;
 
                 // create the mysql insert preparedstatement
 
@@ -217,8 +214,10 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                 try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         final int customerId = generatedKeys.getInt(1);
-
-
+                        
+                        String delete_query = "delete from ContactPersonInfo where contactPersonId = "+ customerId;
+                        PreparedStatement delete_pstmt = conn.prepareStatement(delete_query);
+                        delete_pstmt.executeUpdate();
                         SalesContactDetailsTable.getItems().forEach((SalesContactDetails contactPerson) -> {
 
 
@@ -416,12 +415,17 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
         
         
             int location = 0;
-            Location temp = null;
-
+            Location city = null;
+            Location state = null;
+            Location country = null;
+            int stateId = 0;
+            int countryId = 0;
+            
             Statement stmt, stmt1, stmt2, stmt3,stmt4,stmt5,stmt6;
             try {
                 String email = "";
                 String phone = "";
+                String name = "";
                 stmt = conn.createStatement();
                 String query = "select * from CustomerInfo where custInfoId = "+id;
                 ResultSet rs = stmt.executeQuery(query);
@@ -443,7 +447,6 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                                 custName.setText(rs.getString("customerName"));
                                 addressLine1.setText(rs.getString("addLine1"));
                                 addressLine2.setText(rs.getString("addLine2"));
-                                //rs1.getString("name") + "," + rs2.getString("name") + ",\n" + rs3.getString("name") + "-" + 
                                 pCode.setText(rs.getString("PinCode"));
                                 gstNo.setText(rs.getString("GSTIN"));
                                 panNo.setText(rs.getString("PAN"));
@@ -456,13 +459,19 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                    ResultSet rs4 = stmt4.executeQuery(query4);
                    while(rs4.next()) {
                         int contactPersonId = rs4.getInt("contactPersonId");
+                        name = rs4.getString("contactPersonName");
                         contactInfo += rs4.getString("contactPersonName") + "\n";
                         stmt5 = conn.createStatement();
                         String query5 = "select * from EmailInfo where contactPersonId = " + contactPersonId;
                         ResultSet rs5 = stmt5.executeQuery(query5);
                         int emailCount = 1;
                         while(rs5.next()) {
-                            email += "," + rs5.getString("EmailAddress");
+                            if (email.length() > 0) {
+                                email += "," + rs5.getString("EmailAddress");
+                            }
+                            else {
+                                email += rs5.getString("EmailAddress");
+                            }
                             emailCount++;
                         }
 
@@ -471,14 +480,23 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                         ResultSet rs6 = stmt6.executeQuery(query6);
                         int phoneCount = 1;
                         while(rs6.next()) {
-                            phone += "," + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                            if (phone.length() > 0) {
+                                phone += "," + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                            }
+                            else {
+                                phone += rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                            }
                             phoneCount++;
                         }
+                        SalesContactDetails record = new SalesContactDetails(count,name, email, phone);
+                        count++;
+                        SalesContactDetailsTable.getItems().add(record);
+                        email = "";
+                        phone = "";
+                        name = "";
+
                    }
-                   SalesContactDetails record = new SalesContactDetails(count,rs4.getString("contactPersonName"), email, phone);
-                   count++;
-                   SalesContactDetailsTable.getItems().add(record);
-            
+                   
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(SalesContactsController.class.getName()).log(Level.SEVERE, null, ex);
@@ -486,9 +504,9 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
             
             //Populating Country ComboBox
         
-        // Insert data into Contact Person table
+            // Insert data into Contact Person table
 
-           String  query7 = "select * from location where location_type = 0 order by name";
+           String  query7 = "select * from location where location_type = 2 order by name";
 
             // create the mysql insert preparedstatement
 
@@ -497,13 +515,99 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
             {
                 preparedStmt = conn.prepareStatement(query7);
                 ResultSet rs7 = preparedStmt.executeQuery();
-
                 while(rs7.next())
                 {  
                     if (Integer.parseInt(rs7.getString("location_id")) == location) {
-                        temp = new Location(Integer.parseInt(rs7.getString("location_id")), rs7.getString("name"));
+                        city = new Location(Integer.parseInt(rs7.getString("location_id")), rs7.getString("name"));
+                        stateId = Integer.parseInt(rs7.getString("parent_id"));
                     }
-                    countryList.add(new Location(Integer.parseInt(rs7.getString("location_id")), rs7.getString("name")));
+                    cityList.add(new Location(Integer.parseInt(rs7.getString("location_id")), rs7.getString("name")));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                cty.setItems(cityList);
+                
+                cty.setConverter(new StringConverter<Location>() {
+
+                    @Override
+                    public String toString(Location object) {
+                        return object.getName();
+                    }
+
+                    @Override
+                    public Location fromString(String string) {
+                        return cty.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+                cty.setValue(city);
+                preparedStmt.close();
+                rs7.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            String  query8 = "select * from location where location_type = 1 order by name";
+
+            // create the mysql insert preparedstatement
+
+           PreparedStatement preparedStmt2;
+            try 
+            {
+                preparedStmt2 = conn.prepareStatement(query8);
+                ResultSet rs8 = preparedStmt2.executeQuery();
+                while(rs8.next())
+                {  
+                    if (Integer.parseInt(rs8.getString("location_id")) == stateId) {
+                        state = new Location(Integer.parseInt(rs8.getString("location_id")), rs8.getString("name"));
+                        countryId = Integer.parseInt(rs8.getString("parent_id"));
+                    }
+                    stateList.add(new Location(Integer.parseInt(rs8.getString("location_id")), rs8.getString("name")));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                st.setItems(stateList);
+                
+                st.setConverter(new StringConverter<Location>() {
+
+                    @Override
+                    public String toString(Location object) {
+                        return object.getName();
+                    }
+
+                    @Override
+                    public Location fromString(String string) {
+                        return ctry.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+                st.setValue(state);
+                preparedStmt2.close();
+                rs8.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            String  query9 = "select * from location where location_type = 0 order by name";
+
+            // create the mysql insert preparedstatement
+
+           PreparedStatement preparedStmt3;
+            try 
+            {
+                preparedStmt3 = conn.prepareStatement(query9);
+                ResultSet rs9 = preparedStmt3.executeQuery();
+                while(rs9.next())
+                {  
+                    if (Integer.parseInt(rs9.getString("location_id")) == countryId) {
+                        country = new Location(Integer.parseInt(rs9.getString("location_id")), rs9.getString("name"));
+                    }
+                    countryList.add(new Location(Integer.parseInt(rs9.getString("location_id")), rs9.getString("name")));
                     //System.out.println(rs.getString("name"));
                     
                 }
@@ -522,14 +626,14 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                             ap.getName().equals(string)).findFirst().orElse(null);
                     }
                 });
-                preparedStmt.close();
-                rs7.close();
+                ctry.setValue(country);
+                preparedStmt3.close();
+                rs9.close();
             } 
             catch (SQLException ex) 
             {
                 Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
             
             ctry.valueProperty().addListener(new ChangeListener() {
                 @Override
@@ -581,6 +685,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                     }
                 }    
             });
+            
              
              st.valueProperty().addListener(new ChangeListener() {
                 @Override
@@ -634,7 +739,6 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
             });
              
             
-        ctry.setValue(temp);
             
         custName.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>(){
 		@Override

@@ -83,6 +83,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+                  <Button mnemonicParsing="false" onMouseClicked="#editContact" text="edit" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <Label alignment="CENTER" text="Sales Contact Details" textAlignment="CENTER" textFill="#030303" underline="true">

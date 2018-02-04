@@ -5,6 +5,7 @@
  */
 package erp;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,8 +16,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -46,6 +49,9 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
 
     @FXML
     private Label custName;
+    
+    @FXML
+    private AnchorPane salesContactFormAnchorPane;
 
     Connection conn = DBConnection.democonnection();
     
@@ -54,8 +60,10 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
     }
     
     @FXML
-    void editContact(ActionEvent event) {
+    void editContact(MouseEvent event) throws IOException {
         SalesContactDetailsUpdateFXMLController.setId(id);
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("SalesContactDetailsUpdate.fxml"));
+        salesContactFormAnchorPane.getChildren().setAll(pane);
     }
     
     @Override
