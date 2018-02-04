@@ -389,7 +389,7 @@ public class PurchaseContactDetailsController implements Initializable {
 
                                                 preparedStmt2.execute();
                                             } catch (SQLException ex) {
-                                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                                Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
 
 
@@ -431,7 +431,7 @@ public class PurchaseContactDetailsController implements Initializable {
 
                                                 preparedStmt3.execute();
                                             } catch (SQLException ex) {
-                                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                                Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
                                         }
 
@@ -442,7 +442,7 @@ public class PurchaseContactDetailsController implements Initializable {
                                 }
 
                             } catch (SQLException ex) {
-                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                             }
 
 
@@ -577,7 +577,7 @@ public class PurchaseContactDetailsController implements Initializable {
             } 
             catch (SQLException ex) 
             {
-                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             ctry.valueProperty().addListener(new ChangeListener() {
@@ -626,7 +626,7 @@ public class PurchaseContactDetailsController implements Initializable {
                     } 
                     catch (SQLException ex) 
                     {
-                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }    
             });
@@ -677,7 +677,7 @@ public class PurchaseContactDetailsController implements Initializable {
                     } 
                     catch (SQLException ex) 
                     {
-                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }    
             });

@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -50,6 +51,11 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
     
     public static void setId (int _id) {
         id = _id;
+    }
+    
+    @FXML
+    void editContact(ActionEvent event) {
+        SalesContactDetailsUpdateFXMLController.setId(id);
     }
     
     @Override
