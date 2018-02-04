@@ -211,125 +211,130 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                     throw new SQLException("Creating contact failed, no rows affected.");
                 }
 
-                try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        final int customerId = generatedKeys.getInt(1);
-                        
-                        String delete_query = "delete from ContactPersonInfo where contactPersonId = "+ customerId;
-                        PreparedStatement delete_pstmt = conn.prepareStatement(delete_query);
-                        delete_pstmt.executeUpdate();
-                        SalesContactDetailsTable.getItems().forEach((SalesContactDetails contactPerson) -> {
-
-
-                            // Insert data into Contact Person table
-
-                            String query1 = " insert into ContactPersonInfo (contactPersonName, custInfoId)"
-
-                              + " values (?,?)";
-
-
-                            try {
-                                // create the mysql insert preparedstatement
-
-                                PreparedStatement preparedStmt1 = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
-                                preparedStmt1.setString (1, contactPerson.getName());
-
-                                preparedStmt1.setInt (2, customerId);
-
-                                // execute the preparedstatement
-
-                                int rs1_int = preparedStmt1.executeUpdate();
-
-                                if (rs1_int == 0) {
-                                    throw new SQLException("Creating person failed, no rows affected.");
-                                }
-
-                                try (ResultSet generatedKeys1 = preparedStmt1.getGeneratedKeys()) {
-                                    if (generatedKeys1.next()) {
-                                        int personId = generatedKeys1.getInt(1);
-                                        // Insert data into Email table
-
-                                        String[] email = contactPerson.getEmail().split(",");
-
-                                        for(int i=0; i<email.length; i++) {
-                                            String query2 = " insert into EmailInfo (emailAddress, contactPersonId)"
-
-                                              + " values (?,?)";
-
-                                            // create the mysql insert preparedstatement
-
-                                            try {
-                                                PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
-                                                preparedStmt2.setString (1, email[i]);
-
-                                                preparedStmt2.setInt (2, personId);
-
-                                                // execute the preparedstatement
-
-                                                preparedStmt2.execute();
-                                            } catch (SQLException ex) {
-                                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
-
-
-                                        }
-
-                                        // Insert data into Phone table
-
-                                        String[] phone = contactPerson.getPhone().split(",");
-
-                                        for(int i=0; i<phone.length; i++) {
-                                              
-                                            String temp = phone[i];
-                                            String[] ph = temp.split("\\(");
-                                            String types = "Work";
-                                            if(ph[1].charAt(0) == 'M') {
-                                                types = "Mobile";
-                                            }
-                                            else if(ph[1].charAt(0) == 'H') {
-                                                types = "Home";
-                                            }
-                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType)"
-
-                                              + " values (?,?,?)";
-
-                                            // create the mysql insert preparedstatement
-
-                                            try {
-                                                PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
-
-                                                preparedStmt3.setString (1, ph[0]);
-
-                                                preparedStmt3.setInt (2, personId);
-
-                                                preparedStmt3.setString (3, types);
-
-                                                // execute the preparedstatement
-
-                                                preparedStmt3.execute();
-                                            } catch (SQLException ex) {
-                                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
-                                        }
-
-                                    }
-                                    else {
-                                        throw new SQLException("Creating person failed, no ID obtained.");
-                                    }
-                                }
-
-                            } catch (SQLException ex) {
-                                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-
-
-                        });
-                    }
-                    else {
-                        throw new SQLException("Creating contact failed, no ID obtained.");
-                    }
+                     
+                Statement select_prp = conn.createStatement();
+                String select_query = "select contactPersonId  from ContactPersonInfo where custInfoId = "+ id;
+                ResultSet select_rs = select_prp.executeQuery(select_query);
+                while(select_rs.next()) {
+                    String delete_phone = "delete from ContactNumberInfo where contactPersonId = "+ select_rs.getString("contactPersonId");
+                    PreparedStatement delete_pst_phone = conn.prepareStatement(delete_phone);
+                    delete_pst_phone.executeUpdate();
+                    
+                    String delete_email = "delete from emailInfo where contactPersonId = "+ select_rs.getString("contactPersonId");
+                    PreparedStatement delete_pst_email = conn.prepareStatement(delete_email);
+                    delete_pst_email.executeUpdate();
                 }
+                
+                String delete_query = "delete from ContactPersonInfo where custInfoId = "+ id;
+                PreparedStatement delete_pstmt = conn.prepareStatement(delete_query);
+                delete_pstmt.executeUpdate();
+                SalesContactDetailsTable.getItems().forEach((SalesContactDetails contactPerson) -> {
+
+
+                    // Insert data into Contact Person table
+
+                    String query1 = " insert into ContactPersonInfo (contactPersonName, custInfoId)"
+
+                      + " values (?,?)";
+
+
+                    try {
+                        // create the mysql insert preparedstatement
+
+                        PreparedStatement preparedStmt1 = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+                        preparedStmt1.setString (1, contactPerson.getName());
+
+                        preparedStmt1.setInt (2, id);
+
+                        // execute the preparedstatement
+
+                        int rs1_int = preparedStmt1.executeUpdate();
+
+                        if (rs1_int == 0) {
+                            throw new SQLException("Creating person failed, no rows affected.");
+                        }
+
+                        try (ResultSet generatedKeys1 = preparedStmt1.getGeneratedKeys()) {
+                            if (generatedKeys1.next()) {
+                                int personId = generatedKeys1.getInt(1);
+                                // Insert data into Email table
+
+                                String[] email = contactPerson.getEmail().split(",");
+
+                                for(int i=0; i<email.length; i++) {
+                                    String query2 = " insert into EmailInfo (emailAddress, contactPersonId)"
+
+                                      + " values (?,?)";
+
+                                    // create the mysql insert preparedstatement
+
+                                    try {
+                                        PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
+                                        preparedStmt2.setString (1, email[i]);
+
+                                        preparedStmt2.setInt (2, personId);
+
+                                        // execute the preparedstatement
+
+                                        preparedStmt2.execute();
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
+
+                                }
+
+                                // Insert data into Phone table
+
+                                String[] phone = contactPerson.getPhone().split(",");
+
+                                for(int i=0; i<phone.length; i++) {
+
+                                    String temp = phone[i];
+                                    String[] ph = temp.split("\\(");
+                                    String types = "Work";
+                                    if(ph[1].charAt(0) == 'M') {
+                                        types = "Mobile";
+                                    }
+                                    else if(ph[1].charAt(0) == 'H') {
+                                        types = "Home";
+                                    }
+                                    String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType)"
+
+                                      + " values (?,?,?)";
+
+                                    // create the mysql insert preparedstatement
+
+                                    try {
+                                        PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
+
+                                        preparedStmt3.setString (1, ph[0]);
+
+                                        preparedStmt3.setInt (2, personId);
+
+                                        preparedStmt3.setString (3, types);
+
+                                        // execute the preparedstatement
+
+                                        preparedStmt3.execute();
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+
+                            }
+                            else {
+                                throw new SQLException("Creating person failed, no ID obtained.");
+                            }
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+
+
+                });
 
                 custName.clear();
                 addressLine1.clear();

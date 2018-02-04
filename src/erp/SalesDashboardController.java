@@ -95,7 +95,7 @@ public class SalesDashboardController extends ReusableCode implements Initializa
     void GenerateChallanButtonClick(ActionEvent event) throws IOException 
     {
          //Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
-         Parent salesData = FXMLLoader.load(getClass().getResource("SalesContacts.fxml"));
+         Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
          contentScrollPane.setContent(salesData);
 
     }
@@ -123,7 +123,7 @@ public class SalesDashboardController extends ReusableCode implements Initializa
     @FXML
     void SalesContactsButtonClicked(ActionEvent event) throws IOException 
     {
-        Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactDetails.fxml"));
+        Parent salesData = FXMLLoader.load(getClass().getResource("SalesContacts.fxml"));
         contentScrollPane.setContent(salesData);
     }
 
