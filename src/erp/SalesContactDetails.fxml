@@ -186,8 +186,9 @@
                               </JFXButton>
                               <GridPane fx:id="AccordionGridPane" layoutX="10.0" layoutY="72.0" prefWidth="1024.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="379.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="154.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="114.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="416.0" minWidth="10.0" prefWidth="416.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="155.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="83.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
@@ -213,33 +214,34 @@
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="ctPersonName" prefWidth="250.0" GridPane.columnIndex="1">
+                                    <TextField fx:id="ctPersonName" prefWidth="250.0" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField fx:id="ctNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <TextField fx:id="ctNo" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField fx:id="eId" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="eId" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label fx:id="ctNoAlert" text="*Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                    <Label fx:id="ctNoAlert" text="*Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="*Invalid email address." textFill="RED" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                    <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="*Invalid email address." textFill="RED" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Button fx:id="addPhone" mnemonicParsing="false" text="+" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Button fx:id="addPhone" mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <TextField fx:id="ctAreaCode" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>

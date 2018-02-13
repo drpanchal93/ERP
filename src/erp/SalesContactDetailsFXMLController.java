@@ -7,13 +7,13 @@ package erp;
 
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,11 +25,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -42,7 +40,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -102,12 +99,17 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     public ObservableList<TextField> ct_No = FXCollections.observableArrayList();
     
+    public ObservableList<TextField> ct_areaCode = FXCollections.observableArrayList();
+    
     public ObservableList<ComboBox> phone_Type = FXCollections.observableArrayList();
     
     public ObservableList<String> phoneTypeList = FXCollections.observableArrayList();
     
     @FXML
     private Button addPhone;
+    
+    @FXML
+    private TextField ctAreaCode;
     
     @FXML
     private TableColumn<SalesContactDetails, Integer> SrNo;
@@ -277,7 +279,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                         for(int i=0; i<phone.length; i++) {
                                               
                                             String temp = phone[i];
-                                            String[] ph = temp.split("\\(");
+                                            String[] ac = temp.split("-");
+                                            String[] ph = ac[1].split("\\(");
                                             String types = "Work";
                                             if(ph[1].charAt(0) == 'M') {
                                                 types = "Mobile";
@@ -285,9 +288,9 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                             else if(ph[1].charAt(0) == 'H') {
                                                 types = "Home";
                                             }
-                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType)"
+                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType, numberAreaCode)"
 
-                                              + " values (?,?,?)";
+                                              + " values (?,?,?,?)";
 
                                             // create the mysql insert preparedstatement
 
@@ -299,6 +302,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                                 preparedStmt3.setInt (2, personId);
 
                                                 preparedStmt3.setString (3, types);
+                                                
+                                                preparedStmt3.setString (4, ac[0]);
 
                                                 // execute the preparedstatement
 
@@ -642,17 +647,23 @@ public class SalesContactDetailsFXMLController implements Initializable {
             public void handle(ActionEvent event) {
                 // Add textfields
                 phoneFields++;
+                TextField areaCode = new TextField ();
+                areaCode.setId("ctAreaCode"+phoneFields);
+                ct_areaCode.add(areaCode);
+                AccordionGridPane.add(areaCode, 1, (phoneFields + 1));
+
+                
                 TextField notification = new TextField ();
                 notification.setId("ctNo"+phoneFields);
                 ct_No.add(notification);
-                AccordionGridPane.add(notification, 1, (phoneFields + 1));
+                AccordionGridPane.add(notification, 2, (phoneFields + 1));
 
                 ComboBox<String> comboBox = new ComboBox<String>(phoneTypeList);
                 comboBox.setId("phoneType"+phoneFields);
                 phone_Type.add(comboBox);
                 index++;
 
-                AccordionGridPane.add(comboBox, 2, (phoneFields + 1));
+                AccordionGridPane.add(comboBox, 3, (phoneFields + 1));
                 AccordionGridPane.setVgap(4);
                 anchorPane.setMinHeight(anchorPane.getHeight() + 30);
                 anchorPane.setMaxHeight(anchorPane.getHeight() + 30);
@@ -704,10 +715,11 @@ public class SalesContactDetailsFXMLController implements Initializable {
         if (length > 0 && !ctNo.getText().matches("[0-9]+")) {
             flag = false;
         }
-        phone = ctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
+        phone = ctAreaCode.getText()+ "-" + ctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
         
         for (int i = 0; i < index; i++) {
             TextField object = ct_No.get(i);
+            TextField object1 = ct_areaCode.get(i);
             length = object.getText().length();
 
             if(length > 0) {
@@ -717,7 +729,7 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                 ComboBox combo = phone_Type.get(i);
                 String value = (String) combo.getValue();
-                phone = phone + "," + object.getText() + "(" + value.charAt(0) + ")";
+                phone = phone + "," + object1.getText() + "-" + object.getText() + "(" + value.charAt(0) + ")";
             }
         }
         

@@ -486,10 +486,10 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                         int phoneCount = 1;
                         while(rs6.next()) {
                             if (phone.length() > 0) {
-                                phone += "," + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                                phone += ","+ rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
                             }
                             else {
-                                phone += rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                                phone += rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
                             }
                             phoneCount++;
                         }
