@@ -96,7 +96,7 @@ public class PurchaseContactDetailsShowController implements Initializable {
                         if (emailCount == 1) {
                             contactInfo += "Email:";
                         }
-                        contactInfo += " " + rs5.getString("EmailAddress") + "\n";
+                        contactInfo += " " + rs5.getString("vendorEmailId") + "\n";
                         emailCount++;
                     }
                     

@@ -141,7 +141,7 @@ public class PurchaseContactsController implements Initializable {
                         String query3 = "select name,parent_id  from location where location_id = " + rs2.getInt("parent_id");
                         ResultSet rs3 = stmt3.executeQuery(query3);
                         while(rs3.next()) {
-                            sclist.add(new PurchaseContacts(count, rs.getString("VendorName"), rs.getString("vendAddLine1") + "," + rs.getString("vendAddLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("pCode"), rs.getString("GSTIN")));
+                            sclist.add(new PurchaseContacts(rs.getInt("VendInfoId"), rs.getString("VendorName"), rs.getString("vendAddLine1") + "," + rs.getString("vendAddLine2") + "," + rs1.getString("name") + "," + rs2.getString("name") + "," + rs2.getString("name") + "," + rs.getString("pCode"), rs.getString("GSTIN")));
                         }
                     }  
                }
