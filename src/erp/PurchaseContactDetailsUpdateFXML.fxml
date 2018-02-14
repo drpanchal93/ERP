@@ -4,19 +4,19 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="PurchaseContactFormAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.PurchaseContactDetailsController">
+
+<AnchorPane fx:id="salesContactFormAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.PurchaseContactDetailsUpdateFXMLController">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1089.0" prefWidth="1280.0">
          <children>
             <GridPane maxWidth="1055.0" prefHeight="401.0" prefWidth="1055.0" GridPane.rowIndex="1">
                <children>
-                  <Label text="Vendor Name:">
+                  <Label text="Customer Name:">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
@@ -24,7 +24,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="vendorName" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1">
+                  <TextField fx:id="custName" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="1">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
@@ -77,12 +77,12 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="vAddLine2" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="addressLine2" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="vAddLine1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="addressLine1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
@@ -108,12 +108,12 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="vgstNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <TextField fx:id="gstNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="vpanNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="panNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
@@ -121,7 +121,7 @@
                   <ComboBox fx:id="ctry" prefHeight="27.0" prefWidth="351.0" promptText="Select Country" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ComboBox fx:id="st" layoutX="260.0" layoutY="154.0" prefHeight="27.0" prefWidth="351.0" promptText="Select State" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="cty" layoutX="260.0" layoutY="199.0" prefHeight="27.0" prefWidth="351.0" promptText="Select City" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="custNameAlert" text="*Vendor name can not be empty." textFill="RED" GridPane.columnIndex="2">
+                  <Label fx:id="custNameAlert" text="*Customer name can not be empty." textFill="RED" GridPane.columnIndex="2">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -131,7 +131,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <JFXButton fx:id="goBackToVendorContacts" alignment="CENTER" buttonType="RAISED" onAction="#goBackToVendorContactsButtonCLicked" prefHeight="30.0" prefWidth="75.0" ripplerFill="WHITE" style="-fx-background-color: #413b66;" text="Back" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
+                  <JFXButton fx:id="goBackToSalesContacts" alignment="CENTER" buttonType="RAISED" onAction="#goBackToSalesContactsButtonCLicked" prefHeight="30.0" prefWidth="75.0" ripplerFill="WHITE" style="-fx-background-color: #413b66;" text="Back" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
                      <font>
                         <Font name="Lucida Sans Demibold" size="14.0" />
                      </font>
@@ -163,56 +163,66 @@
                      <content>
                         <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="209.0" prefWidth="988.0">
                            <children>
-                              <GridPane fx:id="AccordionGridPane" layoutX="7.0" layoutY="7.0" prefHeight="136.0" prefWidth="1024.0">
+                              <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="14.0" layoutY="14.0" onAction="#addButtonPushed" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #413b66;" text="Add" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="13.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="119.0" layoutY="14.0" onAction="#deleteButtonPushed" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #413b66;" text="Delete" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="13.0" />
+                                 </font>
+                              </JFXButton>
+                              <GridPane fx:id="AccordionGridPane" layoutX="10.0" layoutY="72.0" prefWidth="1024.0">
                                  <children>
                                     <Label text="Name:">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Phone:" GridPane.rowIndex="1">
+                                    <Label text="Phone:" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="eIdLabel" text="Email:" GridPane.rowIndex="2">
+                                    <Label fx:id="eIdLabel" text="Email:" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="vctPersonName" prefWidth="250.0" GridPane.columnIndex="1">
+                                    <TextField fx:id="ctPersonName" prefWidth="250.0" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField fx:id="vctNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="ctNo" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField fx:id="veId" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <TextField fx:id="eId" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label fx:id="ctNoAlert" text="*Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                    <Label fx:id="ctNoAlert" text="*Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="*Invalid email address." textFill="RED" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                    <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="*Invalid email address." textFill="RED" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
+                                    <Button fx:id="addPhone" mnemonicParsing="false" text="+" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                     <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Button fx:id="addPhone" mnemonicParsing="false" prefWidth="30.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="379.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="155.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="55.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="83.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
                                  </columnConstraints>
                                  <rowConstraints>
@@ -221,16 +231,6 @@
                                     <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="26.0" layoutY="157.0" onAction="#addButtonPushed" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #413b66;" text="Add" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Lucida Sans Demibold" size="13.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="144.0" layoutY="157.0" onAction="#deleteButtonPushed" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #413b66;" text="Delete" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Lucida Sans Demibold" size="13.0" />
-                                 </font>
-                              </JFXButton>
                            </children>
                         </AnchorPane>
                      </content>
@@ -242,7 +242,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <Label alignment="CENTER" text="Purchase Contact Details" textAlignment="CENTER" textFill="#030303" underline="true">
+            <Label alignment="CENTER" text="Sales Contact Details" textAlignment="CENTER" textFill="#030303" underline="true">
                <font>
                   <Font name="Lucida Sans Demibold" size="20.0" />
                </font>
@@ -250,7 +250,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <TableView fx:id="PurchaseContactDetailsTable" maxWidth="1035.0" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="1035.0" GridPane.rowIndex="2">
+            <TableView fx:id="SalesContactDetailsTable" maxWidth="1035.0" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="1035.0" GridPane.rowIndex="2">
                <columns>
                   <TableColumn fx:id="SrNo" prefWidth="94.0" text="Sr. No." />
                   <TableColumn fx:id="Name" prefWidth="200.0" text="Name" />
