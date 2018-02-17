@@ -105,6 +105,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
     
     public ObservableList<String> phoneTypeList = FXCollections.observableArrayList();
     
+    public ObservableList<String> countryCodeList = FXCollections.observableArrayList();
+    
     @FXML
     private Button addPhone;
     
@@ -133,6 +135,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
     @FXML private ComboBox<Location> st;
     
     @FXML private ComboBox<Location> cty;
+    
+    @FXML private ComboBox<String> cc;
     
     @FXML
     private AnchorPane salesContactFormAnchorPane;
@@ -279,7 +283,8 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                         for(int i=0; i<phone.length; i++) {
                                               
                                             String temp = phone[i];
-                                            String[] ac = temp.split("-");
+                                            String[] ctc = temp.split("-");
+                                            String[] ac = ctc[1].split("-");
                                             String[] ph = ac[1].split("\\(");
                                             String types = "Work";
                                             if(ph[1].charAt(0) == 'M') {
@@ -288,9 +293,9 @@ public class SalesContactDetailsFXMLController implements Initializable {
                                             else if(ph[1].charAt(0) == 'H') {
                                                 types = "Home";
                                             }
-                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType, numberAreaCode)"
+                                            String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType, countryCode, numberAreaCode)"
 
-                                              + " values (?,?,?,?)";
+                                              + " values (?,?,?,?,?)";
 
                                             // create the mysql insert preparedstatement
 
@@ -303,7 +308,9 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                                                 preparedStmt3.setString (3, types);
                                                 
-                                                preparedStmt3.setString (4, ac[0]);
+                                                preparedStmt3.setString(4, ctc[0]);
+                                                
+                                                preparedStmt3.setString (5, ac[0]);
 
                                                 // execute the preparedstatement
 
@@ -481,7 +488,6 @@ public class SalesContactDetailsFXMLController implements Initializable {
                         {  
                             stateList.add(new Location(Integer.parseInt(rs.getString("location_id")), rs.getString("name")));
                             //System.out.println(rs.getString("name"));
-
                         }
                         
                         st.setItems(stateList);
@@ -506,6 +512,35 @@ public class SalesContactDetailsFXMLController implements Initializable {
                     {
                         Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
+                    
+                   countryCodeList.clear();
+                        
+                   String  query1 = "select countryCode from countryCodeTable where name =" +newLocation.getName();
+
+                    // create the mysql insert preparedstatement
+
+                   PreparedStatement preparedStmt1;
+                    try 
+                    {
+                        preparedStmt1 = conn.prepareStatement(query1);
+                        ResultSet rs1 = preparedStmt1.executeQuery();
+
+                        while(rs1.next())
+                        {  
+                            countryCodeList.add(rs1.getString("countryCode"));
+                            //System.out.println(rs.getString("name"));
+                        }
+                        
+                        cc.setItems(countryCodeList);
+                        preparedStmt1.close();
+                        rs1.close();
+                    } 
+                    catch (SQLException ex) 
+                    {
+                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }    
             });
              
