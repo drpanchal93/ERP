@@ -124,7 +124,7 @@ public class SalesContactDetailsShowFXMLController implements Initializable {
                         if (phoneCount == 1) {
                             contactInfo += "Contact:";
                         }
-                        contactInfo += " " + rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType") + ")" + "\n";
+                        contactInfo += " " + rs6.getString("countryCode") + "-"+ rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType") + ")" + "\n";
                         phoneCount++;
                     }
                }

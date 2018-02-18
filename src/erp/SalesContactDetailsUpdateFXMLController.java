@@ -111,6 +111,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
     
     public ObservableList<TextField> ct_areaCode = FXCollections.observableArrayList();
 
+    public ObservableList<ComboBox> country_code = FXCollections.observableArrayList();
     
     @FXML
     private Button addPhone;
@@ -132,11 +133,15 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
     
     public ObservableList<Location> cityList = FXCollections.observableArrayList();
     
+    public ObservableList<Location> countryCodeList = FXCollections.observableArrayList();
+    
     @FXML private ComboBox<Location> ctry;
     
     @FXML private ComboBox<Location> st;
     
     @FXML private ComboBox<Location> cty;
+    
+    @FXML private ComboBox<Location> cc;
     
     @FXML
     private AnchorPane salesContactFormAnchorPane;
@@ -297,7 +302,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
 
                                     String temp = phone[i];
                                     String[] ac = temp.split("-");
-                                    String[] ph = ac[1].split("\\(");
+                                    String[] ph = ac[2].split("\\(");
                                     String types = "Work";
                                     if(ph[1].charAt(0) == 'M') {
                                         types = "Mobile";
@@ -305,9 +310,9 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                                     else if(ph[1].charAt(0) == 'H') {
                                         types = "Home";
                                     }
-                                    String query3 = " insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType,numberAreaCode)"
+                                    String query3 = "insert into ContactNumberInfo (contactNumber, contactPersonId, contactNumberType,numberAreaCode,countryCode)"
 
-                                      + " values (?,?,?,?)";
+                                      + " values (?,?,?,?,?)";
 
                                     // create the mysql insert preparedstatement
 
@@ -321,6 +326,8 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                                         preparedStmt3.setString (3, types);
                                         
                                         preparedStmt3.setString (4, ac[0]);
+                                        
+                                        preparedStmt3.setString (5, ac[1]);
 
                                         // execute the preparedstatement
 
@@ -434,6 +441,45 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
             int stateId = 0;
             int countryId = 0;
             
+            String  query_area = "select * from countryCode";
+
+            // create the mysql insert preparedstatement
+
+           PreparedStatement preparedStmt1;
+            try 
+            {
+                preparedStmt1 = conn.prepareStatement(query_area);
+                ResultSet rs1 = preparedStmt1.executeQuery();
+
+                while(rs1.next())
+                {  
+                    countryCodeList.add(new Location(Integer.parseInt(rs1.getString("phonecode")), rs1.getString("name") + "-" + rs1.getString("phonecode")));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                cc.setItems(countryCodeList);
+                cc.setConverter(new StringConverter<Location>() {
+
+                    @Override
+                    public String toString(Location object) {
+                        return object.getName();
+                    }
+
+                    @Override
+                    public Location fromString(String string) {
+                        return cc.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+                preparedStmt1.close();
+                rs1.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
             Statement stmt, stmt1, stmt2, stmt3,stmt4,stmt5,stmt6;
             try {
                 String email = "";
@@ -463,6 +509,21 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                                 pCode.setText(rs.getString("PinCode"));
                                 gstNo.setText(rs.getString("GSTIN"));
                                 panNo.setText(rs.getString("PAN"));
+                                
+                                countryCodeList.forEach((code) -> {
+                                    String country_name[] = code.getName().split("-");
+                                    System.out.println(country_name[0].toLowerCase());
+                                    try {
+                                        System.out.println(rs3.getString("name"));
+                                        if (rs3.getString("name").toLowerCase().equals(country_name[0].toLowerCase()))
+                                        {
+                                            cc.setValue(code);
+                                        }
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                });
+
                             }
                         }  
                    }
@@ -494,10 +555,10 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                         int phoneCount = 1;
                         while(rs6.next()) {
                             if (phone.length() > 0) {
-                                phone += ","+ rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                                phone += ","+ rs6.getString("countryCode") + "-" + rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
                             }
                             else {
-                                phone += rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
+                                phone += rs6.getString("countryCode") + "-" + rs6.getString("numberAreaCode") + "-" + rs6.getString("contactNumber") + "(" + rs6.getString("contactNumberType").charAt(0) + ")";
                             }
                             phoneCount++;
                         }
@@ -696,6 +757,14 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                     {
                         Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
+                    countryCodeList.forEach((code) -> {
+                        String name[] = code.getName().split("-");
+                        if (newLocation.getName().toLowerCase().equals(name[0].toLowerCase()))
+                        {
+                            cc.setValue(code);
+                        }
+                    });
                 }    
             });
             
@@ -839,17 +908,37 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                 // Add textfields
                 phoneFields++;
                 
+                ComboBox<Location> comboBox1 = new ComboBox<Location>(countryCodeList);
+                comboBox1.setId("cc"+phoneFields);
+                country_code.add(comboBox1);
+                AccordionGridPane.add(comboBox1, 1, (phoneFields + 1));
+                ComboBox<Location> temp = country_code.get(index);
+                temp.setConverter(new StringConverter<Location>() {
+
+                    @Override
+                    public String toString(Location object) {
+                        return object.getName();
+                    }
+
+                    @Override
+                    public Location fromString(String string) {
+                        return temp.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+                temp.setValue(cc.getValue());
+                
                 TextField areaCode = new TextField ();
                 areaCode.setId("ctAreaCode"+phoneFields);
                 ct_areaCode.add(areaCode);
-                AccordionGridPane.add(areaCode, 1, (phoneFields + 1));
+                AccordionGridPane.add(areaCode, 2, (phoneFields + 1));
 
                 
                 TextField notification = new TextField ();
                 notification.setId("ctNo"+phoneFields);
                 ct_No.add(notification);
                 //AccordionGridPane.add(notification, 1, (phoneFields + 1));
-                AccordionGridPane.add(notification, 2, (phoneFields + 1));
+                AccordionGridPane.add(notification, 3, (phoneFields + 1));
 
 
                 ComboBox<String> comboBox = new ComboBox<String>(phoneTypeList);
@@ -858,7 +947,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                 index++;
 
                 //AccordionGridPane.add(comboBox, 2, (phoneFields + 1));
-                AccordionGridPane.add(comboBox, 3, (phoneFields + 1));
+                AccordionGridPane.add(comboBox, 4, (phoneFields + 1));
 
                 AccordionGridPane.setVgap(4);
                 anchorPane.setMinHeight(anchorPane.getHeight() + 30);
@@ -912,7 +1001,7 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
             flag = false;
         }
         //phone = ctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
-        phone = ctAreaCode.getText()+ "-" + ctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
+        phone = cc.getValue().getId() + "-" + ctAreaCode.getText()+ "-" + ctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
 
         for (int i = 0; i < index; i++) {
             TextField object = ct_No.get(i);
@@ -925,9 +1014,9 @@ public class SalesContactDetailsUpdateFXMLController implements Initializable {
                 }
 
                 ComboBox combo = phone_Type.get(i);
+                ComboBox<Location> combo1 = country_code.get(i);
                 String value = (String) combo.getValue();
-                //phone = phone + "," + object.getText() + "(" + value.charAt(0) + ")";
-                phone = phone + "," + object1.getText() + "-" + object.getText() + "(" + value.charAt(0) + ")";
+                phone = phone + "," + combo1.getValue().getId() + "-" + object1.getText() + "-" + object.getText() + "(" + value.charAt(0) + ")";
 
             }
         }
