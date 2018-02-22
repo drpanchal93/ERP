@@ -309,9 +309,9 @@ public class SalesContactDetailsFXMLController implements Initializable {
 
                                                 preparedStmt3.setString (3, types);
                                                 
-                                                preparedStmt3.setString(4, ctc[0]);
+                                                preparedStmt3.setString(4, ctc[1]);
                                                 
-                                                preparedStmt3.setString (5, ctc[1]);
+                                                preparedStmt3.setString (5, ctc[0]);
 
                                                 // execute the preparedstatement
 

@@ -98,6 +98,9 @@ public class PurchaseContactDetailsController implements Initializable {
     
     public ObservableList<String> phoneTypeList = FXCollections.observableArrayList();
     
+    public ObservableList<TextField> ct_areaCode = FXCollections.observableArrayList();
+    
+    public ObservableList<ComboBox> country_code = FXCollections.observableArrayList();
     @FXML
     private Button addPhone;
 
@@ -158,6 +161,14 @@ public class PurchaseContactDetailsController implements Initializable {
     
     public ObservableList<Location> cityList = FXCollections.observableArrayList();
     
+    public ObservableList<Location> countryCodeList = FXCollections.observableArrayList();
+    
+    @FXML
+    private TextField ctAreaCode;
+    
+    @FXML
+    private ComboBox<Location> cc;
+    
     @FXML
     private JFXButton goBackToVendorContacts;
     
@@ -172,19 +183,39 @@ public class PurchaseContactDetailsController implements Initializable {
     @FXML
     void addButtonPushed(ActionEvent event) 
     {
-        PurchaseContactDetails record = new PurchaseContactDetails(count,vctPersonName.getText(), veId.getText(), vctNo.getText());
-        count++;
         boolean flag = true;
+        String phone = null;
         int length = vctNo.getText().length();
-
-        if (length > 0) {
-            String[] contacts = vctNo.getText().split(",");
-            for(int i = 0; i < contacts.length; i++) {
-                if(!contacts[i].matches("[0-9]+")) {
+        if(length > 0 && !vctNo.getText().matches("[0-9]+"))
+        {
+            flag = false;
+        }
+        phone = cc.getValue().getId() +"-" + ctAreaCode.getText() + vctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
+        
+        for(int i =0 ; i< index;i++)
+        {
+            TextField object = ct_No.get(i);
+            TextField object1 = ct_areaCode.get(i);
+            length = object.getText().length();
+            
+            if(length > 0)
+            {
+                if(!object.getText().matches("[0-9]+"))
+                {
                     flag = false;
                 }
-            }
+                ComboBox combo = phone_Type.get(i);
+                ComboBox<Location> combo1 = country_code.get(i);
+                String value = (String) combo.getValue();
+                phone = phone + "," + combo1.getValue().getId() + "-" + object1.getText() + "-" + object.getText() + "(" + value.charAt(0) + ")";
+            }        
         }
+        
+        
+        
+        
+        PurchaseContactDetails record = new PurchaseContactDetails(count,vctPersonName.getText(), veId.getText(), vctNo.getText());
+        count++;
         
         length = veId.getText().length();
         Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
@@ -287,6 +318,7 @@ public class PurchaseContactDetailsController implements Initializable {
     @FXML
     void SubmitButtonClicked(ActionEvent event) 
     {
+        
         boolean flag = true;
         
         if (vendorName.getText().length() <= 0) {
@@ -412,8 +444,9 @@ public class PurchaseContactDetailsController implements Initializable {
 
                                         for(int i=0; i<phone.length; i++) {
                                           
-                                                    
-                                            String[] ph = phone[i].split("\\(");
+                                            String temp = phone[i];
+                                            String[] ctc = temp.split("-");
+                                            String[] ph = ctc[2].split("\\(");
                                             
                                             String types = "Work";
                                             if(ph[1].charAt(0) == 'M') {
@@ -422,10 +455,10 @@ public class PurchaseContactDetailsController implements Initializable {
                                             else if(ph[1].charAt(0) == 'H') {
                                                 types = "Home";
                                             }
-                                            String query3 = " insert into VendorContactNumber (vendorContactNumber, vendorContactPersonId, vendorContactNumberType)"
+                                            String query3 = " insert into VendorContactNumber (vendorContactNumber, vendorContactPersonId, vendorContactNumberType,numberAreaCode,country)"
 
 
-                                              + " values (?,?)";
+                                              + " values (?,?,?,?,?)";
 
                                             // create the mysql insert preparedstatement
 
@@ -437,6 +470,10 @@ public class PurchaseContactDetailsController implements Initializable {
                                                 preparedStmt3.setInt (2, personId);
                                                 
                                                 preparedStmt3.setString(3,types);
+                                                
+                                                preparedStmt3.setString(4, ctc[1]);
+                                                
+                                                preparedStmt3.setString(5,ctc[0]);
 
                                                 // execute the preparedstatement
 
@@ -639,6 +676,13 @@ public class PurchaseContactDetailsController implements Initializable {
                     {
                         Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    countryCodeList.forEach((code) -> {
+                        String name[] = code.getName().split("-");
+                        if(newLocation.getName().toLowerCase().equals(name[0].toLowerCase()))
+                        {
+                            cc.setValue(code);
+                        }
+                    });
                 }    
             });
              
@@ -780,6 +824,35 @@ public class PurchaseContactDetailsController implements Initializable {
             public void handle(ActionEvent event) {
                 // Add textfields
                 phoneFields++;
+                ComboBox<Location> comboBox1 = new ComboBox<Location>(countryCodeList);
+                comboBox1.setId("cc"+phoneFields);
+                country_code.add(comboBox1);
+                AccordionGridPane.add(comboBox1, 1, (phoneFields + 1));
+                ComboBox<Location> temp = country_code.get(index);
+                temp.setConverter(new StringConverter<Location>(){
+                
+                    @Override
+                    public String toString(Location object)
+                    {
+                        return object.getName();
+                    }
+                    
+                    @Override
+                    public Location fromString(String string)
+                    {
+                        return temp.getItems().stream().filter(ap ->
+                                ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+                temp.setValue(cc.getValue());
+                
+                TextField areaCode = new TextField();
+                areaCode.setId("ctAreaCode"+phoneFields);
+                ct_areaCode.add(areaCode);
+                AccordionGridPane.add(areaCode, 2, (phoneFields + 1));
+                
+                
+                
                 TextField notification = new TextField ();
                 notification.setId("ctNo"+phoneFields);
                 ct_No.add(notification);
