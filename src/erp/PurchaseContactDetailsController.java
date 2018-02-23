@@ -190,7 +190,8 @@ public class PurchaseContactDetailsController implements Initializable {
         {
             flag = false;
         }
-        phone = cc.getValue().getId() +"-" + ctAreaCode.getText() + vctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
+        
+        phone = cc.getValue().getId() +"-" + ctAreaCode.getText() + "-" + vctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
         
         for(int i =0 ; i< index;i++)
         {

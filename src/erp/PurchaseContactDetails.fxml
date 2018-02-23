@@ -163,7 +163,7 @@
                      <content>
                         <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="209.0" prefWidth="1106.0">
                            <children>
-                              <GridPane fx:id="AccordionGridPane" layoutX="7.0" layoutY="7.0" prefHeight="136.0" prefWidth="1024.0">
+                              <GridPane fx:id="AccordionGridPane" layoutX="5.0" prefHeight="136.0" prefWidth="1024.0">
                                  <children>
                                     <Label text="Name:">
                                        <font>
@@ -205,10 +205,10 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                    <Button fx:id="addPhone" mnemonicParsing="false" prefWidth="30.0" text="+" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                    <ComboBox fx:id="cc" prefHeight="27.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="ctAreaCode" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Button fx:id="addPhone" mnemonicParsing="false" prefWidth="30.0" text="+" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cc" prefHeight="27.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="ctAreaCode" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
