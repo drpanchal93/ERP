@@ -170,12 +170,12 @@
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Phone:" GridPane.rowIndex="1">
+                                    <Label text="Phone:" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="eIdLabel" text="Email:" GridPane.rowIndex="2">
+                                    <Label fx:id="eIdLabel" text="Email:" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
@@ -185,39 +185,39 @@
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField fx:id="vctNo" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                    <TextField fx:id="vctNo" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField fx:id="veId" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                    <TextField fx:id="veId" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label fx:id="ctNoAlert" text="*Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                                    <Label fx:id="ctNoAlert" text="*Phone number can only contain numbers." textFill="RED" GridPane.columnIndex="6" GridPane.rowIndex="2">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="*Invalid email address." textFill="RED" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                                    <Label fx:id="eIdAlert" layoutX="610.0" layoutY="70.0" text="*Invalid email address." textFill="RED" GridPane.columnIndex="6" GridPane.rowIndex="1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <Button fx:id="addPhone" mnemonicParsing="false" prefWidth="30.0" text="+" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="cc" prefHeight="27.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="ctAreaCode" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="phoneType" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                    <Button fx:id="addPhone" mnemonicParsing="false" prefWidth="30.0" text="+" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cc" prefHeight="27.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="ctAreaCode" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="155.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="0.0" prefWidth="65.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="315.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="208.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="81.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="208.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="123.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="0.0" prefWidth="30.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="279.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />

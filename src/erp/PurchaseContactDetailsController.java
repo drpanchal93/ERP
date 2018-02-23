@@ -186,39 +186,33 @@ public class PurchaseContactDetailsController implements Initializable {
         boolean flag = true;
         String phone = null;
         int length = vctNo.getText().length();
-        if(length > 0 && !vctNo.getText().matches("[0-9]+"))
-        {
+        if (length > 0 && !vctNo.getText().matches("[0-9]+")) {
             flag = false;
         }
+        phone = cc.getValue().getId() + "-" + ctAreaCode.getText()+ "-" + vctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
         
-        phone = cc.getValue().getId() +"-" + ctAreaCode.getText() + "-" + vctNo.getText() + "(" + phoneType.getValue().charAt(0) + ")";
-        
-        for(int i =0 ; i< index;i++)
-        {
+        for (int i = 0; i < index; i++) {
             TextField object = ct_No.get(i);
             TextField object1 = ct_areaCode.get(i);
             length = object.getText().length();
-            
-            if(length > 0)
-            {
-                if(!object.getText().matches("[0-9]+"))
-                {
+
+            if(length > 0) {
+                if (!object.getText().matches("[0-9]+")) {
                     flag = false;
                 }
+
                 ComboBox combo = phone_Type.get(i);
                 ComboBox<Location> combo1 = country_code.get(i);
                 String value = (String) combo.getValue();
                 phone = phone + "," + combo1.getValue().getId() + "-" + object1.getText() + "-" + object.getText() + "(" + value.charAt(0) + ")";
-            }        
+            }
         }
         
-        
-        
-        
-        PurchaseContactDetails record = new PurchaseContactDetails(count,vctPersonName.getText(), veId.getText(), vctNo.getText());
+        PurchaseContactDetails record = new PurchaseContactDetails(count,vctPersonName.getText(), veId.getText(), phone);
         count++;
         
         length = veId.getText().length();
+
         Pattern pattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
 
         if (length > 0) {
@@ -456,7 +450,7 @@ public class PurchaseContactDetailsController implements Initializable {
                                             else if(ph[1].charAt(0) == 'H') {
                                                 types = "Home";
                                             }
-                                            String query3 = " insert into VendorContactNumber (vendorContactNumber, vendorContactPersonId, vendorContactNumberType,numberAreaCode,country)"
+                                            String query3 = " insert into VendorContactNumber (vendorContactNumber, vendorContactPersonId, vendorContactNumberType,vendorAreaCode,country)"
 
 
                                               + " values (?,?,?,?,?)";
@@ -627,6 +621,44 @@ public class PurchaseContactDetailsController implements Initializable {
             catch (SQLException ex) 
             {
                 Logger.getLogger(SalesContactDetailsUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            String  query1 = "select * from countryCode";
+
+            // create the mysql insert preparedstatement
+
+           PreparedStatement preparedStmt1;
+            try 
+            {
+                preparedStmt1 = conn.prepareStatement(query1);
+                ResultSet rs1 = preparedStmt1.executeQuery();
+
+                while(rs1.next())
+                {  
+                    countryCodeList.add(new Location(Integer.parseInt(rs1.getString("phonecode")), rs1.getString("name") + "-" + rs1.getString("phonecode")));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                cc.setItems(countryCodeList);
+                cc.setConverter(new StringConverter<Location>() {
+
+                    @Override
+                    public String toString(Location object) {
+                        return object.getName();
+                    }
+
+                    @Override
+                    public Location fromString(String string) {
+                        return cc.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+                preparedStmt1.close();
+                rs1.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             ctry.valueProperty().addListener(new ChangeListener() {
@@ -847,24 +879,24 @@ public class PurchaseContactDetailsController implements Initializable {
                 });
                 temp.setValue(cc.getValue());
                 
-                TextField areaCode = new TextField();
+                TextField areaCode = new TextField ();
                 areaCode.setId("ctAreaCode"+phoneFields);
                 ct_areaCode.add(areaCode);
                 AccordionGridPane.add(areaCode, 2, (phoneFields + 1));
-                
-                
+
                 
                 TextField notification = new TextField ();
                 notification.setId("ctNo"+phoneFields);
                 ct_No.add(notification);
-                AccordionGridPane.add(notification, 1, (phoneFields + 1));
+                AccordionGridPane.add(notification, 3, (phoneFields + 1));
 
                 ComboBox<String> comboBox = new ComboBox<String>(phoneTypeList);
                 comboBox.setId("phoneType"+phoneFields);
                 phone_Type.add(comboBox);
                 index++;
 
-                AccordionGridPane.add(comboBox, 2, (phoneFields + 1));
+
+                AccordionGridPane.add(comboBox, 4, (phoneFields + 1));
                 AccordionGridPane.setVgap(4);
                 anchorPane.setMinHeight(anchorPane.getHeight() + 30);
                 anchorPane.setMaxHeight(anchorPane.getHeight() + 30);
