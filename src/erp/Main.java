@@ -38,7 +38,7 @@ public class Main extends Application {
         
        Parent root;
         //Parent Sc2 = FXMLLoader.load(getClass().getResource("Scene2FXML.fxml"));
-       root = FXMLLoader.load(getClass().getResource("login.fxml"));
+       root = FXMLLoader.load(getClass().getResource("LoginResponsive.fxml"));
        //root = FXMLLoader.load(getClass().getResource("Sample1.fxml"));
       /* FXMLLoader loader = new FXMLLoader(getClass().getResource("SampleDrawerMenu.fxml"));
        loader.setController(new SampleDrawerMenuController());

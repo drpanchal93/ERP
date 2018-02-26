@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../PanchalMachinery/PM_logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #0c364f;">
+               <children>
+                  <Label text="Sign In" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="30.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <JFXTextField focusColor="#9e2222" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="305.0" promptText="Username" style="-fx-text-fill: #ffffff;" unFocusColor="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXPasswordField focusColor="#9e2222" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="305.0" promptText="Password" unFocusColor="#fffdfd">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </JFXPasswordField>
+                  <JFXButton buttonType="RAISED" prefHeight="34.0" prefWidth="305.0" style="-fx-background-color: #9e2222;" text="Submit" textFill="#fffefe">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="70.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <Label text="Forgot Password ?" textFill="#9e2222">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #0c364f;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Copyright. All rights reserved," textFill="#fffbfb">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
