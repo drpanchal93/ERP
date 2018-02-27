@@ -18,7 +18,7 @@
                <children>
                   <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../PanchalMachinery/PM_logo.png" />
+                        <Image url="@images/Panchal_Machinery_Logo.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" />
