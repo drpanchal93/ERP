@@ -82,7 +82,8 @@ public class loginController implements Initializable
             Scene scene = new Scene(sc2);
             stage.setScene(scene);
             stage.show();*/
-            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("DashboardFXML.fxml"));
+            
+            Parent goToSceneTwo = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
             Scene DashboardDrawerMenuScene = new Scene(goToSceneTwo);
             Stage app_Stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             app_Stage.setScene(DashboardDrawerMenuScene);

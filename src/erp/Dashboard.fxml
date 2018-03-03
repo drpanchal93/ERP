@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import com.jfoenix.controls.*?>
@@ -8,27 +13,276 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1280.0" stylesheets="@sampleCSS2.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.DashboardController">
-       <children>
-      <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" minHeight="800.0" prefWidth="250.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <!--<cursor>
-            <Cursor fx:constant="NW_RESIZE" />
-         </cursor>--></JFXDrawer>
-      
-            <HBox fx:id="footerHbox1" layoutX="250.0" layoutY="700.0" maxWidth="-Infinity" minHeight="100.0" minWidth="1030.0" style="-fx-background-color: #9e2222;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.DashboardFXMLController">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="footer" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e8e8e8;">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Panchal_Machinery_Logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="profileButton" alignment="BOTTOM_RIGHT" prefHeight="100.0" style="-fx-background-color: #e8e8e8;" stylesheets="@DashboardFXML.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Circle fill="WHITE" layoutX="120.0" layoutY="44.0" opacity="0.91" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/user_profile.png" />
+                                 </image>
+                              </ImageView>
+                              <ComboBox fx:id="profileMenu" layoutX="85.0" layoutY="71.0" prefWidth="100.0" promptText="Drashti" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </HBox>
-      <HBox fx:id="headerHbox1" layoutX="250.0" minHeight="100.0" minWidth="1030.0" style="-fx-background-color: #9e2222;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   </top>
+   <bottom>
+      <HBox fx:id="Footer" alignment="CENTER" prefHeight="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="header" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #e8e8e8;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Copyright. All rights reserved," textFill="#2e3092">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </HBox>
-      <ScrollPane fx:id="contentPane" layoutX="250.0" layoutY="100.0" minHeight="600.0" minWidth="1030.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-        <content>
-          <AnchorPane fx:id="contentAnchorPane" minHeight="600.0" minWidth="1030.0" />
-        </content>
-      </ScrollPane>
-   </children>
-</AnchorPane>
+   </bottom>
+   <center>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox>
+                     <children>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button fx:id="SalesButton" mnemonicParsing="false" onAction="#SalesButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Sales" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
+                                       <image>
+                                          <Image url="@images/Sales1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Purchase" textFill="WHITE">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/purchase1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Finance" textFill="WHITE">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/finance1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Production" textFill="WHITE">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/production1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Store" textFill="WHITE">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/store2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Quality" textFill="WHITE">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/quality2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" style="-fx-background-color: #2f5696;">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="140.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Sales" textFill="WHITE">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="150.0" />
+                                       </padding>
+                                    </Button>
+                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Sales1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
