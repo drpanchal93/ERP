@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -40,8 +42,9 @@ public class DashboardFXMLController implements Initializable {
      */
     
      @FXML
-    private ComboBox<?> profileMenu;
-     
+    private ComboBox<String> profileMenu;
+    
+     public ObservableList<String> profileMenuList = FXCollections.observableArrayList();
 //     @FXML
 //    private Circle userProfileImage;
     
@@ -49,7 +52,7 @@ public class DashboardFXMLController implements Initializable {
 //     //SalesButton
     @FXML
     private Button SalesButton;
-//      
+    //      
 //    @FXML
 //    private ImageView testImage;
 //    
@@ -315,6 +318,11 @@ public class DashboardFXMLController implements Initializable {
             System.out.println("Quality Image Clicked");
             OpenQualityDashboard(e);
         });*/
+        
+        profileMenuList.add("User Profile");
+        profileMenuList.add("Logout");
+        
+        profileMenu.setItems(profileMenuList);
     }    
     
 }
