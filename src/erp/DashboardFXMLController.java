@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -245,33 +247,6 @@ public class DashboardFXMLController implements Initializable {
 //            app_Stage.setMaximized(true);
 //            app_Stage.show();
 //    }
-//    /*-----------------------------------------------------------------------------------------------------------*/
-//    //LogoutButton
-//    
-//     @FXML
-//    private MenuItem logoutButton;
-//     
-//      @FXML
-//    void LogoutButtonClicked(ActionEvent e) {
-//        Parent goToSceneTwo = null;
-//            try 
-//            {
-//                goToSceneTwo = FXMLLoader.load(getClass().getResource("login.fxml"));
-//            } catch (IOException ex) 
-//            {
-//                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            Scene QualityDashboard = new Scene(goToSceneTwo);
-//            Stage app_Stage = (Stage) profileButton.getScene().getWindow() ;
-//            app_Stage.setScene(QualityDashboard);
-//            
-//            //Css code
-//            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
-//            
-//            app_Stage.setMaximized(true);
-//            app_Stage.show();
-//    }
-//    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -323,6 +298,34 @@ public class DashboardFXMLController implements Initializable {
         profileMenuList.add("Logout");
         
         profileMenu.setItems(profileMenuList);
+        
+        profileMenu.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    
+                    String menuItem = (String) newValue;
+                    
+                    if (menuItem.equals("Logout")) {
+                        Parent goToSceneTwo = null;
+                        try 
+                        {
+                            goToSceneTwo = FXMLLoader.load(getClass().getResource("LoginResponsive.fxml"));
+                        } catch (IOException ex) 
+                        {
+                            Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        Scene QualityDashboard = new Scene(goToSceneTwo);
+                        Stage app_Stage = (Stage) profileMenu.getScene().getWindow() ;
+                        app_Stage.setScene(QualityDashboard);
+
+                        //Css code
+                        //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
+
+                        app_Stage.setMaximized(true);
+                        app_Stage.show();
+                    }
+                }
+        });
     }    
     
 }
