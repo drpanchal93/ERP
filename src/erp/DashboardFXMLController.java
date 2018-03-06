@@ -68,7 +68,8 @@ public class DashboardFXMLController implements Initializable {
         Parent goToSceneTwo = null;
             try 
             {
-                goToSceneTwo = FXMLLoader.load(getClass().getResource("SalesDashboard.fxml"));
+                //goToSceneTwo = FXMLLoader.load(getClass().getResource("SalesDashboard.fxml"));
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("SalesDashboardResponsive.fxml"));
             } catch (IOException ex) 
             {
                 Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
