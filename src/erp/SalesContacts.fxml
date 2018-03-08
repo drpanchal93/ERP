@@ -8,14 +8,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="salesContactAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="1089.0" prefWidth="1080.0" stylesheets="@SalesContactsView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesContactsController">
+<AnchorPane fx:id="salesContactAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="800.0" stylesheets="@SalesContactsView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesContactsController">
    <children>
-      <TableView fx:id="salesContactsTable" layoutX="11.0" layoutY="61.0" onMouseClicked="#tableRowClicked" prefHeight="900.0" prefWidth="920.0">
+      <TableView fx:id="salesContactsTable" layoutX="11.0" layoutY="61.0" onMouseClicked="#tableRowClicked" prefHeight="449.0" prefWidth="689.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="Sr No." />
-          <TableColumn fx:id="name" prefWidth="250.0" text="Name" />
-            <TableColumn fx:id="city" maxWidth="441.0" minWidth="-Infinity" prefWidth="421.0" text="Address" />
-            <TableColumn fx:id="gstNo" minWidth="0.0" prefWidth="190.0" text="GST No" />
+          <TableColumn fx:id="name" prefWidth="193.0" text="Name" />
+            <TableColumn fx:id="city" maxWidth="478.0" minWidth="-Infinity" prefWidth="266.0" text="Address" />
+            <TableColumn fx:id="gstNo" minWidth="0.0" prefWidth="141.0" text="GST No" />
         </columns>
       </TableView>
       <TextField fx:id="filter" layoutX="71.0" layoutY="11.0" />
