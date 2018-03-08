@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="salesContactAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="800.0" stylesheets="@SalesContactsView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesContactsController">
+<AnchorPane fx:id="salesContactAnchorPane" minHeight="0.0" minWidth="0.0" prefWidth="800.0" stylesheets="@SalesContactsView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesContactsController">
    <children>
       <TableView fx:id="salesContactsTable" layoutX="11.0" layoutY="61.0" onMouseClicked="#tableRowClicked" prefHeight="449.0" prefWidth="689.0">
         <columns>
