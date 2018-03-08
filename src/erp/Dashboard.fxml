@@ -80,7 +80,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button fx:id="SalesButton" mnemonicParsing="false" onAction="#SalesButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Sales" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="SalesButton" mnemonicParsing="false" onAction="#SalesButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Sales" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>
@@ -104,7 +104,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Purchase" textFill="WHITE">
+                                    <Button fx:id="PurchaseButton" mnemonicParsing="false" onAction="#PurchaseButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Purchase" textFill="WHITE">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>
@@ -112,7 +112,7 @@
                                           <Insets top="150.0" />
                                        </padding>
                                     </Button>
-                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="purchaseIcon" fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/purchase1.png" />
                                        </image>
@@ -131,7 +131,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Finance" textFill="WHITE">
+                                    <Button fx:id="FinanceButton" mnemonicParsing="false" onAction="#FinanceButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Finance" textFill="WHITE">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>
@@ -139,7 +139,7 @@
                                           <Insets top="150.0" />
                                        </padding>
                                     </Button>
-                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="financeIcon" fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/finance1.png" />
                                        </image>
@@ -158,7 +158,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Production" textFill="WHITE">
+                                    <Button fx:id="ProductionButton" mnemonicParsing="false" onAction="#ProductionButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Production" textFill="WHITE">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>
@@ -166,7 +166,7 @@
                                           <Insets top="150.0" />
                                        </padding>
                                     </Button>
-                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="productionIcon" fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/production1.png" />
                                        </image>
@@ -195,7 +195,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Store" textFill="WHITE">
+                                    <Button fx:id="StoreButton" mnemonicParsing="false" onAction="#StoreButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Store" textFill="WHITE">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>
@@ -203,7 +203,7 @@
                                           <Insets top="150.0" />
                                        </padding>
                                     </Button>
-                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="storeIcon" fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/store2.png" />
                                        </image>
@@ -222,7 +222,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Quality" textFill="WHITE">
+                                    <Button fx:id="QualityButton" mnemonicParsing="false" onAction="#QualityButtonClick" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Quality" textFill="WHITE">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>
@@ -230,7 +230,7 @@
                                           <Insets top="150.0" />
                                        </padding>
                                     </Button>
-                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="qualityIcon" fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/quality2.png" />
                                        </image>
@@ -249,7 +249,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="140.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Sales" textFill="WHITE">
+                                    <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Planning" textFill="WHITE">
                                        <font>
                                           <Font name="Lucida Sans Demibold" size="18.0" />
                                        </font>

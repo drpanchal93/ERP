@@ -55,12 +55,9 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private Button SalesButton;
     
-     @FXML
+    @FXML
     private ImageView testImage;
-    //      
-//    @FXML
-//    private ImageView testImage;
-//    
+   
     @FXML
     void SalesButtonClick(ActionEvent event) throws IOException {
         OpenSalesDashboard(event);
@@ -82,175 +79,178 @@ public class DashboardFXMLController implements Initializable {
             app_Stage.setScene(SalesDashboard);
             
             //Css code
-            SalesDashboard.getStylesheets().add(SalesDashboardController.class.getResource("salesdashboard.css").toExternalForm());
+            //SalesDashboard.getStylesheets().add(SalesDashboardController.class.getResource("salesdashboard.css").toExternalForm());
             
             app_Stage.setMaximized(true);
             app_Stage.show();
     }
 //    /*---------------------------------------------------------------------------------------------------*/
 //    //PurchaseButton
-//    @FXML
-//    private Button PurchaseButton;
-//
-//    @FXML
-//    private ImageView purchaseIcon;
-//    
-//    @FXML
-//    void PurchaseButtonClick(ActionEvent event) throws IOException {
-//        OpenPurchaseDashboard(event);
-//    }
-//    
-//    void OpenPurchaseDashboard(Event e)
-//    {
-//        Parent goToSceneTwo = null;
-//            try {
-//                goToSceneTwo = FXMLLoader.load(getClass().getResource("PurchaseDashboard.fxml"));
-//            } catch (IOException ex) {
-//                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            Scene PurchaseDashboard = new Scene(goToSceneTwo);
-//            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//            app_Stage.setScene(PurchaseDashboard);
-//            
-//            //Css code
-//            PurchaseDashboard.getStylesheets().add(PurchaseDashboardController.class.getResource("purchasedashboard.css").toExternalForm());
-//            
-//            app_Stage.setMaximized(true);
-//            app_Stage.show();
-//    }
+    @FXML
+    private Button PurchaseButton;
+
+    @FXML
+    private ImageView purchaseIcon;
+    
+    @FXML
+    void PurchaseButtonClick(ActionEvent event) throws IOException {
+        OpenPurchaseDashboard(event);
+    }
+    
+    void OpenPurchaseDashboard(Event e)
+    {
+        Parent goToSceneTwo = null;
+            try {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("PurchaseDashboardResponsive.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene PurchaseDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            app_Stage.setScene(PurchaseDashboard);
+            
+            //Css code
+            //PurchaseDashboard.getStylesheets().add(PurchaseDashboardController.class.getResource("purchasedashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }
 //    /*------------------------------------------------------------------------------------------------------------*/
-//    @FXML
-//    private Button FinanceButton;
-//
-//    @FXML
-//    private ImageView financeIcon;
-//    
-//     @FXML
-//    void FinanceButtonClick(ActionEvent event) 
-//    {
-//        OpenFinanceDashboard(event);
-//    }
-//    
-//    void OpenFinanceDashboard(Event e)
-//    {
-//         Parent goToSceneTwo = null;
-//            try 
-//            {
-//                goToSceneTwo = FXMLLoader.load(getClass().getResource("FinanceDashboard.fxml"));
-//            } catch (IOException ex) 
-//            {
-//                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            Scene FinanceDashboard = new Scene(goToSceneTwo);
-//            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//            app_Stage.setScene(FinanceDashboard);
-//            
-//            //Css code
-//            FinanceDashboard.getStylesheets().add(FinanceDashboardController.class.getResource("financedashboard.css").toExternalForm());
-//            
-//            app_Stage.setMaximized(true);
-//            app_Stage.show();
-//    }
+   //FinanceButton
+    
+    @FXML
+    private Button FinanceButton;
+
+    @FXML
+    private ImageView financeIcon;
+    
+     @FXML
+    void FinanceButtonClick(ActionEvent event) 
+    {
+        OpenFinanceDashboard(event);
+    }
+    
+    void OpenFinanceDashboard(Event e)
+    {
+         Parent goToSceneTwo = null;
+            try 
+            {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("FinanceDashboard.fxml"));
+            } catch (IOException ex) 
+            {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene FinanceDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            app_Stage.setScene(FinanceDashboard);
+            
+            //Css code
+            //FinanceDashboard.getStylesheets().add(FinanceDashboardController.class.getResource("financedashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }
 //    /*------------------------------------------------------------------------------------------------------------*/
 //    //ProductionButton
-//    @FXML
-//    private Button ProductionButton;
-//
-//    @FXML
-//    private ImageView productionIcon;
-//    
-//     @FXML
-//    void ProductionButtonClick(ActionEvent event) {
-//        OpenProductionDashboard(event);
-//    }
-//    
-//    void OpenProductionDashboard(Event e)
-//    {
-//         Parent goToSceneTwo = null;
-//            try 
-//            {
-//                goToSceneTwo = FXMLLoader.load(getClass().getResource("ProductionDashboard.fxml"));
-//            } catch (IOException ex) 
-//            {
-//                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            Scene ProductionDashboard = new Scene(goToSceneTwo);
-//            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//            app_Stage.setScene(ProductionDashboard);
-//            
-//            //Css code
-//            //ProductionDashboard.getStylesheets().add(ProductionDashboardController.class.getResource("productiondashboard.css").toExternalForm());
-//            
-//            app_Stage.setMaximized(true);
-//            app_Stage.show();
-//    }
-//    /*-----------------------------------------------------------------------------------------------------------*/
+    @FXML
+    private Button ProductionButton;
+  
+    @FXML
+    private ImageView productionIcon;
+    
+    @FXML
+    void ProductionButtonClick(ActionEvent event) {
+        OpenProductionDashboard(event);
+    }
+    
+    void OpenProductionDashboard(Event e)
+    {
+        Parent goToSceneTwo = null;
+            try 
+            {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("ProductionDashboard.fxml"));
+            } catch (IOException ex) 
+            {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene ProductionDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            app_Stage.setScene(ProductionDashboard);
+            
+            //Css code
+            //StoreDashboard.getStylesheets().add(StoreDashboardController.class.getResource("storedashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }
+   
+    /*-----------------------------------------------------------------------------------------------------------*/
 //    //StoreButton
 //    
-//     @FXML
-//    private Button StoreButton;
-//     
-//    @FXML
-//    private ImageView storeIcon;
-//
-//    @FXML
-//    void StoreButtonClick(ActionEvent event) {
-//        OpenStoreDashboard(event);
-//    }
-//    
-//    void OpenStoreDashboard(Event e)
-//    {
-//        Parent goToSceneTwo = null;
-//            try 
-//            {
-//                goToSceneTwo = FXMLLoader.load(getClass().getResource("StoreDashboard.fxml"));
-//            } catch (IOException ex) 
-//            {
-//                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            Scene StoreDashboard = new Scene(goToSceneTwo);
-//            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//            app_Stage.setScene(StoreDashboard);
-//            
-//            //Css code
-//            //StoreDashboard.getStylesheets().add(StoreDashboardController.class.getResource("storedashboard.css").toExternalForm());
-//            
-//            app_Stage.setMaximized(true);
-//            app_Stage.show();
-//    }
-//    /*---------------------------------------------------------------------------------------------------------*/
+     @FXML
+    private Button StoreButton;
+     
+    @FXML
+    private ImageView storeIcon;
+
+    @FXML
+    void StoreButtonClick(ActionEvent event) {
+        OpenStoreDashboard(event);
+    }
+    
+    void OpenStoreDashboard(Event e)
+    {
+        Parent goToSceneTwo = null;
+            try 
+            {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("StoreDashboard.fxml"));
+            } catch (IOException ex) 
+            {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene StoreDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            app_Stage.setScene(StoreDashboard);
+            
+            //Css code
+            //StoreDashboard.getStylesheets().add(StoreDashboardController.class.getResource("storedashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }
+    /*---------------------------------------------------------------------------------------------------------*/
 //    //QualityButton
-//     @FXML
-//    private Button QualityButton;
-//
-//    @FXML
-//    private ImageView qualityIcon;
-//    
-//    @FXML
-//    void QualityButtonClick(ActionEvent event) {
-//        OpenQualityDashboard(event);
-//    }
-//    
-//    void OpenQualityDashboard(Event e)
-//    {
-//        Parent goToSceneTwo = null;
-//            try 
-//            {
-//                goToSceneTwo = FXMLLoader.load(getClass().getResource("QualityDashboard.fxml"));
-//            } catch (IOException ex) 
-//            {
-//                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            Scene QualityDashboard = new Scene(goToSceneTwo);
-//            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//            app_Stage.setScene(QualityDashboard);
-//            
-//            //Css code
-//            QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
-//            
-//            app_Stage.setMaximized(true);
-//            app_Stage.show();
-//    }
+     @FXML
+    private Button QualityButton;
+
+    @FXML
+    private ImageView qualityIcon;
+    
+    @FXML
+    void QualityButtonClick(ActionEvent event) {
+        OpenQualityDashboard(event);
+    }
+    
+    void OpenQualityDashboard(Event e)
+    {
+        Parent goToSceneTwo = null;
+            try 
+            {
+                goToSceneTwo = FXMLLoader.load(getClass().getResource("QualityDashboard.fxml"));
+            } catch (IOException ex) 
+            {
+                Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene QualityDashboard = new Scene(goToSceneTwo);
+            Stage app_Stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            app_Stage.setScene(QualityDashboard);
+            
+            //Css code
+            //QualityDashboard.getStylesheets().add(QualityDashboardController.class.getResource("qualitydashboard.css").toExternalForm());
+            
+            app_Stage.setMaximized(true);
+            app_Stage.show();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -263,7 +263,7 @@ public class DashboardFXMLController implements Initializable {
             OpenSalesDashboard(e);
         });
         
-        /*purchaseIcon.setPickOnBounds(true);
+        purchaseIcon.setPickOnBounds(true);
         purchaseIcon.setOnMouseClicked((MouseEvent e) -> 
         {
             System.out.println("Purchase Image Clicked");
@@ -296,7 +296,7 @@ public class DashboardFXMLController implements Initializable {
         {
             System.out.println("Quality Image Clicked");
             OpenQualityDashboard(e);
-        });*/
+        });
         
         profileMenuList.add("User Profile");
         profileMenuList.add("Logout");

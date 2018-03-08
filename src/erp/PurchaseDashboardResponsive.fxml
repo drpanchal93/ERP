@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.PurchaseDashboardController">
+   <bottom>
+      <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #e8e8e8;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Copyright. All rights reserved," textFill="#2e3092">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fx:id="contentScrollPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <content>
+                  <AnchorPane fx:id="contentAnchorPane" style="-fx-background-color: #391463;" />
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </center>
+   <left>
+      <VBox prefWidth="200.0" style="-fx-background-color: #2f5696;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox style="-fx-background-color: #2f5696;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#AddVendorContactButtonClicked" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="Prepare Puchase Order" textFill="#f15558" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#PurchaseContactDetailsButtonClicked" prefHeight="75.0" prefWidth="221.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="Vendor Contact Details" textFill="#f15558">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="Generate Challan" textFill="#f15558">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="160.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="View Sales Contacts" textFill="#f15558">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="115.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="View Sales Data" textFill="#f15558">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e8e8e8;">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Panchal_Machinery_Logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="profileButton" alignment="BOTTOM_RIGHT" prefHeight="100.0" style="-fx-background-color: #e8e8e8;" stylesheets="@DashboardFXML.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Circle fill="WHITE" layoutX="120.0" layoutY="44.0" opacity="0.91" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/user_profile.png" />
+                                 </image>
+                              </ImageView>
+                              <ComboBox fx:id="profileMenu" layoutX="85.0" layoutY="71.0" prefWidth="100.0" promptText="Drashti" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

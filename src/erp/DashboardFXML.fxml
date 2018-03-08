@@ -140,7 +140,7 @@
                            </font>
                         </Button>
                         <ImageView fx:id="qualityIcon" fitHeight="80.0" fitWidth="80.0" layoutX="360.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
+                           <image> x
                               <Image url="@images/quality2.png" />
                            </image>
                         </ImageView>
