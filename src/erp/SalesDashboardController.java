@@ -133,6 +133,7 @@ public class SalesDashboardController extends ReusableCode implements Initializa
     @FXML
     void SalesContactsButtonClicked(ActionEvent event) throws IOException 
     {
+        //Parent salesData = FXMLLoader.load(getClass().getResource("SalesContactsResponsive.fxml"));
         Parent salesData = FXMLLoader.load(getClass().getResource("SalesContacts.fxml"));
         contentScrollPane.setContent(salesData);
     }

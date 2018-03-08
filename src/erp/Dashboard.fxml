@@ -88,7 +88,7 @@
                                           <Insets top="150.0" />
                                        </padding>
                                     </Button>
-                                    <ImageView fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
+                                    <ImageView fx:id="testImage" depthTest="DISABLE" fitHeight="134.0" fitWidth="138.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                                        <image>
                                           <Image url="@images/Sales1.png" />
                                        </image>

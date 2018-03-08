@@ -54,6 +54,9 @@ public class DashboardFXMLController implements Initializable {
 //     //SalesButton
     @FXML
     private Button SalesButton;
+    
+     @FXML
+    private ImageView testImage;
     //      
 //    @FXML
 //    private ImageView testImage;
@@ -253,14 +256,14 @@ public class DashboardFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
-       /* testImage.setPickOnBounds(true); // allows click on transparent areas
+        testImage.setPickOnBounds(true); // allows click on transparent areas
         testImage.setOnMouseClicked((MouseEvent e) -> 
         {
             System.out.println("Clicked!"); // change functionality
             OpenSalesDashboard(e);
         });
         
-        purchaseIcon.setPickOnBounds(true);
+        /*purchaseIcon.setPickOnBounds(true);
         purchaseIcon.setOnMouseClicked((MouseEvent e) -> 
         {
             System.out.println("Purchase Image Clicked");

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.SalesContactsController">
+   <children>
+      <AnchorPane HBox.hgrow="ALWAYS">
+         <children>
+            <TableView fx:id="salesContactsTable" layoutY="58.0" onMouseClicked="#tableRowClicked" prefHeight="900.0" prefWidth="1000.0" AnchorPane.bottomAnchor="-58.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
+               <columns>
+                  <TableColumn fx:id="id" prefWidth="75.0" text="Sr No." />
+                  <TableColumn fx:id="name" prefWidth="250.0" text="Name" />
+                  <TableColumn fx:id="city" maxWidth="243.0" minWidth="-Infinity" prefWidth="500.0" text="Address" />
+                  <TableColumn fx:id="gstNo" minWidth="0.0" prefWidth="250.0" text="GST No" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="addSalesContactButton" buttonType="RAISED" layoutX="552.0" layoutY="15.0" onAction="#addSalesContactButtonClicked" style="-fx-background-color: #000000;" text="Add" textFill="WHITE" />
+            <Label contentDisplay="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="24.0" prefWidth="83.0" text="Filter =" textAlignment="CENTER">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="filter" layoutX="104.0" layoutY="15.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
