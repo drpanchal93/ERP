@@ -60,27 +60,6 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="Generate Challan" textFill="#f15558">
-                     <font>
-                        <Font name="Lucida Sans Demibold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="160.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="View Sales Contacts" textFill="#f15558">
-                     <font>
-                        <Font name="Lucida Sans Demibold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="115.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2B4F89; -fx-border-width: 0 0 0 5px; -fx-border-color: #f15558;" text="View Sales Data" textFill="#f15558">
-                     <font>
-                        <Font name="Lucida Sans Demibold" size="14.0" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
             <VBox VBox.vgrow="ALWAYS" />

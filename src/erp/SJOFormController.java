@@ -5,10 +5,12 @@
  */
 package erp;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -45,6 +47,9 @@ public class SJOFormController implements Initializable {
     @FXML
     private TextField deliveryDate;
     
+//    @FXML
+//    private JFXButton sjoSubmit;
+    
     @FXML private TableView<SJO> SJOTable;
     
     @FXML private TableColumn<SJO,Integer> srNo;
@@ -80,6 +85,11 @@ public class SJOFormController implements Initializable {
         Selected.setQuantity((Integer) editedCell.getNewValue());
     }
     
+//    @FXML
+//    void sjoSubmitBtnClicked(ActionEvent event) 
+//    {
+//
+//    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

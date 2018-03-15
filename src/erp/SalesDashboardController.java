@@ -89,7 +89,7 @@ public class SalesDashboardController extends ReusableCode implements Initializa
     void GenerateSJOButtonClick(ActionEvent event) throws IOException
     {
        //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
-       Parent salesData = FXMLLoader.load(getClass().getResource("SJOForm.fxml"));
+       Parent salesData = FXMLLoader.load(getClass().getResource("SJOFormNew.fxml"));
        contentScrollPane.setContent(salesData);
     }
     
