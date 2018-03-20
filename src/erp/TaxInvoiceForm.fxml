@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -11,7 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2100.0" prefWidth="1080.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2500.0" prefWidth="1080.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0" minWidth="10.0" prefWidth="1080.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="536.0" minWidth="0.0" prefWidth="0.0" />
@@ -20,13 +21,17 @@
           <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="461.0" minHeight="10.0" prefHeight="461.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="567.0" minHeight="10.0" prefHeight="293.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="5.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="377.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -184,8 +189,9 @@
             </AnchorPane>
             <GridPane fx:id="deliveryDetails" GridPane.rowIndex="5">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="431.0" minWidth="10.0" prefWidth="282.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="588.0" minWidth="10.0" prefWidth="588.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -249,8 +255,9 @@
             </AnchorPane>
             <GridPane fx:id="references" GridPane.rowIndex="7">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="531.0" minWidth="10.0" prefWidth="194.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="901.0" minWidth="10.0" prefWidth="324.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="901.0" minWidth="10.0" prefWidth="570.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -276,7 +283,7 @@
             </GridPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                <children>
-                  <Line endX="600.0" layoutX="115.0" layoutY="25.0" startX="-100.0" startY="1.0" />
+                  <Line endX="600.0" layoutX="115.0" layoutY="35.0" startX="-100.0" startY="1.0" />
                   <Label layoutX="15.0" layoutY="16.0" text="Product Details">
                      <font>
                         <Font name="Lucida Sans Demibold" size="15.5" />
@@ -284,6 +291,194 @@
                   </Label>
                </children>
             </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="9">
+               <children>
+                  <Label layoutX="23.0" layoutY="351.0" text="(without tax)">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="139.0" layoutY="336.0" prefHeight="18.0" prefWidth="225.0" />
+                  <Label layoutX="20.0" layoutY="333.0" text="Total Amount:">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" layoutX="139.0" layoutY="283.0" style="-fx-background-color: #2f5696;" text="Delete Product" textFill="#f15558">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="283.0" style="-fx-background-color: #2f5696;" text="Add Product" textFill="#f15558">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <TextField layoutX="557.0" layoutY="219.0" prefWidth="40.0" promptText="Per">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="449.0" layoutY="219.0" prefWidth="100.0" promptText="Rate">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="380.0" layoutY="219.0" prefWidth="60.0" promptText="Qty.">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="272.0" layoutY="219.0" prefWidth="100.0" promptText="HSN Code">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextArea layoutX="14.0" layoutY="219.0" prefHeight="50.0" prefWidth="250.0" promptText="Description of Goods">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextArea>
+                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="583.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="Sr.No." />
+                        <TableColumn prefWidth="200.0" text="Description of Goods" />
+                        <TableColumn prefWidth="100.0" text="HSN Code" />
+                        <TableColumn prefWidth="60.0" text="Quantity" />
+                        <TableColumn prefWidth="100.0" text="Rate" />
+                        <TableColumn prefWidth="47.0" text="Per" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="10">
+               <children>
+                  <Line endX="600.0" layoutX="113.0" layoutY="34.0" startX="-100.0" startY="1.0" />
+                  <Label layoutX="13.0" layoutY="16.0" text="Taxes">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.5" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <GridPane GridPane.rowIndex="11">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Total Tax Amount:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Total Invoice Value in Words" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextArea>
+                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Total Tax in Words" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextArea>
+                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Grand Total:" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Advance (if Received):" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="IGST:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="CGST:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
+                  <Label text="SGST:">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </GridPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="12">
+               <children>
+                  <Line endX="600.0" layoutX="115.0" layoutY="35.0" startX="-100.0" startY="1.0" />
+                  <Label layoutX="14.0" layoutY="16.0" text="Other Details">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="15.5" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <GridPane GridPane.rowIndex="13">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Terms of Delivery" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextArea>
+                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Remarks" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="13.0" />
+                     </font>
+                  </TextArea>
+                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Electronic Reference Number:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Amount Subject to Reverse Charge:">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <JFXCheckBox layoutX="131.0" layoutY="35.0" text="No" />
+                        <JFXCheckBox layoutX="14.0" layoutY="35.0" text="Yes" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </children>

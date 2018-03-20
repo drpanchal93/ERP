@@ -97,7 +97,7 @@ public class SalesDashboardController extends ReusableCode implements Initializa
    void GenerateTaxInvoiceButtonClick(ActionEvent event) throws IOException
    {
        //content.getChildren().setAll(FXMLLoader.load(/Users/drashtipanchal/Documents/Drashti/NetBeansProjects/src/erp));
-       Parent salesData = FXMLLoader.load(getClass().getResource("InvoiceForm.fxml"));
+       Parent salesData = FXMLLoader.load(getClass().getResource("TaxInvoiceForm.fxml"));
        contentScrollPane.setContent(salesData);
    }
     
