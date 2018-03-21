@@ -138,6 +138,12 @@ public class SalesDashboardController extends ReusableCode implements Initializa
         contentScrollPane.setContent(salesData);
     }
 
+    @FXML
+    void PrepareCustPO(ActionEvent event) throws IOException 
+    {
+        Parent salesData = FXMLLoader.load(getClass().getResource("CustomerPurchaseOrder.fxml"));
+        contentScrollPane.setContent(salesData);
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
