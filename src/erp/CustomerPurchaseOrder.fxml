@@ -12,7 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.CustomerPurchaseOrderController">
    <children>
-      <GridPane prefHeight="1280.0" prefWidth="1200.0" vgap="10.0">
+      <GridPane prefHeight="1300.0" prefWidth="1200.0" vgap="20.0">
          <children>
             <Label alignment="CENTER" text="Customer Purchase Order" textAlignment="CENTER" textFill="#030303" underline="true">
                <font>
@@ -22,7 +22,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <GridPane prefHeight="25.0" prefWidth="300.0" vgap="10.0" GridPane.rowIndex="1">
+            <GridPane prefHeight="25.0" prefWidth="300.0" vgap="20.0" GridPane.rowIndex="1">
                <children>
                   <Label text="From :" textAlignment="CENTER">
                      <font>
@@ -124,7 +124,7 @@
                   <Font name="Lucida Sans Demibold" size="18.0" />
                </font>
             </JFXButton>
-            <GridPane prefHeight="221.0" prefWidth="1200.0" vgap="10.0" GridPane.rowIndex="4">
+            <GridPane prefHeight="221.0" prefWidth="1200.0" vgap="20.0" GridPane.rowIndex="4">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" />
@@ -170,10 +170,10 @@
                      </font>
                   </Label>
                   <TextField layoutX="192.0" layoutY="19.0" prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextArea layoutX="192.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextArea layoutX="192.0" layoutY="145.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextArea layoutX="192.0" layoutY="189.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextArea maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextArea layoutX="192.0" layoutY="100.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextArea layoutX="192.0" layoutY="145.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextArea layoutX="192.0" layoutY="189.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <GridPane hgap="100.0" prefHeight="226.0" prefWidth="1200.0" GridPane.rowIndex="3">
@@ -185,7 +185,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane prefHeight="217.0" prefWidth="396.0" vgap="10.0">
+                  <GridPane prefHeight="217.0" prefWidth="396.0" vgap="20.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" />
@@ -216,7 +216,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <GridPane vgap="10.0" GridPane.columnIndex="1">
+                  <GridPane vgap="20.0" GridPane.columnIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" />
@@ -256,11 +256,11 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="360.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="370.0" minHeight="10.0" prefHeight="320.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="230.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="393.0" minHeight="10.0" prefHeight="288.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="317.0" minHeight="10.0" prefHeight="292.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="292.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <padding>
             <Insets left="10.0" />

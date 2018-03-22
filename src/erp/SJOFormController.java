@@ -85,11 +85,11 @@ public class SJOFormController implements Initializable {
         Selected.setQuantity((Integer) editedCell.getNewValue());
     }
     
-//    @FXML
-//    void sjoSubmitBtnClicked(ActionEvent event) 
-//    {
-//
-//    }
+    @FXML
+    void sjoSubmitBtnClicked(ActionEvent event) 
+    {
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

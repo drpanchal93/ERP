@@ -12,7 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2500.0" prefWidth="1080.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2500.0" prefWidth="1080.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0" minWidth="10.0" prefWidth="1080.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="536.0" minWidth="0.0" prefWidth="0.0" />
@@ -21,17 +21,17 @@
           <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="461.0" minHeight="10.0" prefHeight="461.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="567.0" minHeight="10.0" prefHeight="293.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="5.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="377.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -44,15 +44,15 @@
                   </Label>
                </children>
             </AnchorPane>
-            <GridPane fx:id="invoiceDetails" GridPane.rowIndex="1">
+            <GridPane fx:id="invoiceDetails" vgap="10.0" GridPane.rowIndex="1">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="536.0" minWidth="10.0" prefWidth="266.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="760.0" minWidth="10.0" prefWidth="665.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Invoice Number:">
@@ -65,12 +65,12 @@
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="26.0" prefWidth="225.0" promptText="Invoice Number" GridPane.columnIndex="1">
+                  <TextField prefHeight="25.0" prefWidth="300.0" promptText="Invoice Number" GridPane.columnIndex="1">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
                   </TextField>
-                  <DatePicker prefWidth="225.0" promptText="Select Invoice Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker prefHeight="25.0" prefWidth="300.0" promptText="Select Invoice Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -86,24 +86,24 @@
                   </Label>
                </children>
             </AnchorPane>
-            <GridPane fx:id="buyerDetails" GridPane.rowIndex="3">
+            <GridPane fx:id="buyerDetails" vgap="10.0" GridPane.rowIndex="3">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="231.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="666.0" minWidth="10.0" prefWidth="632.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Buyer's Name:">
@@ -111,27 +111,27 @@
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" />
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <Label text="GSTIN:" GridPane.rowIndex="10">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="PAN No.:" GridPane.rowIndex="9">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <Label text="Pin Code:" GridPane.rowIndex="8">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Country:" GridPane.rowIndex="7">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
@@ -142,25 +142,25 @@
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="19.0" prefWidth="31.0" text="City:" GridPane.rowIndex="5">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Line 2:" GridPane.rowIndex="4">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefWidth="225.0" text="Buyer's Address Line 1:" GridPane.rowIndex="3">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Buyer's Order Date:" GridPane.rowIndex="2">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
@@ -171,7 +171,7 @@
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <DatePicker prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -187,47 +187,47 @@
                   </Label>
                </children>
             </AnchorPane>
-            <GridPane fx:id="deliveryDetails" GridPane.rowIndex="5">
+            <GridPane fx:id="deliveryDetails" vgap="10.0" GridPane.rowIndex="5">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="431.0" minWidth="10.0" prefWidth="282.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="588.0" minWidth="10.0" prefWidth="588.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" />
                   <Label text="Delivery Note:">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Destination:" GridPane.rowIndex="5">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <DatePicker prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <DatePicker prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Dispatched Through:" GridPane.rowIndex="4">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Dispatch Document No:" GridPane.rowIndex="3">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Mode/Terms of Payment:" GridPane.rowIndex="2">
                      <font>
                         <Font name="Lucida Sans Regular" size="14.0" />
@@ -253,15 +253,15 @@
                   <Line endX="600.0" layoutX="107.0" layoutY="35.0" startX="-100.0" startY="1.0" />
                </children>
             </AnchorPane>
-            <GridPane fx:id="references" GridPane.rowIndex="7">
+            <GridPane fx:id="references" vgap="10.0" GridPane.rowIndex="7">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="531.0" minWidth="10.0" prefWidth="194.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="901.0" minWidth="10.0" prefWidth="324.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="230.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="901.0" minWidth="10.0" prefWidth="570.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Supplier's Reference:">
@@ -291,7 +291,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="9">
+            <AnchorPane fx:id="productDetails" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="9">
                <children>
                   <Label layoutX="23.0" layoutY="351.0" text="(without tax)">
                      <font>
@@ -361,66 +361,76 @@
                   </Label>
                </children>
             </AnchorPane>
-            <GridPane GridPane.rowIndex="11">
+            <GridPane fx:id="taxDetails" vgap="10.0" GridPane.rowIndex="11">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Total Tax Amount:" GridPane.rowIndex="4">
                      <font>
-                        <Font name="Lucida Sans Demibold" size="14.0" />
+                        <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Total Invoice Value in Words" GridPane.rowIndex="7">
+                  <TextArea prefHeight="25.0" prefWidth="300.0" promptText="Total Invoice Value in Words" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
                   </TextArea>
-                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Total Tax in Words" GridPane.rowIndex="6">
+                  <TextArea prefHeight="25.0" prefWidth="300.0" promptText="Total Tax in Words" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
                   </TextArea>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Grand Total:" GridPane.rowIndex="5">
                      <font>
-                        <Font name="Lucida Sans Demibold" size="14.0" />
+                        <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Advance (if Received):" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Lucida Sans Regular" size="14.0" />
+                        <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="IGST:" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Lucida Sans Regular" size="14.0" />
+                        <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="CGST:" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Lucida Sans Regular" size="14.0" />
+                        <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" />
                   <Label text="SGST:">
                      <font>
-                        <Font name="Lucida Sans Regular" size="14.0" />
+                        <Font name="Lucida Sans Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="190.0" text="Tax Amount in Words:" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="225.0" text="Invoice Value in Words:" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
                </children>
@@ -438,24 +448,24 @@
                   </Label>
                </children>
             </AnchorPane>
-            <GridPane GridPane.rowIndex="13">
+            <GridPane fx:id="otherDetails" vgap="10.0" GridPane.rowIndex="13">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="212.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Terms of Delivery" GridPane.rowIndex="3">
+                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Terms of Delivery" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
                   </TextArea>
-                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Remarks" GridPane.rowIndex="2">
+                  <TextArea prefHeight="50.0" prefWidth="397.0" promptText="Remarks" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.0" />
                      </font>
@@ -473,11 +483,14 @@
                   </Label>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <JFXCheckBox layoutX="131.0" layoutY="35.0" text="No" />
-                        <JFXCheckBox layoutX="14.0" layoutY="35.0" text="Yes" />
+                        <JFXCheckBox layoutX="128.0" layoutY="9.0" text="No" />
+                        <JFXCheckBox layoutX="14.0" layoutY="9.0" text="Yes" />
                      </children>
                   </AnchorPane>
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </GridPane>
          </children>
       </GridPane>
