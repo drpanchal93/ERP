@@ -105,11 +105,17 @@ public class CustomerPurchaseOrderController implements Initializable {
     @FXML
     private TextField totalAmtWithoutTax;
     @FXML
-    private ComboBox<?> sgst;
+    private ComboBox<TaxModel> sgst;
     @FXML
-    private ComboBox<?> cgst;
+    private ComboBox<TaxModel> cgst;
     @FXML
-    private ComboBox<?> igst;
+    private ComboBox<TaxModel> igst;
+    
+    public ObservableList<TaxModel> sgstList = FXCollections.observableArrayList();
+    
+    public ObservableList<TaxModel> cgstList = FXCollections.observableArrayList();
+    
+    public ObservableList<TaxModel> igstList = FXCollections.observableArrayList();
     
     public ObservableList<SalesContacts> fromList = FXCollections.observableArrayList();
 
@@ -153,6 +159,117 @@ public class CustomerPurchaseOrderController implements Initializable {
                     @Override
                     public SalesContacts fromString(String string) {
                         return from.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+           }
+           catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //Populating tax comboBox SGST
+            
+            String  query1 = "select id, Type, Rate from TaxTable where Type = 'SGST' order by Rate";
+            
+            PreparedStatement preparedStmt1;
+            try 
+            {
+                preparedStmt1 = conn.prepareStatement(query1);
+                ResultSet rs = preparedStmt1.executeQuery();
+
+                while(rs.next())
+                {  
+                    sgstList.add(new TaxModel(Integer.parseInt(rs.getString("id")), rs.getString("Type"), Double.parseDouble(rs.getString("Rate"))));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                sgst.setItems(sgstList);
+                
+                sgst.setConverter(new StringConverter<TaxModel>() {
+
+                    @Override
+                    public String toString(TaxModel object) {
+                        return Double.toString(object.getTaxRate());
+                    }
+                        
+                    @Override
+                    public TaxModel fromString(String string) {
+                        return sgst.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+           }
+           catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //Populating tax comboBox CGST
+            
+            String  query2 = "select id, Type, Rate from TaxTable where Type = 'CGST' order by Rate";
+            
+            PreparedStatement preparedStmt2;
+            try 
+            {
+                preparedStmt2 = conn.prepareStatement(query2);
+                ResultSet rs = preparedStmt2.executeQuery();
+
+                while(rs.next())
+                {  
+                    cgstList.add(new TaxModel(Integer.parseInt(rs.getString("id")), rs.getString("Type"), Double.parseDouble(rs.getString("Rate"))));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                cgst.setItems(cgstList);
+                
+                cgst.setConverter(new StringConverter<TaxModel>() {
+
+                    @Override
+                    public String toString(TaxModel object) {
+                        return Double.toString(object.getTaxRate());
+                    }
+                        
+                    @Override
+                    public TaxModel fromString(String string) {
+                        return cgst.getItems().stream().filter(ap -> 
+                            ap.getName().equals(string)).findFirst().orElse(null);
+                    }
+                });
+           }
+           catch (SQLException ex) 
+            {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //Populating tax comboBox IGST
+            
+            String  query3 = "select id, Type, Rate from TaxTable where Type = 'IGST' order by Rate";
+            
+            PreparedStatement preparedStmt3;
+            try 
+            {
+                preparedStmt3 = conn.prepareStatement(query3);
+                ResultSet rs = preparedStmt3.executeQuery();
+
+                while(rs.next())
+                {  
+                    igstList.add(new TaxModel(Integer.parseInt(rs.getString("id")), rs.getString("Type"), Double.parseDouble(rs.getString("Rate"))));
+                    //System.out.println(rs.getString("name"));
+                    
+                }
+                igst.setItems(igstList);
+                
+                igst.setConverter(new StringConverter<TaxModel>() {
+
+                    @Override
+                    public String toString(TaxModel object) {
+                        return Double.toString(object.getTaxRate());
+                    }
+                        
+                    @Override
+                    public TaxModel fromString(String string) {
+                        return igst.getItems().stream().filter(ap -> 
                             ap.getName().equals(string)).findFirst().orElse(null);
                     }
                 });
