@@ -12,7 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.CustomerPurchaseOrderController">
    <children>
-      <GridPane prefHeight="1300.0" prefWidth="1200.0" vgap="20.0">
+      <GridPane prefHeight="1400.0" prefWidth="1200.0" vgap="20.0">
          <children>
             <Label alignment="CENTER" text="Customer Purchase Order" textAlignment="CENTER" textFill="#030303" underline="true">
                <font>
@@ -39,33 +39,27 @@
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="Email :" textAlignment="CENTER" GridPane.rowIndex="3">
+                  <Label text="GSTIN :" textAlignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="GSTIN :" textAlignment="CENTER" GridPane.rowIndex="4">
+                  <Label text="P.O. Number :" textAlignment="CENTER" GridPane.rowIndex="4">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="P.O. Number :" textAlignment="CENTER" GridPane.rowIndex="5">
+                  <ComboBox fx:id="from" maxHeight="25.0" maxWidth="300.0" prefHeight="27.0" prefWidth="300.0" GridPane.columnIndex="1" />
+                  <TextArea fx:id="custAddress" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="custGST" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="poNo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label layoutX="20.0" layoutY="195.0" text="P.O. Date :" textAlignment="CENTER" GridPane.rowIndex="5">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox maxHeight="25.0" maxWidth="300.0" prefHeight="27.0" prefWidth="300.0" GridPane.columnIndex="1" />
-                  <TextArea prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label layoutX="20.0" layoutY="195.0" text="P.O. Date :" textAlignment="CENTER" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Lucida Sans Regular" size="13.0" />
-                     </font>
-                  </Label>
-                  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <DatePicker fx:id="poDate" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextArea fx:id="custContactDetails" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="10.0" />
@@ -74,8 +68,7 @@
                <rowConstraints>
                   <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="25.0" minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="25.0" minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="25.0" minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="100.0" minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -91,35 +84,35 @@
                   <TableView fx:id="SJOTable" editable="true" layoutX="-1.0" layoutY="48.0" prefHeight="102.0" prefWidth="1139.0">
                      <columns>
                         <TableColumn fx:id="srNo" prefWidth="65.0" text="Sr. No." />
-                        <TableColumn fx:id="itemDescription" prefWidth="396.0" text="Item Description" />
-                        <TableColumn fx:id="quantity" prefWidth="89.0" text="Quantity" />
-                        <TableColumn fx:id="quantity1" prefWidth="106.0" text="Rate" />
-                        <TableColumn fx:id="quantity11" prefWidth="78.0" text="Unit/Per" />
-                        <TableColumn fx:id="quantity111" prefWidth="104.0" text="Discount %" />
-                        <TableColumn fx:id="quantity1111" prefWidth="138.0" text="Discount Amount" />
-                        <TableColumn fx:id="quantity11111" prefWidth="161.0" text="Total" />
+                        <TableColumn fx:id="TableItemDescription" prefWidth="396.0" text="Item Description" />
+                        <TableColumn fx:id="TabaleQuantity" prefWidth="89.0" text="Quantity" />
+                        <TableColumn fx:id="tableRate" prefWidth="106.0" text="Rate" />
+                        <TableColumn fx:id="tableUnit" prefWidth="78.0" text="Unit/Per" />
+                        <TableColumn fx:id="tableDiscPercent" prefWidth="104.0" text="Discount %" />
+                        <TableColumn fx:id="tableDiscAmount" prefWidth="138.0" text="Discount Amount" />
+                        <TableColumn fx:id="tableTotal" prefWidth="161.0" text="Total" />
                      </columns>
                   </TableView>
                   <TextField fx:id="itemDescrip" layoutY="161.0" prefHeight="27.0" prefWidth="460.0" promptText="Item Description" />
                   <TextField fx:id="qty" layoutX="467.0" layoutY="161.0" prefHeight="27.0" prefWidth="75.0" promptText="Quantity" />
-                  <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="201.0" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #2f5696;" text="Add" textFill="#f15558">
+                  <JFXButton fx:id="add" buttonType="RAISED" layoutX="2.0" layoutY="201.0" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #2f5696;" text="Add" textFill="#f15558">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.5" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="201.0" style="-fx-background-color: #2f5696;" text="Remove" textFill="#f15558">
+                  <JFXButton fx:id="remove" buttonType="RAISED" layoutX="81.0" layoutY="201.0" style="-fx-background-color: #2f5696;" text="Remove" textFill="#f15558">
                      <font>
                         <Font name="Lucida Sans Demibold" size="13.5" />
                      </font>
                   </JFXButton>
-                  <TextField fx:id="qty1" layoutX="554.0" layoutY="160.0" prefWidth="85.0" promptText="Rate" />
-                  <TextField fx:id="qty11" layoutX="656.0" layoutY="160.0" prefHeight="27.0" prefWidth="73.0" promptText="Unit/Per" />
-                  <TextField fx:id="qty111" layoutX="748.0" layoutY="160.0" prefWidth="85.0" promptText="Disc. %" />
-                  <TextField fx:id="qty1111" layoutX="844.0" layoutY="160.0" prefHeight="27.0" prefWidth="131.0" promptText="Discount Amount" />
-                  <TextField fx:id="qty11111" layoutX="987.0" layoutY="160.0" prefHeight="27.0" prefWidth="131.0" promptText="Total" />
+                  <TextField fx:id="rate" layoutX="554.0" layoutY="160.0" prefWidth="85.0" promptText="Rate" />
+                  <TextField fx:id="unit" layoutX="656.0" layoutY="160.0" prefHeight="27.0" prefWidth="73.0" promptText="Unit/Per" />
+                  <TextField fx:id="discPercent" layoutX="748.0" layoutY="160.0" prefWidth="85.0" promptText="Disc. %" />
+                  <TextField fx:id="discAmt" layoutX="844.0" layoutY="160.0" prefHeight="27.0" prefWidth="131.0" promptText="Discount Amount" />
+                  <TextField fx:id="total" layoutX="987.0" layoutY="160.0" prefHeight="27.0" prefWidth="131.0" promptText="Total" />
                </children>
             </AnchorPane>
-            <JFXButton buttonType="RAISED" style="-fx-background-color: #2f5696;" text="Submit" textFill="#f15558" GridPane.rowIndex="5">
+            <JFXButton fx:id="custPOSubmit" buttonType="RAISED" style="-fx-background-color: #2f5696;" text="Submit" textFill="#f15558" GridPane.rowIndex="5">
                <font>
                   <Font name="Lucida Sans Demibold" size="18.0" />
                </font>
@@ -143,7 +136,7 @@
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="packFwd" prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" />
                   <Label layoutX="10.0" layoutY="47.0" text="Mode/Terms of Payment :" textAlignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="Lucida Sans Regular" size="13.0" />
@@ -169,11 +162,11 @@
                         <Font name="Lucida Sans Regular" size="13.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="192.0" layoutY="19.0" prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextArea layoutX="192.0" layoutY="100.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextArea layoutX="192.0" layoutY="145.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextArea layoutX="192.0" layoutY="189.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="freight" layoutX="192.0" layoutY="19.0" prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea fx:id="termsOfDelivery" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextArea fx:id="termsOfPayment" layoutX="192.0" layoutY="100.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextArea fx:id="remarks" layoutX="192.0" layoutY="145.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextArea fx:id="note" layoutX="192.0" layoutY="189.0" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <GridPane hgap="100.0" prefHeight="226.0" prefWidth="1200.0" GridPane.rowIndex="3">
@@ -201,14 +194,14 @@
                               <Font name="Lucida Sans Regular" size="13.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="grandTotal" prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="taxAmount" prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Total Tax Amount:" GridPane.rowIndex="1">
                            <font>
                               <Font name="Lucida Sans Regular" size="13.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="totalAmtWithoutTax" prefHeight="18.0" prefWidth="300.0" GridPane.columnIndex="1" />
                         <Label text="Total Amount (without Tax):">
                            <font>
                               <Font name="Lucida Sans Regular" size="13.0" />
@@ -237,14 +230,14 @@
                               <Font name="Lucida Sans Regular" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox prefWidth="300.0" GridPane.columnIndex="1" />
-                        <ComboBox prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="sgst" prefWidth="300.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cgst" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="IGST:" GridPane.rowIndex="2">
                            <font>
                               <Font name="Lucida Sans Regular" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="igst" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
