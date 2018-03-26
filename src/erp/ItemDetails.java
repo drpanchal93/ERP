@@ -35,7 +35,9 @@ public class ItemDetails
         this.discAmount = new SimpleDoubleProperty(discAmount);
         this.amount = new SimpleDoubleProperty(amount);
     }
-
+    
+    //Set and get serial number
+    
     public int getSerialNumber() {
         return serialNumber.get();
     }
@@ -43,7 +45,8 @@ public class ItemDetails
     public void setSerialNumber(Integer srNo) {
         serialNumber.set(srNo);
     }
-
+    //Set and get item description
+    
     public String getItemDescription() {
         return itemDescription.get();
     }
@@ -51,7 +54,8 @@ public class ItemDetails
     public void setItemDescription(String prodDesc) {
         itemDescription.set(prodDesc);
     }
-
+    //set and get quantity
+    
     public int getQuantity() {
         return quantity.get();
     }
@@ -59,15 +63,18 @@ public class ItemDetails
     public void setQuantity(Integer qty) {
         quantity.set(qty);
     }
+    // set and get rate
     
     public double getRate() {
         return rate.get();
     }
 
-    public void setQuantity(Double rt) {
+    public void setRate(Double rt) {
         rate.set(rt);
     }
-
+    
+    //set and get unit
+    
     public String getUnit() {
         return unit.get();
     }
@@ -75,7 +82,8 @@ public class ItemDetails
     public void setUnit(String unt) {
         unit.set(unt);
     }
-
+    
+    //set and get disc percent
     public double getDiscPercent() {
         return discPercent.get();
     }
@@ -83,15 +91,18 @@ public class ItemDetails
     public void setDiscPercent(Double discPerc) {
         discPercent.set(discPerc);
     }
-
+    
+    //set and get disc amount
     public double getDiscAmount() {
         return discAmount.get();
     }
 
-    public void setTaxAmount(Double discAmt) {
+    public void setDiscAmount(Double discAmt) {
         discAmount.set(discAmt);
     }
-
+    
+    //set and get amt before disc
+    
     public double getAmtBeforeDisc() {
         return amtBeforeDisc.get();
     }
@@ -99,8 +110,9 @@ public class ItemDetails
     public void setAmtBeforeDisc(Double amtBfrDisc) {
         amtBeforeDisc.set(amtBfrDisc);
     }
-
-    public double getAmount() {
+    
+    //set and get total amount
+    public double getTotalAmount() {
         return amount.get();
     }
 

@@ -137,35 +137,100 @@ public class CustomerPurchaseOrderController implements Initializable {
     Connection conn = DBConnection.democonnection();
     int counter = 1;
     
+    public void changeSrNoCellEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setSerialNumber((Integer) editedCell.getNewValue());
+    }
+    
+    public void changeItemDescriptionEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setItemDescription((String) editedCell.getNewValue());
+    }
+    
+    public void changeQuantityEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setQuantity((Integer) editedCell.getNewValue());
+    }
+    
+    public void changeRateEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setRate((Double) editedCell.getNewValue());
+    }
+    
+    public void changeUnitEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setUnit((String) editedCell.getNewValue());
+    }
+    
+    public void changeAmtBeforeDiscEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setAmtBeforeDisc((Double) editedCell.getNewValue());
+    }
+    
+    public void changeDiscPercentEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setDiscPercent((Double) editedCell.getNewValue());
+    }
+    
+    public void changeDiscAmountEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setDiscAmount((Double) editedCell.getNewValue());
+    }
+    
+    public void changeTotalEvent(TableColumn.CellEditEvent editedCell)
+    {
+        ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
+        Selected.setTotalAmount((Double) editedCell.getNewValue());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
+        srNo.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("serialNumber"));
+        TableItemDescription.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("itemDescription"));
+        TableQuantity.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("quantity"));
+        TableRate.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("rate"));
+        TableUnit.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("unit"));
+        tableAmtBeforeDisc.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("amtBeforeDisc"));
+        TableDiscPercent.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("discPercent"));
+        TableDiscAmount.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("discAmount"));
+        TableTotal.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("amount"));
         
-        srNo.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("srNo"));
-        TableItemDescription.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableItemDescription"));
-        TableQuantity.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("TableQuantity"));
-        TableRate.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableRate"));
-        TableUnit.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableUnit"));
-        TableDiscPercent.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableDiscPercent"));
-        TableDiscAmount.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableDiscAmount"));
-        TableTotal.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableTotal"));
-        tableAmtBeforeDisc.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("tableAmtBeforeDisc"));
+//        srNo.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("srNo"));
+//        TableItemDescription.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableItemDescription"));
+//        TableQuantity.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("TableQuantity"));
+//        TableRate.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableRate"));
+//        TableUnit.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableUnit"));
+//        tableAmtBeforeDisc.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("tableAmtBeforeDisc"));
+//        TableDiscPercent.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableDiscPercent"));
+//        TableDiscAmount.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableDiscAmount"));
+//        TableTotal.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableTotal"));
+        
         
         
         ItemTable.setItems(ItemList);
         
-//        ItemTable.setEditable(true);
-//        
-//        srNo.setCellValueFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-//        TableItemDescription.setCellValueFactory(TextFieldTableCell.forTableColumn());
-//        TableQuantity.setCellValueFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-//        TableRate.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-//        TableUnit.setCellValueFactory(TextFieldTableCell.forTableColumn());
-//        TableDiscPercent.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-//        TableDiscAmount.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-//        TableTotal.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-//        tableAmtBeforeDisc.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        ItemTable.setEditable(true);
+        
+        srNo.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        TableItemDescription.setCellFactory(TextFieldTableCell.forTableColumn());
+        TableQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        TableRate.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        TableUnit.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableAmtBeforeDisc.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        TableDiscPercent.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        TableDiscAmount.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        TableTotal.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        
         
         //Populating 'From' ComboBox from CustomerInfo table
         
@@ -453,7 +518,26 @@ public class CustomerPurchaseOrderController implements Initializable {
      */
     public void addButtonPushed()
     {
-        ItemDetails record = new ItemDetails(counter, itemDescrip.getText(), Integer.parseInt(qty.getText()), Double.parseDouble(rate.getText()), unit.getText(), Double.parseDouble(amtBeforeDisc.getText()), Double.parseDouble(discPercent.getText()), Double.parseDouble(discAmt.getText()), Double.parseDouble(total.getText()));
+//        String qty_string = qty.getText();
+//        int qty_int = new Integer(qty_string);
+//        
+//        String rate_string = rate.getText();
+//        double rate_double = new Double(rate_string);
+//        
+//        String amtBeforeDisc_string = amtBeforeDisc.getText();
+//        double amtBeforeDisc_double = new Double(amtBeforeDisc_string);
+//        
+//        String discPercent_string = discPercent.getText();
+//        double discPercent_double = new Double(discPercent_string);
+//        
+//        String discAmt_string = discAmt.getText();
+//        double discAmt_double = new Double(discAmt_string);
+//        
+//        String total_string = total.getText();
+//        double total_double = new Double(total_string);
+//        
+//        ItemDetails record = new ItemDetails(counter, itemDescrip.getText(), qty_int, rate_double, unit.getText(), amtBeforeDisc_double, discPercent_double, discAmt_double, total_double);
+        ItemDetails record = new ItemDetails(counter, itemDescrip.getText(), new Integer(qty.getText()), new Double(rate.getText()), unit.getText(), new Double(amtBeforeDisc.getText()), new Double(discPercent.getText()), new Double(discAmt.getText()), new Double(total.getText()));
         counter++;
         ItemTable.getItems().add(record);
     }
