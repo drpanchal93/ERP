@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,7 +29,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 /**
  * FXML Controller class
@@ -49,23 +54,25 @@ public class CustomerPurchaseOrderController implements Initializable {
     @FXML
     private TextArea custContactDetails;
     @FXML
-    private TableView<?> SJOTable;
+    private TableView<ItemDetails> ItemTable;
     @FXML
-    private TableColumn<?, ?> srNo;
+    private TableColumn<ItemDetails, Integer> srNo;
     @FXML
-    private TableColumn<?, ?> TableItemDescription;
+    private TableColumn<ItemDetails, String> TableItemDescription;
     @FXML
-    private TableColumn<?, ?> TableQuantity;
+    private TableColumn<ItemDetails, Integer> TableQuantity;
     @FXML
-    private TableColumn<?, ?> TableRate;
+    private TableColumn<ItemDetails, Double> TableRate;
     @FXML
-    private TableColumn<?, ?> TableUnit;
+    private TableColumn<ItemDetails, String> TableUnit;
     @FXML
-    private TableColumn<?, ?> TableDiscPercent;
+    private TableColumn<ItemDetails, Double> TableDiscPercent;
     @FXML
-    private TableColumn<?, ?> TableDiscAmount;
+    private TableColumn<ItemDetails, Double> TableDiscAmount;
     @FXML
-    private TableColumn<?, ?> TableTotal;
+    private TableColumn<ItemDetails, Double> TableTotal;
+    @FXML
+    private TableColumn<ItemDetails, Double> tableAmtBeforeDisc;
     @FXML
     private TextField itemDescrip;
     @FXML
@@ -105,6 +112,8 @@ public class CustomerPurchaseOrderController implements Initializable {
     @FXML
     private TextField totalAmtWithoutTax;
     @FXML
+    private TextField amtBeforeDisc;
+    @FXML
     private ComboBox<TaxModel> sgst;
     @FXML
     private ComboBox<TaxModel> cgst;
@@ -118,16 +127,42 @@ public class CustomerPurchaseOrderController implements Initializable {
     public ObservableList<TaxModel> igstList = FXCollections.observableArrayList();
     
     public ObservableList<SalesContacts> fromList = FXCollections.observableArrayList();
+    
+    public ObservableList<ItemDetails> ItemList = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
      */
     Connection conn = DBConnection.democonnection();
+    int count = 1;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
+        
+        srNo.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("srNo"));
+        TableItemDescription;
+        TableQuantity;
+        TableRate;
+        TableUnit;
+        TableDiscPercent;
+        TableDiscAmount;
+        TableTotal;
+        tableAmtBeforeDisc;
+        
+        
+        srNo.setCellValueFactory(new PropertyValueFactory<SJO, Integer>("srNo"));
+        itemDescription.setCellValueFactory(new PropertyValueFactory<SJO, String>("itemDescription"));
+        quantity.setCellValueFactory(new PropertyValueFactory<SJO, Integer>("quantity"));
+        
+        
+        SJOTable.setItems(sjoList);
+        
+        SJOTable.setEditable(true);
+        srNo.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        itemDescription.setCellFactory(TextFieldTableCell.forTableColumn());
+        quantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         
         //Populating 'From' ComboBox from CustomerInfo table
         
@@ -190,7 +225,7 @@ public class CustomerPurchaseOrderController implements Initializable {
 
                     @Override
                     public String toString(TaxModel object) {
-                        return Double.toString(object.getTaxRate());
+                        return Double.toString(object.getTaxRate()) + "%";
                     }
                         
                     @Override
@@ -227,7 +262,7 @@ public class CustomerPurchaseOrderController implements Initializable {
 
                     @Override
                     public String toString(TaxModel object) {
-                        return Double.toString(object.getTaxRate());
+                        return Double.toString(object.getTaxRate()) + "%";
                     }
                         
                     @Override
@@ -264,11 +299,12 @@ public class CustomerPurchaseOrderController implements Initializable {
 
                     @Override
                     public String toString(TaxModel object) {
-                        return Double.toString(object.getTaxRate());
+                        return Double.toString(object.getTaxRate()) + "%";
                     }
                         
                     @Override
-                    public TaxModel fromString(String string) {
+                    public TaxModel fromString(String string) 
+                    {
                         return igst.getItems().stream().filter(ap -> 
                             ap.getName().equals(string)).findFirst().orElse(null);
                     }
@@ -358,10 +394,65 @@ public class CustomerPurchaseOrderController implements Initializable {
                     {
                         Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-     
-
                 }    
             });
+            
+            rate.textProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    double amt_before_disc = Double.parseDouble(qty.getText()) * Double.parseDouble(newValue.toString());
+                    amtBeforeDisc.setText(Double.toString(amt_before_disc));
+                }
+            });
+            
+            discPercent.textProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    double disc_amt = Double.parseDouble(amtBeforeDisc.getText()) * Double.parseDouble(newValue.toString()) / 100;
+                    discAmt.setText(Double.toString(disc_amt));
+                    
+                    double total_amt = Double.parseDouble(amtBeforeDisc.getText()) - disc_amt;
+                    total.setText(Double.toString(total_amt));
+                }
+            });
     }    
+    
+    /**
+     * This method will remove the selected row(s) from the table 
+     */
+    /*public void deleteButtonPushed()
+    {
+       
+        ObservableList<SalesContactDetails> selectedRows, allItems;
+        allItems = SalesContactDetailsTable.getItems();
+        
+        //this gives us the rows that were selected
+        selectedRows = SalesContactDetailsTable.getSelectionModel().getSelectedItems();
+        
+        //loop over the selected rows and remove the Person objects from the table
+        for (SalesContactDetails item: selectedRows)
+        {
+            allItems.remove(item);
+            count--;
+            int c = 1;
+            for (SalesContactDetails items: allItems)
+            {
+                items.setSrNo(c);
+                c++;
+            }
+        }
+    }*/
+    
+    
+    
+    /**
+     * This method will create a new Person object and add it to the table
+     */
+    public void addButtonPushed()
+    {
+        ItemDetails record = new ItemDetails(count, itemDescrip.getText(), Integer.parseInt(qty.getText()), Double.parseDouble(rate.getText()), unit.getText(), Double.parseDouble(amtBeforeDisc.getText()), Double.parseDouble(discPercent.getText()), Double.parseDouble(discAmt.getText()), Double.parseDouble(total.getText()));
+        count++;
+        ItemTable.getItems().add(record);
+    }
     
 }
