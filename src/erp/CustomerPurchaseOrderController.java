@@ -32,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -134,7 +135,7 @@ public class CustomerPurchaseOrderController implements Initializable {
      * Initializes the controller class.
      */
     Connection conn = DBConnection.democonnection();
-    int count = 1;
+    int counter = 1;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -142,27 +143,29 @@ public class CustomerPurchaseOrderController implements Initializable {
         // TODO
         
         srNo.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("srNo"));
-        TableItemDescription;
-        TableQuantity;
-        TableRate;
-        TableUnit;
-        TableDiscPercent;
-        TableDiscAmount;
-        TableTotal;
-        tableAmtBeforeDisc;
+        TableItemDescription.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableItemDescription"));
+        TableQuantity.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("TableQuantity"));
+        TableRate.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableRate"));
+        TableUnit.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableUnit"));
+        TableDiscPercent.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableDiscPercent"));
+        TableDiscAmount.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableDiscAmount"));
+        TableTotal.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("TableTotal"));
+        tableAmtBeforeDisc.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("tableAmtBeforeDisc"));
         
         
-        srNo.setCellValueFactory(new PropertyValueFactory<SJO, Integer>("srNo"));
-        itemDescription.setCellValueFactory(new PropertyValueFactory<SJO, String>("itemDescription"));
-        quantity.setCellValueFactory(new PropertyValueFactory<SJO, Integer>("quantity"));
+        ItemTable.setItems(ItemList);
         
-        
-        SJOTable.setItems(sjoList);
-        
-        SJOTable.setEditable(true);
-        srNo.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        itemDescription.setCellFactory(TextFieldTableCell.forTableColumn());
-        quantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+//        ItemTable.setEditable(true);
+//        
+//        srNo.setCellValueFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+//        TableItemDescription.setCellValueFactory(TextFieldTableCell.forTableColumn());
+//        TableQuantity.setCellValueFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+//        TableRate.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+//        TableUnit.setCellValueFactory(TextFieldTableCell.forTableColumn());
+//        TableDiscPercent.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+//        TableDiscAmount.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+//        TableTotal.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+//        tableAmtBeforeDisc.setCellValueFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         
         //Populating 'From' ComboBox from CustomerInfo table
         
@@ -450,8 +453,8 @@ public class CustomerPurchaseOrderController implements Initializable {
      */
     public void addButtonPushed()
     {
-        ItemDetails record = new ItemDetails(count, itemDescrip.getText(), Integer.parseInt(qty.getText()), Double.parseDouble(rate.getText()), unit.getText(), Double.parseDouble(amtBeforeDisc.getText()), Double.parseDouble(discPercent.getText()), Double.parseDouble(discAmt.getText()), Double.parseDouble(total.getText()));
-        count++;
+        ItemDetails record = new ItemDetails(counter, itemDescrip.getText(), Integer.parseInt(qty.getText()), Double.parseDouble(rate.getText()), unit.getText(), Double.parseDouble(amtBeforeDisc.getText()), Double.parseDouble(discPercent.getText()), Double.parseDouble(discAmt.getText()), Double.parseDouble(total.getText()));
+        counter++;
         ItemTable.getItems().add(record);
     }
     

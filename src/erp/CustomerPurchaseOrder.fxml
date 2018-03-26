@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.CustomerPurchaseOrderController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="erp.CustomerPurchaseOrderController">
    <children>
       <GridPane prefHeight="1400.0" prefWidth="1200.0" vgap="20.0">
          <children>
@@ -85,13 +90,13 @@
                      <columns>
                         <TableColumn fx:id="srNo" prefWidth="65.0" text="Sr. No." />
                         <TableColumn fx:id="TableItemDescription" prefWidth="396.0" text="Item Description" />
-                        <TableColumn fx:id="TabaleQuantity" prefWidth="59.0" text="Quantity" />
-                        <TableColumn fx:id="tableRate" prefWidth="114.0" text="Rate" />
-                        <TableColumn fx:id="tableUnit" prefWidth="61.0" text="Unit/Per" />
+                        <TableColumn fx:id="TableQuantity" prefWidth="59.0" text="Quantity" />
+                        <TableColumn fx:id="TableRate" prefWidth="114.0" text="Rate" />
+                        <TableColumn fx:id="TableUnit" prefWidth="61.0" text="Unit/Per" />
                         <TableColumn fx:id="tableAmtBeforeDisc" prefWidth="122.0" text="Amt. before Disc" />
-                        <TableColumn fx:id="tableDiscPercent" text="Discount %" />
-                        <TableColumn fx:id="tableDiscAmount" prefWidth="121.0" text="Disc. Amt." />
-                        <TableColumn fx:id="tableTotal" prefWidth="120.0" text="Total" />
+                        <TableColumn fx:id="TableDiscPercent" text="Discount %" />
+                        <TableColumn fx:id="TableDiscAmount" prefWidth="121.0" text="Disc. Amt." />
+                        <TableColumn fx:id="TableTotal" prefWidth="120.0" text="Total" />
                      </columns>
                   </TableView>
                   <TextField fx:id="itemDescrip" layoutY="161.0" prefHeight="27.0" prefWidth="460.0" promptText="Item Description" />
