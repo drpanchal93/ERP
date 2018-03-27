@@ -188,7 +188,7 @@ public class CustomerPurchaseOrderController implements Initializable {
     public void changeTotalEvent(TableColumn.CellEditEvent editedCell)
     {
         ItemDetails Selected =  ItemTable.getSelectionModel().getSelectedItem();
-        Selected.setTotalAmount((Double) editedCell.getNewValue());
+        Selected.setTotal((Double) editedCell.getNewValue());
     }
     
     @Override
@@ -203,7 +203,7 @@ public class CustomerPurchaseOrderController implements Initializable {
         tableAmtBeforeDisc.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("amtBeforeDisc"));
         TableDiscPercent.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("discPercent"));
         TableDiscAmount.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("discAmount"));
-        TableTotal.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("amount"));
+        TableTotal.setCellValueFactory(new PropertyValueFactory<ItemDetails, Double>("total"));
         
 //        srNo.setCellValueFactory(new PropertyValueFactory<ItemDetails, Integer>("srNo"));
 //        TableItemDescription.setCellValueFactory(new PropertyValueFactory<ItemDetails, String>("TableItemDescription"));

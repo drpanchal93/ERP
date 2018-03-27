@@ -21,9 +21,9 @@ public class ItemDetails
     private SimpleDoubleProperty amtBeforeDisc;
     private SimpleDoubleProperty discPercent;
     private SimpleDoubleProperty discAmount;
-    private SimpleDoubleProperty amount;
+    private SimpleDoubleProperty total;
     
-    public ItemDetails(Integer serialNumber, String itemDescription, Integer quantity, Double rate, String unit, Double amtBeforeDisc, Double discPercent, Double discAmount, Double amount)
+    public ItemDetails(Integer serialNumber, String itemDescription, Integer quantity, Double rate, String unit, Double amtBeforeDisc, Double discPercent, Double discAmount, Double total)
     {
         this.serialNumber = new SimpleIntegerProperty(serialNumber);
         this.itemDescription = new SimpleStringProperty(itemDescription);
@@ -33,7 +33,7 @@ public class ItemDetails
         this.amtBeforeDisc = new SimpleDoubleProperty(amtBeforeDisc);
         this.discPercent = new SimpleDoubleProperty(discPercent);
         this.discAmount = new SimpleDoubleProperty(discAmount);
-        this.amount = new SimpleDoubleProperty(amount);
+        this.total = new SimpleDoubleProperty(total);
     }
     
     //Set and get serial number
@@ -112,11 +112,11 @@ public class ItemDetails
     }
     
     //set and get total amount
-    public double getTotalAmount() {
-        return amount.get();
+    public double getTotal() {
+        return total.get();
     }
 
-    public void setTotalAmount(Double amt) {
-        amount.set(amt);
+    public void setTotal(Double amt) {
+        total.set(amt);
     }
 }
