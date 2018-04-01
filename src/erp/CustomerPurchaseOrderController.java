@@ -136,6 +136,7 @@ public class CustomerPurchaseOrderController implements Initializable {
      */
     Connection conn = DBConnection.democonnection();
     int counter = 1;
+    double total_value = 0;
     
     public void changeSrNoCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -483,33 +484,248 @@ public class CustomerPurchaseOrderController implements Initializable {
                     total.setText(Double.toString(total_amt));
                 }
             });
-    }    
+            
+            sgst.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    TaxModel tax = (TaxModel) newValue;
+                    double s = tax.getTaxRate();
+                    double i = 0;
+                    if (igst.getValue() != null) {
+                        i = igst.getValue().getTaxRate();
+                    }     
+                    double c = 0;
+                    if (cgst.getValue() != null) {
+                        c = cgst.getValue().getTaxRate();
+                    } 
+                    double t = Double.parseDouble(totalAmtWithoutTax.getText());
+                    
+                    double ta = t * (s+i+c) / 100;
+                    double gt = t + ta;
+                    
+                    taxAmount.setText(Double.toString(ta));
+                    grandTotal.setText(Double.toString(gt));
+                }  
+            });
+            
+            igst.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    TaxModel tax = (TaxModel) newValue;
+                    double i = tax.getTaxRate();
+                    double s = 0;
+                    if (sgst.getValue() != null) {
+                        s = sgst.getValue().getTaxRate();
+                    }     
+                    double c = 0;
+                    if (cgst.getValue() != null) {
+                        c = cgst.getValue().getTaxRate();
+                    } 
+                    
+                    double t = Double.parseDouble(totalAmtWithoutTax.getText());
+                    
+                    double ta = t * (s+i+c) / 100;
+                    double gt = t + ta;
+                    
+                    taxAmount.setText(Double.toString(ta));
+                    grandTotal.setText(Double.toString(gt));
+                }  
+            });
+            
+            cgst.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    TaxModel tax = (TaxModel) newValue;
+                    double c = tax.getTaxRate();
+                   double i = 0;
+                    if (igst.getValue() != null) {
+                        i = igst.getValue().getTaxRate();
+                    }     
+                    double s = 0;
+                    if (sgst.getValue() != null) {
+                        s = sgst.getValue().getTaxRate();
+                    } 
+                    
+                    double t = Double.parseDouble(totalAmtWithoutTax.getText());
+                    
+                    double ta = t * (s+i+c) / 100;
+                    double gt = t + ta;
+                    
+                    taxAmount.setText(Double.toString(ta));
+                    grandTotal.setText(Double.toString(gt));
+                }  
+            });
+    }   
+    
+    public void submitButtonPushed() throws SQLException {
+        
+        // Insert data into Customer PO table
+
+        // the mysql insert statement
+
+        String query = " insert into customerpotable (PO_No,PO_Date,Customer_Id,TermsOfDelivery,PaymentTerms,Remarks,Note,grandTotal,packFwd,freight,sgst_id,cgst_id,igst_id,taxAmount,totalAmount)"
+
+          + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+
+        // create the mysql insert preparedstatement
+
+        PreparedStatement preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        
+        System.out.println(poDate.getValue().toString());
+        System.out.println(from.getValue().getId());
+        System.out.println(termsOfDelivery.getText());
+        System.out.println(termsOfPayment.getText());
+        System.out.println(remarks.getText());
+        System.out.println(note.getText());
+        System.out.println(grandTotal.getText());
+        System.out.println(packFwd.getText());
+        System.out.println(freight.getText());
+        System.out.println(sgst.getValue().getId());
+        System.out.println(cgst.getValue().getId());
+        System.out.println(igst.getValue().getId());
+        System.out.println(taxAmount.getText());
+        System.out.println(total.getText());
+        
+        preparedStmt.setString (1, poNo.getText());
+        
+        preparedStmt.setDate(2, java.sql.Date.valueOf(poDate.getValue().toString()));
+
+        preparedStmt.setInt(3, from.getValue().getId());
+
+        preparedStmt.setString (4, termsOfDelivery.getText());
+
+        preparedStmt.setString(5, termsOfPayment.getText());
+
+        preparedStmt.setString(6, remarks.getText());
+         
+        preparedStmt.setString(7, note.getText());
+        
+        preparedStmt.setDouble(8, Double.parseDouble(grandTotal.getText()));
+         
+        preparedStmt.setDouble(9, Double.parseDouble(packFwd.getText()));
+        
+        preparedStmt.setDouble(10, Double.parseDouble(freight.getText()));
+        
+        preparedStmt.setInt(11, sgst.getValue().getId());
+        
+        preparedStmt.setInt(12, cgst.getValue().getId());
+        
+        preparedStmt.setInt(13, igst.getValue().getId());
+        
+        preparedStmt.setDouble(14, Double.parseDouble(taxAmount.getText()));
+        
+        preparedStmt.setDouble(15, Double.parseDouble(total.getText()));
+
+        // execute the preparedstatement
+
+        int rs_int = preparedStmt.executeUpdate();
+
+        
+        ItemTable.getItems().forEach((ItemDetails item) -> {
+
+        System.out.println(item.getItemDescription());
+        // Insert data into Contact Person table
+
+        String query1 = " insert into custpoitemdetailstable (description, quantity, unit, price, discPer, discAmount, totalAmount)"
+
+          + " values (?,?,?,?,?,?,?)";
+
+
+        try {
+            // create the mysql insert preparedstatement
+
+            PreparedStatement preparedStmt1 = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+
+            preparedStmt1.setString (1, item.getItemDescription());
+
+            preparedStmt1.setInt (2, item.getQuantity());
+
+            preparedStmt1.setString (3, item.getUnit());
+
+            preparedStmt1.setDouble (4, item.getRate());
+
+            preparedStmt1.setDouble (5, item.getDiscPercent());
+
+            preparedStmt1.setDouble (6, item.getDiscAmount());
+
+            preparedStmt1.setDouble (7, item.getTotal());
+
+            // execute the preparedstatement
+
+            int rs1_int = preparedStmt1.executeUpdate();
+
+            if (rs1_int == 0) {
+                throw new SQLException("Creating item failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys1 = preparedStmt1.getGeneratedKeys()) {
+                if (generatedKeys1.next()) {
+                    int itemId = generatedKeys1.getInt(1);
+                    // Insert data into Email table
+
+                    String query2 = " insert into customerpurchaseorder_itemdetails (PO_No, item_id)"
+
+                      + " values (?,?)";
+
+                    // create the mysql insert preparedstatement
+
+                    try {
+                        PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
+                        preparedStmt2.setString (1, poNo.getText());
+
+                        preparedStmt2.setInt (2, itemId);
+
+                        // execute the preparedstatement
+
+                        preparedStmt2.execute();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }catch (SQLException ex) {
+                Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(SalesContactDetailsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    });
+
+    }
     
     /**
      * This method will remove the selected row(s) from the table 
      */
-    /*public void deleteButtonPushed()
+    public void deleteButtonPushed()
     {
        
-        ObservableList<SalesContactDetails> selectedRows, allItems;
-        allItems = SalesContactDetailsTable.getItems();
+        ObservableList<ItemDetails> selectedRows, allItems;
+        allItems = ItemTable.getItems();
         
         //this gives us the rows that were selected
-        selectedRows = SalesContactDetailsTable.getSelectionModel().getSelectedItems();
+        selectedRows = ItemTable.getSelectionModel().getSelectedItems();
         
         //loop over the selected rows and remove the Person objects from the table
-        for (SalesContactDetails item: selectedRows)
+        for (ItemDetails item: selectedRows)
         {
             allItems.remove(item);
-            count--;
+            counter--;
             int c = 1;
-            for (SalesContactDetails items: allItems)
+            for (ItemDetails items: allItems)
             {
-                items.setSrNo(c);
+                items.setSerialNumber(c);
                 c++;
             }
         }
-    }*/
+        
+        total_value = 0;
+        ItemTable.getItems().forEach((ItemDetails records) -> {
+            
+            this.Total(records.getTotal());
+        });
+        totalAmtWithoutTax.setText(Double.toString(total_value));
+    }
+    
     
     
     
@@ -518,28 +734,20 @@ public class CustomerPurchaseOrderController implements Initializable {
      */
     public void addButtonPushed()
     {
-//        String qty_string = qty.getText();
-//        int qty_int = new Integer(qty_string);
-//        
-//        String rate_string = rate.getText();
-//        double rate_double = new Double(rate_string);
-//        
-//        String amtBeforeDisc_string = amtBeforeDisc.getText();
-//        double amtBeforeDisc_double = new Double(amtBeforeDisc_string);
-//        
-//        String discPercent_string = discPercent.getText();
-//        double discPercent_double = new Double(discPercent_string);
-//        
-//        String discAmt_string = discAmt.getText();
-//        double discAmt_double = new Double(discAmt_string);
-//        
-//        String total_string = total.getText();
-//        double total_double = new Double(total_string);
-//        
-//        ItemDetails record = new ItemDetails(counter, itemDescrip.getText(), qty_int, rate_double, unit.getText(), amtBeforeDisc_double, discPercent_double, discAmt_double, total_double);
         ItemDetails record = new ItemDetails(counter, itemDescrip.getText(), new Integer(qty.getText()), new Double(rate.getText()), unit.getText(), new Double(amtBeforeDisc.getText()), new Double(discPercent.getText()), new Double(discAmt.getText()), new Double(total.getText()));
         counter++;
         ItemTable.getItems().add(record);
+        
+        total_value = 0;
+        ItemTable.getItems().forEach((ItemDetails records) -> {
+            
+            this.Total(records.getTotal());
+        });
+        totalAmtWithoutTax.setText(Double.toString(total_value));
+    }
+    
+    public void Total(double value) {
+        total_value += value;       
     }
     
 }
