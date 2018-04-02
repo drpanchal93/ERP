@@ -7,7 +7,16 @@ package erp;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +48,7 @@ public class SJOFormController implements Initializable {
     private TextField custPONo;
     
     @FXML
-    private TextField custPODate;
+    private DatePicker custPODate;
     
     @FXML
     private TextArea remarks;
@@ -90,6 +99,10 @@ public class SJOFormController implements Initializable {
     {
 
     }
+    
+    
+    Connection conn = DBConnection.democonnection();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -105,6 +118,40 @@ public class SJOFormController implements Initializable {
         srNo.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         itemDescription.setCellFactory(TextFieldTableCell.forTableColumn());
         quantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        
+        custPONo.textProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                String po = (String) newValue;
+                
+                Statement stmt, stmt1, stmt2;
+                try {
+                    stmt = conn.createStatement();
+                    String query = "select PO_Date, Remarks from customerpotable where PO_No = '"+po+"'";
+                    ResultSet rs = stmt.executeQuery(query);
+                    while(rs.next()) {
+                       custPODate.setValue(rs.getDate("PO_Date").toLocalDate());
+                       remarks.setText(rs.getString("Remarks"));
+                       stmt1 = conn.createStatement();
+                       String query1 = "select item_id  from customerpurchaseorder_itemdetails where PO_No = '" +po+"'";
+                       ResultSet rs1 = stmt1.executeQuery(query1);
+                       while(rs1.next()) {
+                            stmt2 = conn.createStatement();
+                            String query2 = "select description,quantity  from custpoitemdetailstable where id = " + rs1.getInt("item_id");
+                            ResultSet rs2 = stmt2.executeQuery(query2);
+                            while (rs2.next()) {
+                                SJO newPerson = new SJO(count, rs2.getString("description"), rs2.getInt("quantity"));
+                                count++;
+
+                                SJOTable.getItems().add(newPerson);
+                            }
+                       }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(SalesContactsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }    
         
       
